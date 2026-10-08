@@ -25,7 +25,7 @@ export default function WhyUs() {
         {/* Bento Grid Architecture (Inspired by 21st.dev Component 26901 & UI Pro Max Bento Guidelines) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {/* Card 1: Wide Col-Span 2 - Full Lifecycle */}
-          <div className="lg:col-span-2 group relative overflow-hidden bg-[#0B0B0D] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
+          <div className="lg:col-span-2 group relative overflow-hidden liquid-glass hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
             <div className="absolute top-0 right-0 w-64 h-64 bg-radial-[circle_at_top_right] from-[#FF1738]/10 via-transparent to-transparent pointer-events-none" />
             
             <div className="space-y-6">
@@ -68,7 +68,7 @@ export default function WhyUs() {
           </div>
 
           {/* Card 2: 100% Custom Code */}
-          <div className="group relative overflow-hidden bg-[#0B0B0D] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
+          <div className="group relative overflow-hidden liquid-glass hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#FF1738]">
@@ -109,7 +109,7 @@ export default function WhyUs() {
           </div>
 
           {/* Card 3: Direct Technical Access */}
-          <div className="group relative overflow-hidden bg-[#0B0B0D] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
+          <div className="group relative overflow-hidden liquid-glass hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#FF1738]">
@@ -135,7 +135,7 @@ export default function WhyUs() {
           </div>
 
           {/* Card 4: Security & Production Standards */}
-          <div className="group relative overflow-hidden bg-[#0B0B0D] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
+          <div className="group relative overflow-hidden liquid-glass hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#FF1738]">
@@ -161,7 +161,7 @@ export default function WhyUs() {
           </div>
 
           {/* Card 5: Long-term Expansion & Post Launch */}
-          <div className="group relative overflow-hidden bg-[#0B0B0D] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
+          <div className="group relative overflow-hidden liquid-glass hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#FF1738]">

@@ -27,7 +27,7 @@ export default function Navbar() {
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
           ? "bg-[#050505]/90 backdrop-blur-md border-b border-white/[0.08] shadow-lg shadow-black/40"
-          : "bg-[#050505]/60 backdrop-blur-sm border-b border-white/[0.04]"
+          : "bg-[#050505]/40 backdrop-blur-sm border-b border-white/[0.04]"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -49,9 +49,9 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links with Liquid Glass Pill (Prompt 5 Reference) */}
         <nav
-          className="hidden md:flex items-center gap-1 lg:gap-2 bg-white/[0.03] border border-white/[0.06] rounded-full px-4 py-1.5 shadow-inner"
+          className="hidden md:flex items-center gap-1 lg:gap-1.5 liquid-glass rounded-full px-3 py-1.5 shadow-inner"
           aria-label="Main Navigation"
         >
           {siteConfig.navLinks.map((link) => {

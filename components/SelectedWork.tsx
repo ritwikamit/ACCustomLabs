@@ -41,8 +41,8 @@ export default function SelectedWork() {
             return (
               <article
                 key={project.id}
-                className={`group flex flex-col justify-between bg-[#0B0B0D] border border-white/[0.08] hover:border-white/[0.22] rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 relative overflow-hidden ${
-                  isFeatured ? "md:col-span-2 lg:col-span-2 bg-gradient-to-br from-[#0B0B0D] via-[#0E0E12] to-[#0B0B0D]" : ""
+                className={`group flex flex-col justify-between liquid-glass hover:border-white/[0.25] rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/10 relative overflow-hidden ${
+                  isFeatured ? "md:col-span-2 lg:col-span-2" : ""
                 }`}
               >
                 {/* Subtle hover red corner flare */}

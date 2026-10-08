@@ -44,7 +44,7 @@ export default function ServicesSection() {
             return (
               <div
                 key={service.id}
-                className="group relative flex flex-col justify-between bg-[#0B0B0D] border border-white/[0.07] hover:border-white/[0.22] rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#FF1738]/5"
+                className="group relative flex flex-col justify-between liquid-glass hover:border-white/[0.22] rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#FF1738]/5"
               >
                 {/* Subtle Red Top Accent Indicator */}
                 <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-[#FF1738] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
