@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { ArrowUpRight, Code, Sparkles, CheckCircle2 } from "lucide-react";
+import RetroGrid from "@/components/ui/RetroGrid";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32 tech-grid">
+    <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32 bg-[#050505]">
+      {/* 21st.dev Perspective 3D Grid */}
+      <RetroGrid angle={62} className="opacity-35" />
+
       {/* Top red glow atmosphere */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 red-horizon-glow pointer-events-none" />
 

@@ -60,6 +60,22 @@ export default function WorkPage() {
             {/* Header info */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-white/[0.06] pb-8">
               <div className="space-y-3 max-w-2xl">
+                {/* Browser Mockup Window Chrome Bar */}
+                <div className="flex items-center gap-2 px-3 py-2 bg-[#050505] rounded-xl border border-white/[0.06] text-xs font-mono max-w-md">
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]/80" />
+                  </div>
+                  <div className="flex-1 mx-2 px-3 py-0.5 bg-white/[0.03] rounded-md text-[11px] text-zinc-400 truncate text-center font-mono">
+                    https://{project.displayUrl}
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 shrink-0 font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    LIVE
+                  </span>
+                </div>
+
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-mono uppercase px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-[#D4D4D8]">
                     0{index + 1} / {project.category}
