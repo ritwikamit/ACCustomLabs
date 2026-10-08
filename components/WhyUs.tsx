@@ -48,7 +48,7 @@ export default function WhyUs() {
 
               {/* Visual Pipeline Bar */}
               <div className="pt-4 flex flex-wrap items-center gap-2 text-xs font-mono">
-                {["01 Discovery", "02 UX / UI", "03 Bespoke Code", "04 SEO Hardening", "05 Vercel Launch"].map((step, idx) => (
+                {["01 Discovery", "02 UX / UI", "03 Custom Code", "04 SEO Hardening", "05 Vercel Launch"].map((step, idx) => (
                   <div
                     key={step}
                     className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#111114] border border-white/[0.06] text-zinc-300"
@@ -67,7 +67,7 @@ export default function WhyUs() {
             </div>
           </div>
 
-          {/* Card 2: 100% Bespoke Code */}
+          {/* Card 2: 100% Custom Code */}
           <div className="group relative overflow-hidden bg-[#0B0B0D] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/5 flex flex-col justify-between">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
@@ -79,10 +79,10 @@ export default function WhyUs() {
 
               <div className="space-y-3">
                 <h3 className="text-xl font-bold text-white font-[family-name:var(--font-display)]">
-                  100% Bespoke Code, Zero Bloat
+                  100% Custom Code, Zero Bloat
                 </h3>
                 <p className="text-sm text-[#A1A1AA] leading-relaxed">
-                  We never resell pre-made WordPress themes, sluggish builders, or bloated plugins. Every line is hand-crafted with modern Next.js and TypeScript.
+                  We never resell pre-made WordPress themes, sluggish builders, or bloated plugins. Every line is written by our team with modern Next.js and TypeScript.
                 </p>
               </div>
 

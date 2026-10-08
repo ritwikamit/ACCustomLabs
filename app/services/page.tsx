@@ -6,7 +6,7 @@ import { ArrowUpRight, Check, Code2, Sparkles } from "lucide-react";
 export const metadata: Metadata = {
   title: "Services & Capabilities",
   description:
-    "Explore our complete range of digital services: custom websites, web applications, mobile apps, UI/UX design, database architecture, SEO, and cloud infrastructure.",
+    "Review our complete range of digital services: custom websites, web applications, mobile apps, UI/UX design, database architecture, SEO, and cloud infrastructure.",
 };
 
 export default function ServicesPage() {

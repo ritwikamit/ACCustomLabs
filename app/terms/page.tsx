@@ -30,7 +30,7 @@ export default function TermsPage() {
             2. Intellectual Property & Ownership
           </h2>
           <p>
-            Upon full settlement of agreed project milestone invoices, the client receives full ownership of the bespoke custom code, design assets, and content created specifically for their project. Open-source libraries and frameworks remain subject to their respective MIT/Apache licenses.
+            Upon full settlement of agreed project milestone invoices, the client receives full ownership of the custom code, design assets, and content created specifically for their project. Open-source libraries and frameworks remain subject to their respective MIT/Apache licenses.
           </p>
         </section>
 

@@ -32,7 +32,7 @@ export default function AboutPage() {
       icon: Sparkles,
       title: "Built to Expand Over Time",
       description:
-        "We engineer digital assets for today that don't need to be scrapped tomorrow. Our modular Next.js and React setups are architected so that booking flows, databases, and APIs can be added seamlessly whenever your business demands it.",
+        "We engineer digital assets for today that don't need to be scrapped tomorrow. Our modular Next.js and React setups are architected so that booking flows, databases, and APIs can be added directly whenever your business demands it.",
     },
   ];
 

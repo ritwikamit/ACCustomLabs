@@ -36,7 +36,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "03",
     title: "Design",
-    subtitle: "High-contrast UI/UX and bespoke design systems",
+    subtitle: "High-contrast UI/UX and custom design systems",
     description:
       "We design custom interfaces tailored specifically to your brand identity. Every layout is built mobile-first with clear typographic hierarchy, controlled contrast, and intentional microinteractions that guide users toward action.",
     tasks: [

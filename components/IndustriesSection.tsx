@@ -65,7 +65,7 @@ export default function IndustriesSection() {
           </h2>
           <p className="text-base text-[#A1A1AA]">
             Whether you operate a premier local establishment or a scaling enterprise,
-            we build bespoke digital flagships that respect your industry context.
+            we build custom digital flagships that respect your industry context.
           </p>
         </div>
 

@@ -59,17 +59,19 @@ export default function Hero() {
           {/* Subtitle / Supporting copy */}
           <p className="text-lg sm:text-xl text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed">
             Websites, applications, business software, and SEO systems engineered
-            specifically around your business — not a generic template.
+            specifically around your business, not a generic template.
           </p>
 
-          {/* Action CTAs */}
+          {/* Action CTAs (Reference 1: CTA with circular trailing arrow) */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#FF1738] hover:bg-[#FF3350] active:scale-[0.98] text-white font-semibold text-base px-8 py-4 rounded-full transition-all duration-200 shadow-lg shadow-[#FF1738]/25 hover:shadow-[#FF1738]/40 border border-[#FF1738]/40"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#FF1738] hover:bg-[#FF3350] active:scale-[0.98] text-white font-semibold text-base pl-8 pr-4 py-3.5 rounded-full transition-all duration-200 shadow-lg shadow-[#FF1738]/25 hover:shadow-[#FF1738]/40 border border-[#FF1738]/40 group"
             >
               <span>Start a Project</span>
-              <ArrowUpRight className="w-5 h-5" aria-hidden="true" />
+              <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </span>
             </Link>
 
             <Link
@@ -95,7 +97,7 @@ export default function Hero() {
             <div className="bg-[#0B0B0D]/80 border border-white/[0.06] rounded-xl p-4">
               <div className="flex items-center gap-2 text-white text-sm font-semibold mb-1">
                 <Code className="w-4 h-4 text-[#FF1738]" />
-                <span>100% Bespoke Code</span>
+                <span>100% Custom Code</span>
               </div>
               <p className="text-xs text-[#A1A1AA]">
                 Custom Next.js & React architectures. Zero template bloat.
@@ -110,6 +112,30 @@ export default function Hero() {
               <p className="text-xs text-[#A1A1AA]">
                 Gyms, clinics, salons, real estate, and pharmaceuticals.
               </p>
+            </div>
+          </div>
+
+          {/* Landing Page Trust & Authority Strip (Pattern 33) */}
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 text-xs font-mono text-zinc-400">
+            <span className="text-zinc-500 uppercase tracking-wider text-[11px]">Active live deployments:</span>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {[
+                { name: "Vikings Gym & Spa", href: "https://vikingsgym.in" },
+                { name: "BBC Pro Gym", href: "https://bbcpro.vercel.app" },
+                { name: "Real Looks Salon", href: "https://reallooks.vercel.app" },
+                { name: "Mars Remedies", href: "https://marsremedies.co.in" },
+                { name: "BB Real Estate", href: "https://bbrealestate.vercel.app" },
+              ].map((client) => (
+                <a
+                  key={client.name}
+                  href={client.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-md bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-[#FF1738]/40 text-zinc-300 hover:text-white transition-colors"
+                >
+                  {client.name} ↗
+                </a>
+              ))}
             </div>
           </div>
         </div>

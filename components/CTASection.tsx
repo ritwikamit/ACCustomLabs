@@ -44,7 +44,7 @@ export default function CTASection() {
               href="/work"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] text-[#F7F7F7] font-medium text-base px-8 py-4 rounded-full transition-colors border border-white/[0.12]"
             >
-              <span>Explore Verified Work</span>
+              <span>View Verified Work</span>
             </Link>
           </div>
         </div>

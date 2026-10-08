@@ -35,7 +35,7 @@ export const servicesData: ServiceItem[] = [
     ],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML5/CSS3"],
     businessImpact:
-      "A fast, bespoke web presence turns casual visitors into qualified inquiries while reinforcing technical trust.",
+      "A fast, custom web presence turns casual visitors into qualified inquiries while reinforcing technical trust.",
   },
   {
     id: "02",

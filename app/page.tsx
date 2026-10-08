@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import CapabilityMarquee from "@/components/ui/CapabilityMarquee";
 import SelectedWork from "@/components/SelectedWork";
 import ServicesSection from "@/components/ServicesSection";
 import WhyUs from "@/components/WhyUs";
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       <Hero />
+      <CapabilityMarquee />
       <SelectedWork />
       <ServicesSection />
       <WhyUs />

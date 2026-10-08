@@ -20,7 +20,7 @@ export default function SelectedWork() {
               Real projects delivered for real businesses.
             </h2>
             <p className="text-base text-[#A1A1AA] leading-relaxed">
-              Explore live deployments across fitness centers, beauty salons, pharmaceutical distribution, and real estate.
+              Review live deployments across fitness centers, beauty salons, pharmaceutical distribution, and real estate.
               Every build is engineered from strategy through live deployment on modern cloud architecture.
             </p>
           </div>
@@ -29,7 +29,7 @@ export default function SelectedWork() {
             href="/work"
             className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#FF1738] transition-colors py-2 group shrink-0"
           >
-            <span>Explore All 5 Case Studies</span>
+            <span>View All 5 Case Studies</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>

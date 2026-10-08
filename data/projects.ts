@@ -73,7 +73,7 @@ export const projectsData: ProjectItem[] = [
       "Fast mobile load times across cellular networks",
       "Structured equipment and conditioning sections",
       "Modern typography and high-contrast dark aesthetic",
-      "Seamless Vercel edge deployment",
+      "Direct Vercel edge deployment",
     ],
     highlight: "Ultra-lean architecture engineered for instant mobile consultation onboarding.",
   },
@@ -96,16 +96,16 @@ export const projectsData: ProjectItem[] = [
     challenge:
       "A unisex salon with diverse services spanning hair, beard, skincare, and bridal styling needed an editorial digital experience that presented its services with sophistication rather than like a standard service catalog.",
     solution:
-      "Crafted a refined warm-neutral editorial aesthetic with Cormorant and Plus Jakarta typography, clear service menus with pricing tiers, and embedded appointment booking contact points.",
+      "Designed a refined warm-neutral editorial aesthetic with Cormorant and Plus Jakarta typography, clear service menus with pricing tiers, and embedded appointment booking contact points.",
     outcome:
-      "Elevated the salon's brand perception into a boutique grooming sanctuary, clarifying services and facilitating direct client bookings.",
+      "Strengthened the salon's brand perception into a boutique grooming sanctuary, clarifying services and facilitating direct client bookings.",
     features: [
-      "Curated service menus for hair, beard, skincare, and bridal styling",
+      "Organized service menus for hair, beard, skincare, and bridal styling",
       "Structured schema markup for local beauty salon discovery",
       "Warm editorial typography and balanced whitespace",
       "Mobile-friendly appointment contact triggers",
     ],
-    highlight: "Editorial elegance combined with structured service menus for seamless appointment requests.",
+    highlight: "Editorial elegance combined with structured service menus for direct appointment requests.",
   },
   {
     id: "mars-remedies",

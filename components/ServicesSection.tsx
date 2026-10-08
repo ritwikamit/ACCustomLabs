@@ -33,7 +33,7 @@ export default function ServicesSection() {
           </h2>
           <p className="text-base text-[#A1A1AA] leading-relaxed">
             We don’t just deliver static frontends. We handle your entire technical stack:
-            from high-contrast UI/UX and bespoke TypeScript code to APIs, databases, SEO systems, and post-launch maintenance.
+            from high-contrast UI/UX and custom TypeScript code to APIs, databases, SEO systems, and post-launch maintenance.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function ServicesSection() {
             href="/services"
             className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#FF1738] transition-colors border border-white/[0.1] hover:border-[#FF1738]/40 rounded-full px-8 py-3.5 bg-[#0B0B0D]"
           >
-            <span>Explore Complete Capabilities & Technical Deliverables</span>
+            <span>View Complete Capabilities & Technical Deliverables</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>

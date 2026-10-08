@@ -61,6 +61,19 @@ export default function FAQSection() {
             );
           })}
         </div>
+
+        {/* Direct Technical Inquiry Prompt */}
+        <div className="mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-center space-y-3">
+          <p className="text-sm text-zinc-300">
+            Have a project-specific technical question or unique requirements?
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#FF1738] hover:text-white transition-colors"
+          >
+            <span>Ask Us Directly via Contact Form or WhatsApp →</span>
+          </a>
+        </div>
       </div>
     </section>
   );
