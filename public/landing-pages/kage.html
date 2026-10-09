@@ -101,7 +101,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 #pre.done{ opacity:0; visibility:hidden; pointer-events:none; }
 .pre-in{ width:min(420px,74vw); text-align:center; }
-.pre-mark{ margin:0 auto 26px; width:44px; height:44px; opacity:.9; }
+.pre-mark{ margin:0 auto 24px; width:auto; max-width:260px; height:52px; display:flex; align-items:center; justify-content:center; }
 .pre-mark svg{ width:100%; height:100%; display:block; }
 .pre-jp{ font-size:12px; letter-spacing:.5em; color:var(--bone-dim); margin-bottom:20px; }
 .pre-bar{ position:relative; height:1px; background:rgba(223,231,224,.14); overflow:hidden; }
@@ -139,11 +139,11 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 .nav.stuck::after{ opacity:1; }
 .nav.hide{ transform:translate3d(0,-101%,0); }
-.brand{ display:flex; align-items:center; gap:11px; flex:0 0 auto; }
-.brand svg{ width:34px; height:34px; display:block; }
-.brand-tx{ display:flex; flex-direction:column; line-height:1; gap:3px; }
-.brand-tx b{ font-size:12px; font-weight:500; letter-spacing:.26em; }
-.brand-tx i{ font-style:normal; font-size:8px; letter-spacing:.34em; color:var(--muted); }
+.brand{ display:flex; align-items:center; gap:14px; flex:0 0 auto; }
+.brand-logo{ height:38px; width:auto; max-width:180px; object-fit:contain; display:block; }
+.brand-tx{ display:flex; flex-direction:column; line-height:1.2; gap:3px; border-left:1px solid var(--line); padding-left:12px; }
+.brand-tx b{ font-size:11px; font-weight:500; letter-spacing:.2em; color:var(--bone); }
+.brand-tx i{ font-style:normal; font-size:8px; letter-spacing:.28em; color:var(--muted); text-transform:uppercase; }
 .nav-links{ display:flex; gap:clamp(18px,2.6vw,46px); margin-left:auto; }
 .nav-link{
   position:relative; font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
@@ -624,9 +624,11 @@ body[data-layout-closing="b"] .fin .cta{ grid-column:1; grid-row:3; justify-self
      compact ruled index beneath it. */
 body[data-layout-footer="b"] .foot-grid{ grid-template-columns:repeat(3,1fr); }
 body[data-layout-footer="b"] .foot-brand{
-  grid-column:1 / -1; display:grid; grid-template-columns:70px minmax(0,1fr); align-items:center;
+  grid-column:1 / -1; display:flex; flex-wrap:wrap; align-items:center; gap:28px;
   padding-bottom:34px; margin-bottom:8px; border-bottom:1px solid var(--line-soft);
 }
+.foot-brand-logo{ height:44px; width:auto; max-width:220px; object-fit:contain; display:block; flex:0 0 auto; }
+.foot-brand p{ margin:0; max-width:56ch; font-size:14px; line-height:1.65; color:var(--muted); }
 body[data-layout-footer="b"] .foot-brand svg{ width:54px; height:54px; }
 body[data-layout-footer="b"] .foot-brand p{
   margin:0; max-width:48ch; font-size:clamp(18px,2vw,30px); line-height:1.35; color:var(--bone-dim);
@@ -895,8 +897,8 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <!-- ============================================================ preloader -->
 <div id="pre">
   <div class="pre-in">
-    <div class="pre-mark" style="display:flex;align-items:center;justify-content:center;">
-      <img src="/brand/logo.png" alt="AC Custom Labs" width="44" height="44" style="object-fit:contain;border-radius:8px;box-shadow:0 0 24px rgba(224,35,28,0.4);" />
+    <div class="pre-mark">
+      <img src="/brand/logo.png" alt="AC Custom Labs" style="height:48px; width:auto; max-width:240px; object-fit:contain; display:block; filter:drop-shadow(0 0 24px rgba(224,35,28,0.45));" />
     </div>
     <div class="pre-jp" style="font-family:'Onest',sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--bone-dim);text-transform:uppercase;margin-bottom:20px;">AC CUSTOM LABS // DIGITAL PRODUCT STUDIO</div>
     <div class="pre-bar"><i id="pre-fill"></i></div>
@@ -909,8 +911,8 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <!-- ============================================================ nav -->
 <header class="nav" id="nav">
   <a class="brand" href="#top" data-cursor>
-    <img src="/brand/logo.png" alt="AC Custom Labs" width="34" height="34" style="object-fit:contain;border-radius:6px;display:block;" />
-    <span class="brand-tx"><b>AC CUSTOM LABS</b><i>DIGITAL PRODUCT STUDIO</i></span>
+    <img src="/brand/logo.png" alt="AC Custom Labs" class="brand-logo" />
+    <span class="brand-tx"><b>DIGITAL PRODUCT STUDIO</b><i>BENGALURU // GLOBAL</i></span>
   </a>
   <nav class="nav-links" id="navlinks">
     <a class="nav-link" href="#gate" data-cursor><span>Work</span><span class="alt">01</span></a>
@@ -1133,7 +1135,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   </div>
   <div class="foot-grid">
     <div class="foot-brand">
-      <img src="/brand/logo.png" alt="AC Custom Labs" width="36" height="36" style="object-fit:contain;border-radius:6px;display:block;margin-bottom:14px;" />
+      <img src="/brand/logo.png" alt="AC Custom Labs" class="foot-brand-logo" />
       <p>Independent digital product studio engineering high-performance web applications, interactive 3D systems, and category-defining brand platforms.</p>
     </div>
     <div><h4>Directory</h4><ul>
