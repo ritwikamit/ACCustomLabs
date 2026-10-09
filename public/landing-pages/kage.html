@@ -2988,57 +2988,59 @@ function buildForeground() {
 
 /* --------------------------------------------------- the giant wordmark */
 const WORD_Z = 3.0;
+let brandLogoImg = null;
 function buildWordmark() {
-  /* The word is set to the frame width, so a short word is a *taller* word.
-     Four letters at the old tracking put a 400-pixel cap height across the
-     scene; the letters are spaced out instead, which keeps the type edge to
-     edge while the caps come back down to the height of the headline block. */
-  const SZ = 320, TRACK = .40, PAD = 26;
-  const m = cvs(4, 4).getContext('2d');
-  m.font = '600 ' + SZ + 'px Wordmark, sans-serif';
-  m.textBaseline = 'alphabetic'; m.textAlign = 'left';
-  const word = 'KAGE', gl = [];
-  let pen = 0, ascMax = 0, descMax = 0, xMin = 1e9, xMax = -1e9;
-  for (const ch of word) {
-    const t = m.measureText(ch);
-    const g = { ch: ch, adv: t.width, asc: t.actualBoundingBoxAscent, desc: t.actualBoundingBoxDescent,
-                l: t.actualBoundingBoxLeft, r: t.actualBoundingBoxRight, pen: pen };
-    gl.push(g);
-    ascMax = Math.max(ascMax, g.asc); descMax = Math.max(descMax, g.desc);
-    xMin = Math.min(xMin, pen - g.l); xMax = Math.max(xMax, pen + g.r);
-    pen += t.width + TRACK * SZ;
-  }
+  const W = 1368, H = 246;
   const group = new THREE.Group();
   WORD.glyphs = [];
-  gl.forEach((g, i) => {
-    const cw = Math.ceil(g.l + g.r) + PAD * 2, chh = Math.ceil(g.asc + g.desc) + PAD * 2;
-    const c = cvs(cw, chh), x = c.getContext('2d');
-    x.font = '600 ' + SZ + 'px Wordmark, sans-serif';
-    x.textBaseline = 'alphabetic'; x.textAlign = 'left';
-    /* the vertical wash is baked per glyph so the whole word shares one ramp */
-    const gy0 = PAD + g.asc - ascMax, gy1 = PAD + g.asc + descMax * .4;
-    const grad = x.createLinearGradient(0, gy0, 0, gy1);
-    grad.addColorStop(0, 'rgb(226,236,229)');
-    grad.addColorStop(.52, 'rgb(198,214,203)');
-    grad.addColorStop(1, 'rgb(150,170,157)');
-    x.fillStyle = grad;
-    x.fillText(g.ch, PAD + g.l, PAD + g.asc);
 
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(cw, chh),
-      new THREE.MeshBasicMaterial({ map: tx(c, { aniso: 16 }), transparent: true,
-        depthWrite: false, side: THREE.DoubleSide, fog: true, opacity: 1 }));
-    mesh.position.set(g.pen + (g.r - g.l) / 2, (g.asc - g.desc) / 2 + (PAD - PAD) , 0);
-    mesh.position.y = (g.asc - g.desc) / 2;
-    mesh.renderOrder = 12;
-    mesh.frustumCulled = false;
-    mesh.userData.baseY = mesh.position.y;
-    group.add(mesh);
-    WORD.glyphs.push(mesh);
-  });
+  const c = cvs(W, H);
+  const x = c.getContext('2d');
+
+  if (brandLogoImg && brandLogoImg.complete && brandLogoImg.naturalWidth) {
+    x.drawImage(brandLogoImg, 0, 0, W, H);
+  }
+
+  const logoTex = tx(c, { aniso: 16 });
+
+  const drawLogo = () => {
+    x.clearRect(0, 0, W, H);
+    x.drawImage(brandLogoImg, 0, 0, W, H);
+    logoTex.needsUpdate = true;
+  };
+
+  if (!brandLogoImg || !brandLogoImg.complete) {
+    brandLogoImg = new Image();
+    brandLogoImg.crossOrigin = 'anonymous';
+    brandLogoImg.onload = drawLogo;
+    brandLogoImg.src = '/brand/logo.png';
+  } else {
+    drawLogo();
+  }
+
+  const mesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(W, H),
+    new THREE.MeshBasicMaterial({
+      map: logoTex,
+      transparent: true,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+      fog: true,
+      opacity: 1
+    })
+  );
+  mesh.position.set(W / 2, H / 2, 0);
+  mesh.position.y = H / 2;
+  mesh.renderOrder = 12;
+  mesh.frustumCulled = false;
+  mesh.userData.baseY = H / 2;
+  group.add(mesh);
+  WORD.glyphs.push(mesh);
+
   group.position.z = WORD_Z;
   scene.add(group);
   WORD.group = group;
-  WORD.ink = { xMin: xMin, xMax: xMax, cx: (xMin + xMax) / 2, w: xMax - xMin, asc: ascMax };
+  WORD.ink = { xMin: 0, xMax: W, cx: W / 2, w: W, asc: H };
 }
 const WORD = { glyphs: [], group: null, ink: null, reveal: 0 };
 
@@ -4095,15 +4097,9 @@ function layoutWord() {
      phone — on a width test it took the desktop baseline and sat below the
      fold with only the top of the G showing. */
   const narrow = vpW() / vpH() < 1.05;
-  /* Four wide-tracked letters reach the frame edge exactly; pushing past it,
-     as the six-letter word could afford to, decapitates the K and the E. The
-     narrow branch is held a little inside the edge because a phone frame has
-     no gutter to lose the tracking that trails the final letter into. */
-  const fill = narrow ? .96 : 1.00;
+  const fill = narrow ? .85 : .75;
   const s = (R.x - L.x) * fill / WORD.ink.w;
-  /* on a tall frame the mounds sit near mid-height, so the baseline has to
-     ride above them or the whole word disappears into the grass */
-  const base = hit(0, narrow ? -.16 : -.585);
+  const base = hit(0, narrow ? -.12 : -.45);
   WORD.group.scale.setScalar(s);
   WORD.group.position.set(-WORD.ink.cx * s, base.y, WORD_Z);
   WORD.rise = WORD.ink.asc * s * 1.25;
@@ -4672,7 +4668,11 @@ function queue() { TIMER ? setTimeout(() => frame(performance.now()), 16) : requ
 
 /* ======================================================== 14 · booting */
 const JOBS = [
-  ['Reading the type', () => document.fonts && document.fonts.load('600 320px Wordmark')],
+  ['Loading brand mark', () => new Promise(res => {
+    brandLogoImg = new Image();
+    brandLogoImg.onload = brandLogoImg.onerror = res;
+    brandLogoImg.src = '/brand/logo.png';
+  })],
   ['Pouring the ground', () => { initGL(); WORLD.uT = { value: 0 }; buildRig(); buildLights(); }],
   ['Cutting the approach', () => buildShell()],
   ['Raising the hall', () => buildTemple()],
