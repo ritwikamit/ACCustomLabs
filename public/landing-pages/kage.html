@@ -208,7 +208,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 .chip{
   display:flex; gap:14px; align-items:flex-start; cursor:pointer;
-  padding:14px 16px; border-radius:12px;
+  padding:14px 16px; border-radius:0;
   background:linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
   border:1px solid rgba(255,255,255,0.07);
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
@@ -323,7 +323,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   position:relative; aspect-ratio:4/5;
   background:linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%), #080b0e;
   outline:1px solid rgba(255,255,255,0.09); outline-offset:-1px;
-  border-radius:16px; overflow:hidden;
+  border-radius:0; overflow:hidden;
   backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
   box-shadow:0 22px 50px -15px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,0.12);
   transition:outline-color .5s var(--ease), box-shadow .4s var(--ease);
@@ -491,7 +491,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   align-items: center;
   gap: 10px;
   padding: 6px 14px;
-  border-radius: 999px;
+  border-radius: 0;
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.10) 0%, rgba(37, 99, 235, 0.03) 100%);
   border: 1px solid rgba(56, 189, 248, 0.28);
   backdrop-filter: blur(16px);
@@ -559,7 +559,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .intake-card {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(8, 12, 16, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
+  border-radius: 0;
   overflow: hidden;
   backdrop-filter: blur(32px) saturate(190%);
   -webkit-backdrop-filter: blur(32px) saturate(190%);
@@ -596,7 +596,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   background: rgba(56, 189, 248, 0.08);
   border: 1px solid rgba(56, 189, 248, 0.22);
   padding: 3px 8px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .intake-badge i {
   width: 5px;
@@ -644,7 +644,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   width: 100%;
   background: rgba(5, 7, 10, 0.65);
   border: 1px solid rgba(223, 231, 224, 0.14);
-  border-radius: 9px;
+  border-radius: 0;
   padding: 11px 14px;
   font-size: 13px;
   font-family: 'Onest', system-ui, sans-serif;
@@ -659,7 +659,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .form-input:focus, .form-textarea:focus {
   border-color: #38bdf8;
   background: rgba(8, 14, 22, 0.85);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15), 0 0 16px rgba(56, 189, 248, 0.1);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2), 0 0 16px rgba(56, 189, 248, 0.1);
 }
 .form-textarea {
   resize: vertical;
@@ -676,7 +676,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .pill-button {
   background: rgba(223, 231, 224, 0.04);
   border: 1px solid rgba(223, 231, 224, 0.12);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 6px 13px;
   font-size: 10.5px;
   letter-spacing: 0.06em;
@@ -714,6 +714,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   border-color: rgba(224, 35, 28, 0.5);
   padding: 13px 26px;
   font-size: 10.5px;
+  border-radius: 0;
 }
 .intake-submit-btn:hover {
   background: var(--bone);
@@ -730,7 +731,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .channel-box {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(8, 12, 16, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
+  border-radius: 0;
   padding: 22px 24px;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -757,7 +758,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   padding: 12px 14px;
   background: rgba(5, 7, 10, 0.5);
   border: 1px solid var(--line-soft);
-  border-radius: 10px;
+  border-radius: 0;
   text-decoration: none;
   transition: all 0.25s ease;
 }
@@ -769,7 +770,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .channel-icon {
   width: 34px;
   height: 34px;
-  border-radius: 8px;
+  border-radius: 0;
   background: rgba(223, 231, 224, 0.04);
   border: 1px solid var(--line-soft);
   display: grid;
@@ -813,7 +814,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   font-size: 9px;
   font-family: ui-monospace, SFMono-Regular, monospace;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 0;
   background: rgba(56, 189, 248, 0.1);
   color: #38bdf8;
   border: 1px solid rgba(56, 189, 248, 0.2);
@@ -852,7 +853,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .dossier {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(10, 14, 20, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
+  border-radius: 0;
   padding: clamp(24px, 2.6vw, 34px) clamp(20px, 2.2vw, 28px);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
@@ -957,7 +958,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 .cta{
   position:relative; display:inline-flex; align-items:center; gap:14px; margin-top:44px;
-  padding:17px 30px; border:1px solid var(--line); border-radius:100px; overflow:hidden;
+  padding:17px 30px; border:1px solid var(--line); border-radius:0; overflow:hidden;
   font-size:11px; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
   transition:color .45s var(--ease), border-color .45s;
 }
@@ -1516,7 +1517,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 .preview-box {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(10, 14, 20, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 16px;
+  border-radius: 0 !important;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1543,6 +1544,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
   gap: 10px;
 }
 .box-dots {
@@ -1566,7 +1568,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   gap: 6px;
   background: rgba(14, 18, 24, 0.92);
   border: 1px solid var(--line-soft);
-  border-radius: 6px;
+  border-radius: 0;
   padding: 4px 10px;
   font-size: 10px;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -1608,6 +1610,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   display: block;
   cursor: pointer;
   background: #080b0f;
+  border-radius: 0;
 }
 .box-screen-img {
   width: 100%;
@@ -1615,6 +1618,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   object-fit: cover;
   object-position: top center;
   display: block;
+  border-radius: 0;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
   filter: brightness(0.92) contrast(1.04);
 }
@@ -1642,7 +1646,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   letter-spacing: 0.15em;
   text-transform: uppercase;
   padding: 3px 9px;
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(5, 7, 10, 0.82);
   border: 1px solid rgba(223, 231, 224, 0.2);
   color: #fff;
@@ -1677,7 +1681,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   background: #ffffff;
   color: #05070a;
   padding: 9px 18px;
-  border-radius: 999px;
+  border-radius: 0;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -1695,6 +1699,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   padding: 12px 16px;
   background: rgba(5, 7, 10, 0.94);
   border-top: 1px solid var(--line-soft);
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1734,7 +1739,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   text-transform: uppercase;
   color: var(--bone);
   padding: 5px 12px;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid var(--line-soft);
   background: rgba(223, 231, 224, 0.05);
   transition: all 0.25s;
@@ -2249,7 +2254,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <textarea id="intake-message" class="form-textarea" rows="3" placeholder="Describe what you want to build, key features, reference platforms, target audience, or existing tech stack..." required></textarea>
         </div>
 
-        <div id="intake-error" style="display:none; color:#ff5a3c; font-size:12px; background:rgba(224,35,28,0.1); border:1px solid rgba(224,35,28,0.3); border-radius:8px; padding:10px 14px;"></div>
+        <div id="intake-error" style="display:none; color:#ff5a3c; font-size:12px; background:rgba(224,35,28,0.1); border:1px solid rgba(224,35,28,0.3); border-radius:0; padding:10px 14px;"></div>
 
         <!-- Submit & Actions -->
         <div class="form-submit-row">
