@@ -461,208 +461,349 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   transform:scaleX(0); transform-origin:left; transition:transform .7s var(--ease-out); }
 .les:hover .bar{ transform:scaleX(1); }
 
-/* — chapter IV: eternity / Project Initiation */
+/* ============================================================= chapter IV: eternity / Project Initiation */
 .fin {
   min-height: auto;
   position: relative;
   z-index: 2;
-  padding: clamp(80px, 12vh, 160px) var(--pad);
+  padding: clamp(90px, 14vh, 180px) var(--pad);
 }
-.init-head {
-  max-width: 860px;
-  margin-bottom: clamp(36px, 5vh, 60px);
-}
-.init-head h2 {
-  max-width: 18ch;
-  margin-bottom: 18px;
-}
-.init-grid {
+.init-split {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-bottom: clamp(36px, 5vh, 56px);
-  width: 100%;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.02fr);
+  gap: clamp(32px, 5.5vw, 84px);
+  align-items: start;
+  margin-bottom: clamp(48px, 8vh, 88px);
 }
-@media (max-width: 960px) {
-  .init-grid {
+@media (max-width: 1040px) {
+  .init-split {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 40px;
   }
 }
-.init-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(10, 14, 20, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 16px;
-  padding: 30px 26px;
+.init-summary h2 {
+  max-width: 13ch;
+  line-height: 1.08;
+  margin-bottom: 22px;
+}
+.init-status-beacon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.10) 0%, rgba(37, 99, 235, 0.03) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  margin-bottom: 24px;
+}
+.init-radar-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 12px #38bdf8;
+  animation: orb-pulse 2.2s infinite;
+}
+.init-status-beacon span {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+}
+.init-summary .lead {
+  font-size: clamp(15px, 1.15vw, 19px);
+  line-height: 1.7;
+  color: #c2cdc5;
+  text-shadow: 0 1px 20px rgba(3, 6, 8, .9);
+}
+.init-stats {
+  display: flex;
+  gap: clamp(24px, 4vw, 56px);
+  margin-top: clamp(36px, 6vh, 60px);
+  border-top: 1px solid var(--line-soft);
+  padding-top: 24px;
+}
+.init-stats div b {
+  display: block;
+  font-size: clamp(22px, 2.1vw, 32px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  font-variant-numeric: tabular-nums;
+}
+.init-stats div span {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* — The Initiation Terminal Console */
+.init-terminal {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(8, 12, 16, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   display: flex;
   flex-direction: column;
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(5, 7, 10, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 12px;
+}
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.terminal-title {
+  font-size: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.14em;
+  color: var(--bone-dim);
+  text-transform: lowercase;
+}
+.terminal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.terminal-badge i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+.terminal-body {
+  padding: clamp(24px, 3.4vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.terminal-protocol {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--line-soft);
+}
+.protocol-row {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line-soft);
+  transition: all 0.3s ease;
+}
+.protocol-row:hover {
+  padding-left: 6px;
+}
+.protocol-num {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.protocol-row:hover .protocol-num {
+  color: #38bdf8;
+}
+.protocol-tx h4 {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 3px;
+  letter-spacing: -0.005em;
+}
+.protocol-tx p {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: #8c9791;
+  margin: 0;
+}
+.protocol-tag {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+.terminal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding-top: 10px;
+}
+.terminal-cta {
+  margin-top: 0 !important;
+  background: linear-gradient(135deg, rgba(224, 35, 28, 0.14) 0%, rgba(255, 90, 60, 0.06) 100%);
+  border-color: rgba(224, 35, 28, 0.45);
+}
+.terminal-cta:hover {
+  background: var(--bone);
+  border-color: var(--bone);
+  box-shadow: 0 0 24px rgba(224, 35, 28, 0.35);
+}
+.terminal-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 16px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.terminal-meta span b {
+  color: var(--bone-dim);
+  font-weight: 400;
+}
+
+/* — The 3 Technical Architectural Dossiers */
+.init-dossiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 26px);
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .init-dossiers {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .dossier:nth-child(2), .dossier:nth-child(3) {
+    transform: none !important;
+  }
+}
+.dossier {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(10, 14, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: clamp(24px, 2.6vw, 34px) clamp(20px, 2.2vw, 28px);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
-  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: all 0.35s var(--ease-out);
+  box-shadow: 0 22px 55px -18px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.45s var(--ease-out);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.init-card:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  transform: translateY(-4px);
-  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+.dossier:nth-child(1) { transform: translateY(0); }
+.dossier:nth-child(2) { transform: translateY(clamp(16px, 3vw, 42px)); }
+.dossier:nth-child(3) { transform: translateY(clamp(32px, 6vw, 84px)); }
+.dossier:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.95), 0 0 35px rgba(56, 189, 248, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
-.init-step {
+.dossier-cat {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
-  font-size: 10px;
-  letter-spacing: 0.18em;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-}
-.init-step span {
-  color: var(--vermilion);
+  color: #38bdf8;
   font-weight: 500;
 }
-.init-step b {
+.dossier-cat .jp {
+  font-size: 11px;
   color: var(--muted);
-  font-weight: 400;
+  letter-spacing: 0.28em;
 }
-.init-card h4 {
-  font-size: clamp(16px, 1.25vw, 19px);
+.dossier h3 {
+  font-size: clamp(17px, 1.3vw, 21px);
   font-weight: 400;
   letter-spacing: -0.01em;
   color: #ffffff;
   margin: 0 0 12px;
   line-height: 1.25;
 }
-.init-card p {
+.dossier p {
   font-size: 12.5px;
-  line-height: 1.6;
+  line-height: 1.62;
   color: #909b95;
-  margin: 0 0 20px;
+  margin: 0 0 22px;
   flex: 1 1 auto;
 }
-.init-badge {
+.dossier-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  border-top: 1px solid var(--line-soft);
+  padding: 16px 0;
+  margin-bottom: 8px;
+}
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 10px;
+}
+.spec-k {
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  flex: 0 0 auto;
+}
+.spec-v {
+  color: var(--bone);
+  text-align: right;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+.dossier-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 14px;
+  margin-top: auto;
+}
+.dossier-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 9.5px;
-  font-family: ui-monospace, SFMono-Regular, monospace;
-  color: var(--bone);
-  background: rgba(223, 231, 224, 0.05);
-  border: 1px solid var(--line-soft);
-  padding: 5px 10px;
-  border-radius: 6px;
-  margin-top: auto;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
 }
-.init-badge i {
+.dossier-badge i {
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background: var(--vermilion);
 }
-.init-console {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
-  gap: clamp(24px, 4vw, 50px);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(8, 12, 16, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  padding: clamp(28px, 4vw, 48px);
-  backdrop-filter: blur(32px) saturate(190%);
-  -webkit-backdrop-filter: blur(32px) saturate(190%);
-  box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  width: 100%;
-}
-@media (max-width: 960px) {
-  .init-console {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-.console-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 9.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #27c93f;
-  margin-bottom: 14px;
-  background: rgba(39, 201, 63, 0.08);
-  border: 1px solid rgba(39, 201, 63, 0.22);
-  padding: 4px 12px;
-  border-radius: 999px;
-}
-.console-pulse {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #27c93f;
-  animation: orb-pulse 2s infinite;
-}
-.console-h3 {
-  font-size: clamp(20px, 2.2vw, 32px);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: #ffffff;
-  margin: 0 0 12px;
-}
-.console-p {
-  font-size: 13.5px;
-  line-height: 1.62;
-  color: #9aa59f;
-  margin: 0 0 28px;
-  max-width: 48ch;
-}
-.console-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  align-items: center;
-}
-.init-cta {
-  margin-top: 0 !important;
-}
-.console-meta-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  height: 100%;
-  justify-content: center;
-  border-left: 1px solid var(--line-soft);
-  padding-left: clamp(20px, 3vw, 40px);
-}
-@media (max-width: 960px) {
-  .console-meta-list {
-    border-left: 0;
-    border-top: 1px solid var(--line-soft);
-    padding-left: 0;
-    padding-top: 24px;
-  }
-}
-.console-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.meta-label {
-  font-size: 9.5px;
+.dossier-num {
+  font-size: 10px;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: var(--muted);
-}
-.meta-val {
-  font-size: 12.5px;
-  color: var(--bone);
-  font-weight: 400;
-}
-.meta-link {
-  font-size: 12.5px;
-  color: var(--ember);
-  text-decoration: none;
-  transition: color 0.25s;
-}
-.meta-link:hover {
-  color: #ffffff;
+  font-variant-numeric: tabular-nums;
 }
 .cta{
   position:relative; display:inline-flex; align-items:center; gap:14px; margin-top:44px;
@@ -1858,74 +1999,163 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </span>
   </div>
   <div class="sec-head" data-rv="fade">
-    <span class="k"><b>04</b> — Project Initiation</span><span class="rule"></span><span class="k">ENGAGEMENT</span>
-  </div>
-  <div class="init-head" data-rv="up">
-    <h2 class="display h-sec">Direct senior engineering from day one.</h2>
-    <p class="body-lg">Eliminate agency overhead and middle management. Partner directly with lead engineering to scope architectures, set timelines, and establish fixed-price milestones with absolute clarity.</p>
+    <span class="k"><b>04</b> — Project Initiation</span><span class="rule"></span><span class="k">ENGAGEMENT · 始動</span>
   </div>
 
-  <div class="init-grid" data-rv="up">
-    <div class="init-card">
-      <div class="init-step"><span>PHASE 01</span><b>DISCOVERY</b></div>
-      <h4>Technical Scoping & Roadmap</h4>
-      <p>Share your vision, codebase, or product requirements. We assess architectural feasibility, recommend high-speed tech stacks, and produce a transparent fixed-price roadmap.</p>
-      <div class="init-badge"><i></i> Turnaround: &lt; 24 Hours</div>
-    </div>
-    <div class="init-card">
-      <div class="init-step"><span>PHASE 02</span><b>ARCHITECTURE</b></div>
-      <h4>Design Systems & Prototyping</h4>
-      <p>High-fidelity UI/UX design tokens, responsive layout architecture, component specifications, and verified database schemas engineered before writing a line of code.</p>
-      <div class="init-badge"><i></i> Fixed Milestones & Zero Scope Creep</div>
-    </div>
-    <div class="init-card">
-      <div class="init-step"><span>PHASE 03</span><b>EXECUTION</b></div>
-      <h4>Full-Stack Build & IP Handover</h4>
-      <p>Senior-level Next.js, WebGL, or mobile engineering with automated CI/CD pipelines, edge CDN caching, performance auditing, and 100% full intellectual property ownership.</p>
-      <div class="init-badge"><i></i> Production Release & Direct Handover</div>
-    </div>
-  </div>
-
-  <div class="init-console" data-rv="up">
-    <div class="console-left">
-      <div class="console-status">
-        <span class="console-pulse"></span>
-        <span>Lead Engineer Available for Engagements</span>
+  <div class="init-split">
+    <div class="init-summary">
+      <div class="init-status-beacon" data-rv="fade">
+        <span class="init-radar-dot"></span>
+        <span>Studio Status: Accepting Select Q2/Q3 Builds</span>
       </div>
-      <h3 class="console-h3">Initiate Direct Technical Consultation</h3>
-      <p class="console-p">Speak directly with our principal engineer on WhatsApp for instant architectural guidance, preliminary budget ranges, and delivery timelines.</p>
+      <h2 class="display h-sec" data-rv="up">Direct technical leadership.<br><span style="color:var(--bone-dim);">From architectural blueprint to release.</span></h2>
+      <p class="lead" data-rv="up">Partner directly with principal engineering. Zero junior handoffs, no bureaucratic layers, and no bloated agency overhead. We deliver fixed-milestone architectural specifications, production code, and complete IP transfer.</p>
       
-      <div class="console-actions">
-        <a class="cta init-cta" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20discuss%20initiating%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
-          <i></i>
-          <span>Chat on WhatsApp (+91 9113445763)</span>
-          <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#05070a" stroke-width="1.3"/></svg>
-        </a>
-        <a class="arrowlink" href="tel:+919113445763" data-cursor>
-          <span>Call Direct</span>
-          <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-        </a>
+      <div class="init-stats" data-rv="up">
+        <div><b>&lt; 24h</b><span>Technical Blueprint</span></div>
+        <div><b>100%</b><span>Code &amp; IP Handover</span></div>
+        <div><b>Direct</b><span>Principal Engineer Line</span></div>
       </div>
     </div>
 
-    <div class="console-right">
-      <div class="console-meta-list">
-        <div class="console-meta-item">
-          <span class="meta-label">Response Guarantee</span>
-          <span class="meta-val">Within 2 Hours (Direct to Lead Dev)</span>
+    <div class="init-terminal" data-rv="up">
+      <div class="terminal-bar">
+        <div class="terminal-dots">
+          <span class="box-dot box-dot-r"></span>
+          <span class="box-dot box-dot-y"></span>
+          <span class="box-dot box-dot-g"></span>
         </div>
-        <div class="console-meta-item">
-          <span class="meta-label">Core Capabilities</span>
-          <span class="meta-val">Custom Software · Next.js Web · Mobile Apps</span>
+        <span class="terminal-title">ac-custom-labs // initiation-gateway.sh</span>
+        <span class="terminal-badge"><i></i> DIRECT LINE</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-protocol">
+          <div class="protocol-row" data-cursor>
+            <span class="protocol-num">01</span>
+            <div class="protocol-tx">
+              <h4>Scoping &amp; Technical Discovery</h4>
+              <p>Share your requirements or codebase. We analyze architectural feasibility and return a fixed-price milestone scope within 24 hours.</p>
+            </div>
+            <span class="protocol-tag">&lt; 24H</span>
+          </div>
+          <div class="protocol-row" data-cursor>
+            <span class="protocol-num">02</span>
+            <div class="protocol-tx">
+              <h4>Systems &amp; Token Architecture</h4>
+              <p>Tokenized UI design systems, component hierarchy, API contracts, and database models mapped prior to coding.</p>
+            </div>
+            <span class="protocol-tag">SPEC</span>
+          </div>
+          <div class="protocol-row" data-cursor>
+            <span class="protocol-num">03</span>
+            <div class="protocol-tx">
+              <h4>Production Sprint &amp; IP Transfer</h4>
+              <p>Senior-level implementation, automated CI/CD pipeline deployment, performance benchmarking, and 100% repository handover.</p>
+            </div>
+            <span class="protocol-tag">SHIP</span>
+          </div>
         </div>
-        <div class="console-meta-item">
-          <span class="meta-label">Engagement Models</span>
-          <span class="meta-val">Fixed-Price Sprints · Greenfield Builds · Technical Audit</span>
+
+        <div class="terminal-actions">
+          <a class="cta terminal-cta" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20initiate%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
+            <i></i>
+            <span>Initiate via WhatsApp (+91 9113445763)</span>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#05070a" stroke-width="1.3"/></svg>
+          </a>
+          <a class="arrowlink" href="tel:+919113445763" data-cursor>
+            <span>Call Principal Dev</span>
+            <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+          </a>
         </div>
-        <div class="console-meta-item">
-          <span class="meta-label">Direct Studio Email</span>
-          <a href="mailto:contact@accustomlabs.com" class="meta-link">contact@accustomlabs.com ↗</a>
+
+        <div class="terminal-meta">
+          <span><b>Response SLA:</b> Within 2 Hours</span>
+          <span><b>Access:</b> Direct to Principal Dev</span>
+          <span><b>Confidentiality:</b> NDA Protected</span>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="init-dossiers" data-rv="up">
+    <div class="dossier" data-cursor>
+      <div class="dossier-cat">
+        <span>01 // INFRASTRUCTURE</span>
+        <span class="jp">基盤</span>
+      </div>
+      <h3>Custom Software Systems</h3>
+      <p>High-throughput backends, secure client portals, and microservices engineered for zero downtime and sub-100ms API response latency.</p>
+      <div class="dossier-specs">
+        <div class="spec-row">
+          <span class="spec-k">Stack</span>
+          <span class="spec-v">Python · Node · PostgreSQL · Redis</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-k">Architecture</span>
+          <span class="spec-v">Event-Driven · Microservices · Zero-Trust</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-k">Deliverable</span>
+          <span class="spec-v">Production APIs + Scalable Infra</span>
+        </div>
+      </div>
+      <div class="dossier-foot">
+        <span class="dossier-badge"><i></i> SPRINT READY</span>
+        <span class="dossier-num">01 / 03</span>
+      </div>
+    </div>
+
+    <div class="dossier" data-cursor>
+      <div class="dossier-cat">
+        <span>02 // EXPERIENTIAL WEB</span>
+        <span class="jp">界面</span>
+      </div>
+      <h3>Next.js &amp; WebGL Platforms</h3>
+      <p>Modern web applications featuring responsive layouts, custom Three.js GLSL shaders, 99+ Core Web Vitals, and conversion-focused architectures.</p>
+      <div class="dossier-specs">
+        <div class="spec-row">
+          <span class="spec-k">Stack</span>
+          <span class="spec-v">Next.js 16 · TypeScript · WebGL · Tailwind</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-k">Architecture</span>
+          <span class="spec-v">Edge SSR · Streaming · Dynamic Hydration</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-k">Deliverable</span>
+          <span class="spec-v">Global Edge Web App + Design System</span>
+        </div>
+      </div>
+      <div class="dossier-foot">
+        <span class="dossier-badge"><i></i> SPRINT READY</span>
+        <span class="dossier-num">02 / 03</span>
+      </div>
+    </div>
+
+    <div class="dossier" data-cursor>
+      <div class="dossier-cat">
+        <span>03 // MOBILE &amp; NATIVE</span>
+        <span class="jp">端末</span>
+      </div>
+      <h3>High-Performance Mobile Apps</h3>
+      <p>Intuitive iOS and Android applications engineered for fluid 120Hz gesture physics, robust offline data synchronization, and enterprise security.</p>
+      <div class="dossier-specs">
+        <div class="spec-row">
+          <span class="spec-k">Stack</span>
+          <span class="spec-v">React Native · Expo · Swift · Kotlin</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-k">Architecture</span>
+          <span class="spec-v">Offline-First · Biometric Auth · Secure Storage</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-k">Deliverable</span>
+          <span class="spec-v">App Store Binaries + Full Native Code</span>
+        </div>
+      </div>
+      <div class="dossier-foot">
+        <span class="dossier-badge"><i></i> SPRINT READY</span>
+        <span class="dossier-num">03 / 03</span>
       </div>
     </div>
   </div>
