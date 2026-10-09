@@ -112,19 +112,18 @@ export default function Navbar() {
         {/* 4. Divider */}
         <div className="w-px h-5 bg-stroke mx-1.5" />
 
-        {/* 5. Direct WhatsApp Enquire Tab */}
-        <a
-          href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative inline-flex items-center rounded-full text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 text-white transition-all duration-300 hover:scale-105"
+        {/* 5. Glass AI Enquire Tab */}
+        <Link
+          href="/enquire"
+          className="group relative inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-white bg-[#0a0e12]/80 backdrop-blur-xl border border-white/20 shadow-lg shadow-black/60 hover:border-[#e0231c]/60 transition-all duration-300 hover:scale-105"
         >
-          <span className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-[#FF1738] to-[#ff5a3c] opacity-90 group-hover:opacity-100 transition-opacity duration-300 blur-[0.5px]" />
-          <span className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-[#0C0C0E] px-2.5 py-1 backdrop-blur-md">
-            <span>Enquire</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#FF1738] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <span className="flex h-2 w-2 items-center justify-center">
+            <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-[#e0231c] opacity-75" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#e0231c]" />
           </span>
-        </a>
+          <span>Enquire</span>
+          <ArrowUpRight className="w-3.5 h-3.5 text-[#e0231c] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </Link>
 
         {/* Mobile menu trigger */}
         <button
