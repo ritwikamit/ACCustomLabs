@@ -1,26 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/data/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 export const viewport: Viewport = {
-  themeColor: "#050505",
+  themeColor: "#05070a",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -185,14 +170,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} dark`}>
+    <html lang="en" className="dark">
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#050505] text-[#F7F7F7] antialiased selection:bg-[#FF1738]/30 selection:text-white">
+      <body className="min-h-screen flex flex-col bg-[#05070a] text-[#dfe7e0] font-sans font-light antialiased selection:bg-[#e0231c] selection:text-white">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

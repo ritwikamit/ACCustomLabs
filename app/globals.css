@@ -1,59 +1,25 @@
 @import "tailwindcss";
+@import "../public/landing-pages/secret-pathways-assets/fonts.css";
 
 @theme {
-  --font-body: var(--font-body), "Inter", sans-serif;
-  --font-display: var(--font-display), "Instrument Serif", serif;
-  --color-bg: hsl(var(--bg));
-  --color-surface: hsl(var(--surface));
-  --color-text-primary: hsl(var(--text));
-  --color-muted: hsl(var(--muted));
-  --color-stroke: hsl(var(--stroke));
-}
-
-html.lenis, html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: clip;
-}
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
+  --font-sans: 'Onest', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 :root {
-  --bg: 0 0% 4%;
-  --surface: 0 0% 8%;
-  --text: 0 0% 96%;
-  --muted: 0 0% 53%;
-  --stroke: 0 0% 12%;
-  --accent: 0 0% 96%;
-  --brand-crimson: #FF1738;
-  --black: #050505;
-  --black-soft: #0B0B0D;
-  --surface-2: #18181B;
-  --surface-3: #222227;
-  --white: #FFFFFF;
-  --muted-light: #D4D4D8;
-  --accent-hover: #FF3350;
-  --accent-dark: #C90F28;
-  --accent-glow: rgba(255, 23, 56, 0.22);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-strong: rgba(255, 255, 255, 0.16);
-}
-
-.accent-gradient {
-  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-}
-
-.accent-gradient-crimson {
-  background: linear-gradient(90deg, #FF1738 0%, #89AACC 100%);
+  --ink: #05070a;          /* page black */
+  --ink-2: #0a0e12;        /* raised black */
+  --bone: #dfe7e0;         /* pale sage white of wordmark */
+  --bone-dim: #aab4ad;     /* secondary sage text */
+  --muted: #78837c;        /* muted meta */
+  --line: rgba(223, 231, 224, 0.13);
+  --line-soft: rgba(223, 231, 224, 0.07);
+  --vermilion: #e0231c;    /* primary accent */
+  --ember: #ff5a3c;        /* bright ember */
+  --gold: #c9a24a;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-io: cubic-bezier(.65, 0, .35, 1);
 }
 
 @keyframes scroll-down {
@@ -103,19 +69,225 @@ html.lenis, html.lenis body {
 
 html {
   scroll-behavior: smooth;
-  background-color: hsl(var(--bg));
-  color: hsl(var(--text));
+  background-color: var(--ink);
+  color: var(--bone);
   color-scheme: dark;
 }
 
 body {
-  background-color: hsl(var(--bg));
-  color: hsl(var(--text));
+  background-color: var(--ink);
+  color: var(--bone);
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: var(--font-body), var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Onest', system-ui, -apple-system, sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--vermilion);
+  color: #ffffff;
+}
+
+/* Kage Landing Page Architectural Utility Classes */
+.eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+}
+
+.jp {
+  font-family: 'NotoJP', 'Onest', sans-serif;
+  font-weight: 400;
+}
+
+.display {
+  text-transform: uppercase;
+  line-height: 1.055;
+  letter-spacing: -0.012em;
+  font-weight: 400;
+}
+
+.num {
+  font-family: 'Onest', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  font-variant-numeric: tabular-nums;
+}
+
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.sec-head .k {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sec-head .k b {
+  color: var(--vermilion);
+  font-weight: 500;
+}
+
+.rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--line-soft);
+}
+
+.arrowlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone);
+  transition: color 0.3s var(--ease);
+}
+
+.arrowlink .ar {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background 0.45s var(--ease), border-color 0.45s, transform 0.5s var(--ease-out);
+}
+
+.arrowlink .ar svg {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.arrowlink:hover .ar {
+  background: var(--bone);
+  border-color: var(--bone);
+}
+
+.arrowlink:hover .ar svg {
+  transform: translate3d(2px, -2px, 0);
+}
+
+.arrowlink:hover .ar svg path {
+  stroke: #05070a;
+}
+
+.cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bone);
+  color: #05070a;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.45s var(--ease), background 0.3s;
+}
+
+.cta i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vermilion);
+}
+
+.cta:hover {
+  transform: translateY(-1px) scale(1.02);
+  background: #ffffff;
+}
+
+/* Glass AI Enquire Button */
+.nav-enquire {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 14, 18, 0.72);
+  color: #f0f5f1 !important;
+  padding: 6px 16px 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(223, 231, 224, 0.18);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 16px rgba(224, 35, 28, 0.2);
+  transition: all 0.3s var(--ease);
+  overflow: hidden;
+}
+
+.nav-enquire::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(224, 35, 28, 0.35), transparent 70%);
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.nav-enquire:hover {
+  transform: translateY(-1px) scale(1.04);
+  border-color: rgba(224, 35, 28, 0.6);
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 0 24px rgba(224, 35, 28, 0.5);
+  color: #fff !important;
+}
+
+.nav-enquire .orb {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--vermilion);
+  box-shadow: 0 0 8px var(--vermilion), 0 0 14px var(--ember);
+}
+
+.nav-enquire .orb::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: var(--vermilion);
+  opacity: 0.6;
+  animation: orb-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes orb-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.nav-enquire svg {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  transition: transform 0.25s var(--ease);
+}
+
+.nav-enquire:hover svg {
+  transform: translate3d(2px, -2px, 0);
 }
 
 /* Custom focus ring for strict accessibility */
