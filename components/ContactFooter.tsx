@@ -34,10 +34,10 @@ export default function ContactFooter() {
 
   return (
     <footer id="contact" className="relative bg-bg pt-20 md:pt-28 pb-10 md:pb-14 overflow-hidden border-t border-stroke/40">
-      {/* Background Video flipped vertically with heavier dark overlay */}
+      {/* Background Video flipped vertically with heavier dark overlay: bg-black/60 */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <HlsVideo src={HLS_URL} flipped className="opacity-40" />
-        <div className="absolute inset-0 bg-black/75 backdrop-blur-[2px]" />
+        <HlsVideo src={HLS_URL} flipped className="w-full h-full opacity-90" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center text-center mb-16">

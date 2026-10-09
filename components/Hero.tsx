@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import HlsVideo from "@/components/ui/HlsVideo";
-import RetroGrid from "@/components/ui/RetroGrid";
 import Magnet from "@/components/ui/Magnet";
 import { ArrowDown, ArrowUpRight, ShieldCheck } from "lucide-react";
 
@@ -30,7 +29,7 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  // GSAP Entrance Timeline
+  // GSAP Entrance Timeline (power3.out)
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -58,38 +57,32 @@ export default function Hero() {
       ref={heroRef}
       className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-bg px-4 sm:px-6 pt-28 pb-16 select-none"
     >
-      {/* Background 1: HLS Streaming Video */}
+      {/* Background Video (Prompt Specification: HLS source, autoPlay muted loop, bg-black/20 overlay, h-48 bottom fade) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <HlsVideo src={HLS_URL} className="opacity-60" />
-        <div className="absolute inset-0 bg-black/45 backdrop-blur-[1px]" />
+        <HlsVideo src={HLS_URL} className="w-full h-full opacity-95" />
+        {/* Dark overlay: strictly bg-black/20 */}
+        <div className="absolute inset-0 bg-black/20" />
+        {/* Bottom fade: strictly h-48 bg-gradient-to-t from-bg to-transparent */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent pointer-events-none" />
       </div>
-
-      {/* Background 2: 21st.dev Perspective 3D Grid */}
-      <RetroGrid angle={62} className="opacity-25" />
-
-      {/* Top red glow atmosphere */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 red-horizon-glow pointer-events-none" />
-
-      {/* Bottom fade into background */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg via-bg/70 to-transparent pointer-events-none" />
 
       {/* Hero Content (centered, z-10) */}
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center mt-4">
         {/* Eyebrow */}
-        <div className="blur-in inline-flex items-center gap-2 mb-6 sm:mb-8 px-4 py-1.5 rounded-full border border-stroke bg-surface/80 backdrop-blur-md">
+        <div className="blur-in inline-flex items-center gap-2 mb-6 sm:mb-8 px-4 py-1.5 rounded-full border border-stroke bg-surface/80 backdrop-blur-md shadow-lg shadow-black/20">
           <span className="w-1.5 h-1.5 rounded-full bg-[#FF1738] animate-pulse" />
           <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium font-mono">
-            STUDIO COLLECTION &apos;26 • FREELANCER-LED LAB
+            COLLECTION &apos;26 • FREELANCER-LED DIGITAL LAB
           </span>
         </div>
 
         {/* Name / Studio Title in Instrument Serif italic */}
-        <h1 className="name-reveal text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6">
+        <h1 className="name-reveal text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6 drop-shadow-md">
           AC Custom Labs
         </h1>
 
         {/* Role line cycling */}
-        <div className="blur-in text-base sm:text-lg md:text-xl text-text-primary/90 mb-4 font-normal">
+        <div className="blur-in text-base sm:text-lg md:text-xl text-text-primary/90 mb-4 font-normal drop-shadow">
           <span>A </span>
           <span
             key={roleIndex}
@@ -111,7 +104,7 @@ export default function Hero() {
           <Magnet strength={12}>
             <Link
               href="#selected-works"
-              className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-8 py-4 bg-text-primary text-bg hover:bg-bg hover:text-text-primary transition-all duration-300 hover:scale-105"
+              className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-8 py-4 bg-text-primary text-bg hover:bg-bg hover:text-text-primary transition-all duration-300 hover:scale-105 shadow-xl shadow-black/40"
             >
               <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]" />
               <span className="inline-flex items-center gap-2">
@@ -124,8 +117,8 @@ export default function Hero() {
           {/* Button 2: Reach out (Outlined) */}
           <Magnet strength={12}>
             <Link
-              href="/contact"
-              className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-8 py-4 border-2 border-stroke bg-bg text-text-primary hover:border-transparent transition-all duration-300 hover:scale-105"
+              href="/#contact"
+              className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-8 py-4 border-2 border-stroke bg-bg/80 backdrop-blur-sm text-text-primary hover:border-transparent transition-all duration-300 hover:scale-105 shadow-lg shadow-black/30"
             >
               <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]" />
               <span className="inline-flex items-center gap-2">
@@ -155,7 +148,7 @@ export default function Hero() {
                 href={client.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-2.5 py-1 rounded-full border border-stroke bg-surface/60 hover:bg-surface hover:border-stroke/80 text-muted hover:text-text-primary transition-colors"
+                className="px-2.5 py-1 rounded-full border border-stroke bg-surface/70 hover:bg-surface hover:border-stroke/80 text-muted hover:text-text-primary transition-colors backdrop-blur-sm"
               >
                 {client.name} ↗
               </a>

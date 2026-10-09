@@ -18,17 +18,33 @@ export default function HlsVideo({ src, className = "", flipped = false }: HlsVi
 
     let hls: Hls | null = null;
 
+    // Strict browser autoplay compliance: muted must be set on the DOM property
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
     if (Hls.isSupported()) {
       hls = new Hls({
         enableWorker: true,
         lowLatencyMode: true,
+        backBufferLength: 90,
       });
       hls.loadSource(src);
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {
-          // Autoplay policy prevented playback
-        });
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // If browser autoplay policies restrict initial play, trigger on first gesture
+            const onInteract = () => {
+              video.play().catch(() => {});
+              window.removeEventListener("click", onInteract);
+              window.removeEventListener("touchstart", onInteract);
+            };
+            window.addEventListener("click", onInteract, { once: true });
+            window.addEventListener("touchstart", onInteract, { once: true });
+          });
+        }
       });
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       // Native Apple/Safari HLS support
@@ -53,7 +69,7 @@ export default function HlsVideo({ src, className = "", flipped = false }: HlsVi
       loop
       playsInline
       preload="auto"
-      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover pointer-events-none select-none ${
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover pointer-events-none select-none ${
         flipped ? "scale-y-[-1]" : ""
       } ${className}`}
     />
