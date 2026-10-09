@@ -1,28 +1,29 @@
 "use client";
 
-import { useState } from "react";
-import LoadingScreen from "@/components/LoadingScreen";
-import Hero from "@/components/Hero";
-import CapabilityMarquee from "@/components/ui/CapabilityMarquee";
-import SelectedWork from "@/components/SelectedWork";
-import JournalSection from "@/components/JournalSection";
-import ExplorationsSection from "@/components/ExplorationsSection";
-import StatsSection from "@/components/StatsSection";
-import ContactFooter from "@/components/ContactFooter";
+import { KageLandingPage } from "@designcodeio/threeui";
+import "@designcodeio/threeui/style.css";
+
+export function Scene() {
+  return (
+    <div className="shader-frame w-full h-full">
+      <KageLandingPage
+        headingFont="onest"
+        bodyFont="onest"
+        headingWeight="400"
+        bodyWeight="300"
+        primaryColor="#e0231c"
+        headingSize={46}
+        bodySize={17}
+        headingLetterSpacing={-0.012}
+      />
+    </div>
+  );
+}
 
 export default function HomePage() {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
-    <div className="flex flex-col min-h-screen bg-bg text-text-primary selection:bg-[#FF1738]/30 selection:text-white overflow-x-hidden">
-      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-      <Hero />
-      <CapabilityMarquee />
-      <SelectedWork />
-      <JournalSection />
-      <ExplorationsSection />
-      <StatsSection />
-      <ContactFooter />
-    </div>
+    <main className="w-full h-screen overflow-hidden bg-[#05070a]">
+      <Scene />
+    </main>
   );
 }

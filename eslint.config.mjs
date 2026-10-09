@@ -14,6 +14,9 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     ".agents/**",
     "AC_Custom_Labs_Website_Documentation/**",
+    "public/**",
+    "src/shaders/**",
+    "src/types/**",
   ]),
 ]);
 
