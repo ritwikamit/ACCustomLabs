@@ -82,17 +82,17 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://reallookssalon.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
+                <a href="https://reallooks.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
                   Real Looks Salon
                 </a>
               </li>
               <li>
-                <a href="https://marsremedies.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
+                <a href="https://marsremedies.co.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
                   Mars Remedies
                 </a>
               </li>
               <li>
-                <a href="https://bbrealestate.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
+                <a href="https://bbrealestate.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
                   BB Real Estate
                 </a>
               </li>
