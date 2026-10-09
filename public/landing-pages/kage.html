@@ -541,40 +541,51 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   color: var(--muted);
 }
 
-/* — The Initiation Terminal Console */
-.init-terminal {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(8, 12, 16, 0.78);
+/* ==================================== Interactive Contact & Intake Console */
+.contact-console {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.92fr);
+  gap: clamp(28px, 4.2vw, 60px);
+  align-items: start;
+  margin-bottom: clamp(54px, 8vh, 92px);
+}
+@media (max-width: 1040px) {
+  .contact-console {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+.intake-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(8, 12, 16, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
   overflow: hidden;
   backdrop-filter: blur(32px) saturate(190%);
   -webkit-backdrop-filter: blur(32px) saturate(190%);
   box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  display: flex;
-  flex-direction: column;
 }
-.terminal-bar {
+
+.intake-chrome {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
-  background: rgba(5, 7, 10, 0.85);
+  padding: 13px 20px;
+  background: rgba(5, 7, 10, 0.88);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  gap: 12px;
 }
-.terminal-dots {
+.intake-dots {
   display: flex;
   gap: 6px;
   align-items: center;
 }
-.terminal-title {
-  font-size: 10px;
+.intake-title {
+  font-size: 10.5px;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   letter-spacing: 0.14em;
   color: var(--bone-dim);
-  text-transform: lowercase;
 }
-.terminal-badge {
+.intake-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -587,100 +598,239 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   padding: 3px 8px;
   border-radius: 4px;
 }
-.terminal-badge i {
-  width: 4px;
-  height: 4px;
+.intake-badge i {
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
 }
-.terminal-body {
-  padding: clamp(24px, 3.4vw, 36px);
+
+.intake-form {
+  padding: clamp(22px, 3.2vw, 36px);
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
 }
-.terminal-protocol {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-top: 1px solid var(--line-soft);
-}
-.protocol-row {
+
+.form-grid-2 {
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) auto;
-  gap: 16px;
-  align-items: baseline;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--line-soft);
-  transition: all 0.3s ease;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
 }
-.protocol-row:hover {
-  padding-left: 6px;
+@media (max-width: 600px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
 }
-.protocol-num {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-field label {
+  font-size: 10px;
   font-weight: 500;
-  transition: color 0.3s;
-}
-.protocol-row:hover .protocol-num {
-  color: #38bdf8;
-}
-.protocol-tx h4 {
-  font-size: 13.5px;
-  font-weight: 400;
-  color: #ffffff;
-  margin: 0 0 3px;
-  letter-spacing: -0.005em;
-}
-.protocol-tx p {
-  font-size: 11.5px;
-  line-height: 1.55;
-  color: #8c9791;
-  margin: 0;
-}
-.protocol-tag {
-  font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, monospace;
+  color: var(--bone-dim);
 }
-.terminal-actions {
+.form-field label span {
+  color: var(--vermilion);
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  background: rgba(5, 7, 10, 0.65);
+  border: 1px solid rgba(223, 231, 224, 0.14);
+  border-radius: 9px;
+  padding: 11px 14px;
+  font-size: 13px;
+  font-family: 'Onest', system-ui, sans-serif;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.25s ease;
+}
+.form-input::placeholder, .form-textarea::placeholder {
+  color: #616e66;
+  font-size: 12.5px;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: #38bdf8;
+  background: rgba(8, 14, 22, 0.85);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15), 0 0 16px rgba(56, 189, 248, 0.1);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 88px;
+  line-height: 1.55;
+}
+
+/* Option pills */
+.pills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill-button {
+  background: rgba(223, 231, 224, 0.04);
+  border: 1px solid rgba(223, 231, 224, 0.12);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: #a3b0a7;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  user-select: none;
+}
+.pill-button:hover {
+  background: rgba(223, 231, 224, 0.09);
+  color: #fff;
+  border-color: rgba(223, 231, 224, 0.25);
+}
+.pill-button.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.18) 0%, rgba(37, 99, 235, 0.12) 100%);
+  border-color: rgba(56, 189, 248, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+  font-weight: 400;
+}
+
+/* Submit row */
+.form-submit-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 16px;
-  padding-top: 10px;
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
 }
-.terminal-cta {
+.intake-submit-btn {
   margin-top: 0 !important;
-  background: linear-gradient(135deg, rgba(224, 35, 28, 0.14) 0%, rgba(255, 90, 60, 0.06) 100%);
-  border-color: rgba(224, 35, 28, 0.45);
+  background: linear-gradient(135deg, rgba(224, 35, 28, 0.16) 0%, rgba(255, 90, 60, 0.08) 100%);
+  border-color: rgba(224, 35, 28, 0.5);
+  padding: 13px 26px;
+  font-size: 10.5px;
 }
-.terminal-cta:hover {
+.intake-submit-btn:hover {
   background: var(--bone);
   border-color: var(--bone);
-  box-shadow: 0 0 24px rgba(224, 35, 28, 0.35);
+  box-shadow: 0 0 24px rgba(224, 35, 28, 0.4);
 }
-.terminal-meta {
+
+/* Direct Channels Sidebar Card */
+.channels-card {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  border-top: 1px solid var(--line-soft);
-  padding-top: 16px;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
+  flex-direction: column;
+  gap: 18px;
 }
-.terminal-meta span b {
-  color: var(--bone-dim);
+.channel-box {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(8, 12, 16, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 22px 24px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.channel-box h3 {
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.channel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 14px;
+  background: rgba(5, 7, 10, 0.5);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.channel-item:hover {
+  background: rgba(223, 231, 224, 0.05);
+  border-color: rgba(56, 189, 248, 0.35);
+  transform: translateX(3px);
+}
+.channel-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(223, 231, 224, 0.04);
+  border: 1px solid var(--line-soft);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: #38bdf8;
+}
+.channel-meta b {
+  display: block;
+  font-size: 12.5px;
   font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+.channel-meta span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* Protocols Card */
+.protocol-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.protocol-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.protocol-step:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.protocol-badge {
+  font-size: 9px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+.protocol-text h5 {
+  margin: 0 0 2px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ffffff;
+}
+.protocol-text p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #8c9791;
 }
 
 /* — The 3 Technical Architectural Dossiers */
@@ -1660,7 +1810,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <div class="chip" data-chip="2" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#pathways',{duration:1.2})}else{document.querySelector('#pathways').scrollIntoView({behavior:'smooth'})}"><span class="num">03</span>
         <span class="tx"><b>Mobile Apps</b><p>High-performance iOS and Android apps built for user retention.</p></span></div>
       <div class="chip" data-chip="3" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}"><span class="num">04</span>
-        <span class="tx"><b>Project Initiation</b><p>Direct architectural scoping, timelines & fixed quote within 24h.</p></span></div>
+        <span class="tx"><b>Contact &amp; Initiation</b><p>Direct architectural scoping, timeline & fixed quote in &lt; 2h.</p></span></div>
     </div>
   </div>
 </section>
@@ -1999,79 +2149,195 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </span>
   </div>
   <div class="sec-head" data-rv="fade">
-    <span class="k"><b>04</b> — Project Initiation</span><span class="rule"></span><span class="k">ENGAGEMENT · 始動</span>
+    <span class="k"><b>04</b> — Contact &amp; Project Intake</span><span class="rule"></span><span class="k">STUDIO INTAKE · 連絡</span>
   </div>
 
-  <div class="init-split">
-    <div class="init-summary">
-      <div class="init-status-beacon" data-rv="fade">
-        <span class="init-radar-dot"></span>
-        <span>Studio Status: Accepting Select Q2/Q3 Builds</span>
+  <div class="init-intro" style="margin-bottom: clamp(32px, 5vh, 48px);">
+    <div class="init-status-beacon" data-rv="fade">
+      <span class="init-radar-dot"></span>
+      <span>Studio Status: Accepting Select Q2/Q3 Engagements · Response Time &lt; 2 Hours</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;">
+      <div>
+        <h2 class="display h-sec" data-rv="up" style="margin-bottom:12px; line-height:1.06;">Start a conversation.<br><span style="color:var(--bone-dim);">Direct principal engineering intake.</span></h2>
+        <p class="lead" data-rv="up" style="max-width:700px; margin:0; font-size:clamp(15px,1.15vw,18px); color:#c2cdc5; line-height:1.68;">Submit your requirements below. We review every architectural brief directly and respond with clear scope suggestions, delivery timelines, and transparent milestone pricing within 2 hours.</p>
       </div>
-      <h2 class="display h-sec" data-rv="up">Direct technical leadership.<br><span style="color:var(--bone-dim);">From architectural blueprint to release.</span></h2>
-      <p class="lead" data-rv="up">Partner directly with principal engineering. Zero junior handoffs, no bureaucratic layers, and no bloated agency overhead. We deliver fixed-milestone architectural specifications, production code, and complete IP transfer.</p>
-      
-      <div class="init-stats" data-rv="up">
-        <div><b>&lt; 24h</b><span>Technical Blueprint</span></div>
+      <div class="init-stats" data-rv="up" style="margin-top:0; border-top:none; padding-top:0; flex-wrap:wrap; gap:28px;">
+        <div><b>&lt; 2h</b><span>Response SLA</span></div>
         <div><b>100%</b><span>Code &amp; IP Handover</span></div>
-        <div><b>Direct</b><span>Principal Engineer Line</span></div>
+        <div><b>Direct</b><span>Principal Dev Line</span></div>
       </div>
     </div>
+  </div>
 
-    <div class="init-terminal" data-rv="up">
-      <div class="terminal-bar">
-        <div class="terminal-dots">
+  <div class="contact-console" data-rv="up">
+    <!-- Left: The Interactive Contact & Scoping Form -->
+    <div class="intake-card" id="contact-console-box">
+      <div class="intake-chrome">
+        <div class="intake-dots">
           <span class="box-dot box-dot-r"></span>
           <span class="box-dot box-dot-y"></span>
           <span class="box-dot box-dot-g"></span>
         </div>
-        <span class="terminal-title">ac-custom-labs // initiation-gateway.sh</span>
-        <span class="terminal-badge"><i></i> DIRECT LINE</span>
+        <span class="intake-title">ac-custom-labs // direct-enquiry-intake.ts</span>
+        <span class="intake-badge"><i></i> LIVE GATEWAY</span>
       </div>
-      <div class="terminal-body">
-        <div class="terminal-protocol">
-          <div class="protocol-row" data-cursor>
-            <span class="protocol-num">01</span>
-            <div class="protocol-tx">
-              <h4>Scoping &amp; Technical Discovery</h4>
-              <p>Share your requirements or codebase. We analyze architectural feasibility and return a fixed-price milestone scope within 24 hours.</p>
-            </div>
-            <span class="protocol-tag">&lt; 24H</span>
+
+      <div id="intake-status" style="display:none;"></div>
+
+      <form id="intake-form" class="intake-form" novalidate>
+        <!-- Identity Row -->
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label for="intake-name">Your Name <span>*</span></label>
+            <input type="text" id="intake-name" class="form-input" placeholder="e.g. Alex Sharma" required autocomplete="name" />
           </div>
-          <div class="protocol-row" data-cursor>
-            <span class="protocol-num">02</span>
-            <div class="protocol-tx">
-              <h4>Systems &amp; Token Architecture</h4>
-              <p>Tokenized UI design systems, component hierarchy, API contracts, and database models mapped prior to coding.</p>
-            </div>
-            <span class="protocol-tag">SPEC</span>
-          </div>
-          <div class="protocol-row" data-cursor>
-            <span class="protocol-num">03</span>
-            <div class="protocol-tx">
-              <h4>Production Sprint &amp; IP Transfer</h4>
-              <p>Senior-level implementation, automated CI/CD pipeline deployment, performance benchmarking, and 100% repository handover.</p>
-            </div>
-            <span class="protocol-tag">SHIP</span>
+          <div class="form-field">
+            <label for="intake-email">Work Email <span>*</span></label>
+            <input type="email" id="intake-email" class="form-input" placeholder="alex@company.com" required autocomplete="email" />
           </div>
         </div>
 
-        <div class="terminal-actions">
-          <a class="cta terminal-cta" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20initiate%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
-            <i></i>
-            <span>Initiate via WhatsApp (+91 9113445763)</span>
-            <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#05070a" stroke-width="1.3"/></svg>
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label for="intake-phone">WhatsApp / Phone <span>*</span></label>
+            <input type="tel" id="intake-phone" class="form-input" placeholder="+91 98765 43210 (WhatsApp preferred)" required autocomplete="tel" />
+          </div>
+          <div class="form-field">
+            <label for="intake-brand">Company / Brand <span>(Optional)</span></label>
+            <input type="text" id="intake-brand" class="form-input" placeholder="e.g. Acme Corp / Startup" autocomplete="organization" />
+          </div>
+        </div>
+
+        <!-- Service Options -->
+        <div class="form-field">
+          <label>Project Scope / Service Needed</label>
+          <div class="pills-container" id="pills-services">
+            <button type="button" class="pill-button active" data-val="Web Platform">✦ Web Platform (Next.js / 3D)</button>
+            <button type="button" class="pill-button" data-val="Mobile App">✦ Mobile App (iOS / Android)</button>
+            <button type="button" class="pill-button" data-val="Custom Software">✦ Custom Software &amp; Cloud API</button>
+            <button type="button" class="pill-button" data-val="UI/UX Design">✦ UI/UX &amp; Design Systems</button>
+            <button type="button" class="pill-button" data-val="SEO / Performance">✦ Performance &amp; SEO Audit</button>
+          </div>
+        </div>
+
+        <!-- Budget & Timeline -->
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label>Estimated Budget Tier</label>
+            <div class="pills-container" id="pills-budget">
+              <button type="button" class="pill-button" data-val="Under ₹25,000">Under ₹25k</button>
+              <button type="button" class="pill-button active" data-val="₹25,000 – ₹50,000">₹25k – ₹50k</button>
+              <button type="button" class="pill-button" data-val="₹50,000 – ₹1 Lakh">₹50k – ₹1L</button>
+              <button type="button" class="pill-button" data-val="₹1 – ₹3 Lakh">₹1L – ₹3L+</button>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Desired Timeline</label>
+            <div class="pills-container" id="pills-timeline">
+              <button type="button" class="pill-button" data-val="ASAP (1-2 weeks)">ASAP (1-2 wks)</button>
+              <button type="button" class="pill-button active" data-val="2–4 weeks">2–4 weeks</button>
+              <button type="button" class="pill-button" data-val="1–2 months">1–2 months</button>
+              <button type="button" class="pill-button" data-val="Flexible">Flexible</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div class="form-field">
+          <label for="intake-message">Project Brief &amp; Technical Requirements <span>*</span></label>
+          <textarea id="intake-message" class="form-textarea" rows="3" placeholder="Describe what you want to build, key features, reference platforms, target audience, or existing tech stack..." required></textarea>
+        </div>
+
+        <div id="intake-error" style="display:none; color:#ff5a3c; font-size:12px; background:rgba(224,35,28,0.1); border:1px solid rgba(224,35,28,0.3); border-radius:8px; padding:10px 14px;"></div>
+
+        <!-- Submit & Actions -->
+        <div class="form-submit-row">
+          <button type="submit" id="intake-submit-btn" class="cta intake-submit-btn" data-cursor>
+            <i></i><span>Transmit Project Brief ↗</span>
+          </button>
+          <a class="arrowlink" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
+            <span>Direct WhatsApp</span>
+            <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
           </a>
           <a class="arrowlink" href="tel:+919113445763" data-cursor>
-            <span>Call Principal Dev</span>
+            <span>Call Dev</span>
             <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
           </a>
         </div>
+      </form>
+    </div>
 
-        <div class="terminal-meta">
-          <span><b>Response SLA:</b> Within 2 Hours</span>
-          <span><b>Access:</b> Direct to Principal Dev</span>
-          <span><b>Confidentiality:</b> NDA Protected</span>
+    <!-- Right: Direct Studio Channels & Guarantees -->
+    <div class="channels-card">
+      <div class="channel-box">
+        <h3>Direct Channels <span style="font-size:10px; font-weight:400; color:#38bdf8; letter-spacing:0.1em;">ACTIVE LINE</span></h3>
+        
+        <a class="channel-item" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
+          <div class="channel-icon" style="color:#10b981;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div class="channel-meta">
+            <b>+91 9113445763</b>
+            <span>WhatsApp · Fast responses &lt; 15 min</span>
+          </div>
+        </a>
+
+        <a class="channel-item" href="mailto:contact@accustomlabs.com" data-cursor>
+          <div class="channel-icon" style="color:#ff5a3c;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="channel-meta">
+            <b>contact@accustomlabs.com</b>
+            <span>Email · SLA &lt; 2 hours guaranteed</span>
+          </div>
+        </a>
+
+        <a class="channel-item" href="tel:+919113445763" data-cursor>
+          <div class="channel-icon" style="color:#38bdf8;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="channel-meta">
+            <b>+91 9113445763</b>
+            <span>Direct Principal Engineering Call</span>
+          </div>
+        </a>
+
+        <div class="channel-item" style="cursor:default;">
+          <div class="channel-icon" style="color:#c9a24a;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="channel-meta">
+            <b>India · Worldwide Remote Delivery</b>
+            <span>Mon – Sat, 9:00 AM – 9:00 PM IST</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="channel-box">
+        <h3>Studio Engagement Guarantees</h3>
+        <div class="protocol-list">
+          <div class="protocol-step">
+            <span class="protocol-badge">IP</span>
+            <div class="protocol-text">
+              <h5>100% Repository &amp; Code Ownership</h5>
+              <p>Full GitHub repo transfer, Figma designs, and cloud infrastructure handover upon completion.</p>
+            </div>
+          </div>
+          <div class="protocol-step">
+            <span class="protocol-badge">NDA</span>
+            <div class="protocol-text">
+              <h5>Mutual Non-Disclosure Agreement</h5>
+              <p>Strict confidentiality assured prior to codebase or proprietary idea inspection.</p>
+            </div>
+          </div>
+          <div class="protocol-step">
+            <span class="protocol-badge">SLA</span>
+            <div class="protocol-text">
+              <h5>Fixed Milestones &amp; No Bloat</h5>
+              <p>Scoped pricing with zero hidden overtime fees. Updates delivered every 48 hours.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -5933,6 +6199,159 @@ function start() {
 
 if (document.readyState === 'complete' || document.readyState === 'interactive') setTimeout(boot, 0);
 else addEventListener('DOMContentLoaded', boot);
+})();
+</script>
+
+<script>
+/* ============================================================
+   Interactive Project Intake & Contact Gateway Handler
+   ============================================================ */
+(function initContactGateway() {
+  function setup() {
+    const form = document.getElementById('intake-form');
+    if (!form) return;
+
+    const statusBox = document.getElementById('intake-status');
+    const errorBox = document.getElementById('intake-error');
+    const submitBtn = document.getElementById('intake-submit-btn');
+
+    // Pill toggles
+    function setupPills(containerId, isMulti) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.querySelectorAll('.pill-button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (isMulti) {
+            btn.classList.toggle('active');
+          } else {
+            container.querySelectorAll('.pill-button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+          }
+        });
+      });
+    }
+
+    setupPills('pills-services', true);
+    setupPills('pills-budget', false);
+    setupPills('pills-timeline', false);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (errorBox) {
+        errorBox.style.display = 'none';
+        errorBox.textContent = '';
+      }
+
+      const name = (document.getElementById('intake-name')?.value || '').trim();
+      const email = (document.getElementById('intake-email')?.value || '').trim();
+      const phone = (document.getElementById('intake-phone')?.value || '').trim();
+      const brand = (document.getElementById('intake-brand')?.value || '').trim();
+      const message = (document.getElementById('intake-message')?.value || '').trim();
+
+      if (!name || !email || !phone || !message) {
+        if (errorBox) {
+          errorBox.textContent = 'Please fill out your Name, Email, WhatsApp/Phone, and Project Brief.';
+          errorBox.style.display = 'block';
+        }
+        return;
+      }
+
+      // Email format check
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        if (errorBox) {
+          errorBox.textContent = 'Please enter a valid work email address.';
+          errorBox.style.display = 'block';
+        }
+        return;
+      }
+
+      const activeServices = Array.from(document.querySelectorAll('#pills-services .pill-button.active'))
+        .map(b => b.dataset.val || b.textContent.trim());
+      const selectedBudget = document.querySelector('#pills-budget .pill-button.active')?.dataset.val || '₹25,000 – ₹50,000';
+      const selectedTimeline = document.querySelector('#pills-timeline .pill-button.active')?.dataset.val || '2–4 weeks';
+
+      const payload = {
+        name,
+        email,
+        phone,
+        brand,
+        businessType: brand ? 'Startup / Business' : 'Direct Client',
+        selectedServices: activeServices.length ? activeServices : ['Web Platform'],
+        budget: selectedBudget,
+        timeline: selectedTimeline,
+        message,
+      };
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Transmitting Brief...</span>';
+      }
+
+      try {
+        const res = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to submit project brief');
+
+        // Form success presentation
+        form.style.display = 'none';
+        if (statusBox) {
+          const waMsg = encodeURIComponent(
+            `Hi AC Custom Labs, I just submitted a project brief on your website.\n\n*Client:* ${name}${brand ? ` (${brand})` : ''}\n*Email:* ${email}\n*Phone:* ${phone}\n*Scope:* ${payload.selectedServices.join(', ')}\n*Budget:* ${selectedBudget}\n*Timeline:* ${selectedTimeline}\n*Brief:* ${message}`
+          );
+          statusBox.innerHTML = `
+            <div style="text-align:center; padding:36px 20px;">
+              <div style="width:54px; height:54px; border-radius:50%; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.35); color:#10b981; display:grid; place-items:center; margin:0 auto 16px; font-size:24px; box-shadow:0 0 24px rgba(16,185,129,0.25);">✓</div>
+              <h3 style="font-size:22px; color:#ffffff; margin:0 0 10px; font-weight:400; letter-spacing:-0.01em;">Project Brief Dispatched</h3>
+              <p style="font-size:13.5px; color:#aab4ad; max-width:480px; margin:0 auto 26px; line-height:1.65;">
+                Thank you, <b style="color:#ffffff;">${name}</b>. Your architectural brief has been securely logged in our principal queue. We review all submissions and reply within <span style="color:#38bdf8;">2 hours</span>.
+              </p>
+              <div style="display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:16px;">
+                <a href="https://wa.me/919113445763?text=${waMsg}" target="_blank" rel="noopener noreferrer" class="cta" style="margin-top:0; background:linear-gradient(135deg, rgba(16,185,129,0.24) 0%, rgba(16,185,129,0.06) 100%); border-color:rgba(16,185,129,0.5);">
+                  <i></i><span>Chat Now on WhatsApp ↗</span>
+                </a>
+                <button type="button" id="intake-reset-btn" class="arrowlink" style="background:none; border:none; cursor:pointer;">
+                  <span>Submit Another Brief</span>
+                  <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+                </button>
+              </div>
+            </div>
+          `;
+          statusBox.style.display = 'block';
+
+          document.getElementById('intake-reset-btn')?.addEventListener('click', () => {
+            form.reset();
+            form.style.display = 'flex';
+            statusBox.style.display = 'none';
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<i></i><span>Transmit Project Brief ↗</span>';
+            }
+          });
+        }
+      } catch (err) {
+        if (errorBox) {
+          errorBox.textContent = (err && err.message) || 'Submission error. Please connect directly via WhatsApp at +91 9113445763 or email contact@accustomlabs.com.';
+          errorBox.style.display = 'block';
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i></i><span>Transmit Project Brief ↗</span>';
+        }
+      }
+    });
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setup();
+  } else {
+    document.addEventListener('DOMContentLoaded', setup);
+  }
 })();
 </script>
 
