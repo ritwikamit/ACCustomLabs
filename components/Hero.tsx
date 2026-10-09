@@ -1,176 +1,136 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Code, Sparkles, CheckCircle2, ShieldCheck } from "lucide-react";
-import RetroGrid from "@/components/ui/RetroGrid";
-import BlurText from "@/components/ui/BlurText";
-import ScrambleText from "@/components/ui/ScrambleText";
-import Magnet from "@/components/ui/Magnet";
-import { motion } from "motion/react";
+import gsap from "gsap";
+import HlsVideo from "@/components/ui/HlsVideo";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+
+const roles = [
+  "Digital Product Studio",
+  "Full-Stack Engineering Team",
+  "Custom Web & App Lab",
+  "Modern Creative Studio",
+];
+
+const HLS_URL =
+  "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
 
 export default function Hero() {
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  // Role cycling every 2000ms
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // GSAP Entrance Timeline
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.fromTo(
+        ".name-reveal",
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1.2, delay: 0.1 }
+      );
+
+      tl.fromTo(
+        ".blur-in",
+        { opacity: 0, filter: "blur(10px)", y: 20 },
+        { opacity: 1, filter: "blur(0px)", y: 0, duration: 1, stagger: 0.1 },
+        0.3
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative overflow-hidden pt-12 pb-24 md:pt-20 md:pb-32 bg-[#050505] min-h-[90vh] flex flex-col justify-center">
-      {/* 21st.dev Perspective 3D Grid */}
-      <RetroGrid angle={62} className="opacity-35" />
-
-      {/* Top red glow atmosphere */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 red-horizon-glow pointer-events-none" />
-
-      {/* Decorative red curve line matching the logo underline */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[120%] max-w-7xl h-32 pointer-events-none opacity-40">
-        <svg
-          viewBox="0 0 1200 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 110 Q 600 0 1200 110"
-            stroke="url(#hero-red-grad)"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <defs>
-            <linearGradient id="hero-red-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FF1738" stopOpacity="0" />
-              <stop offset="25%" stopColor="#FF1738" stopOpacity="0.4" />
-              <stop offset="50%" stopColor="#FF1738" stopOpacity="1" />
-              <stop offset="75%" stopColor="#FF1738" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#FF1738" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
+    <section
+      ref={heroRef}
+      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-bg px-4 sm:px-6 pt-24 pb-16 select-none"
+    >
+      {/* Background HLS Video */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <HlsVideo src={HLS_URL} className="opacity-75" />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg via-bg/70 to-transparent pointer-events-none" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Studio Eyebrow Badge with ScrambleText (Reference 2 & 5) */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full liquid-glass shadow-inner"
+      {/* Hero Content (centered, z-10) */}
+      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center mt-6">
+        {/* Eyebrow */}
+        <div className="blur-in inline-flex items-center gap-2 mb-6 sm:mb-8 px-4 py-1.5 rounded-full border border-stroke bg-surface/80 backdrop-blur-md">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#FF1738]" />
+          <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+            STUDIO COLLECTION &apos;26 • FREELANCER-LED LAB
+          </span>
+        </div>
+
+        {/* Name / Studio Title */}
+        <h1 className="name-reveal text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6">
+          AC Custom Labs
+        </h1>
+
+        {/* Role line */}
+        <div className="blur-in text-base sm:text-lg md:text-xl text-text-primary/90 mb-4 font-normal">
+          <span>A </span>
+          <span
+            key={roleIndex}
+            className="font-display italic text-text-primary animate-role-fade-in inline-block font-normal text-xl sm:text-2xl md:text-3xl mx-1 text-[#89AACC]"
           >
-            <span className="w-2 h-2 rounded-full bg-[#FF1738] animate-pulse" />
-            <span className="text-xs uppercase tracking-widest font-mono text-[#D4D4D8]">
-              <ScrambleText text="AC Custom Labs · Digital Product Studio" />
+            {roles[roleIndex]}
+          </span>
+          <span> based in India, building worldwide.</span>
+        </div>
+
+        {/* Description (Strictly no banned words) */}
+        <p className="blur-in text-sm sm:text-base text-muted max-w-xl mb-10 leading-relaxed font-normal">
+          We engineer high-performance web applications, mobile platforms, and automated digital systems by focusing on the unique nuances that bring products to life.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="blur-in inline-flex flex-wrap items-center justify-center gap-4">
+          {/* Button 1: See Works (Solid) */}
+          <Link
+            href="#selected-works"
+            className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-7 py-3.5 bg-text-primary text-bg hover:bg-bg hover:text-text-primary transition-all duration-300 hover:scale-105"
+          >
+            <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]" />
+            <span className="inline-flex items-center gap-2">
+              <span>See Works</span>
+              <ArrowDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
             </span>
-          </motion.div>
+          </Link>
 
-          {/* Main Headline with BlurText (Reference 5: Liquid-glass Agency reveal) */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] font-[family-name:var(--font-display)]">
-            <BlurText text="We build digital products that work." delay={0.15} />
-          </h1>
-
-          {/* Subtitle / Supporting copy */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-lg sm:text-xl text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed"
+          {/* Button 2: Reach out (Outlined) */}
+          <Link
+            href="/contact"
+            className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-7 py-3.5 border-2 border-stroke bg-bg text-text-primary hover:border-transparent transition-all duration-300 hover:scale-105"
           >
-            Websites, applications, business software, and SEO systems engineered
-            specifically around your business, not a generic template.
-          </motion.p>
-
-          {/* Action CTAs (Reference 1 & 4: Arrow-circle CTA + Magnetic Interaction) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.55 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
-          >
-            <Magnet strength={12}>
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#FF1738] hover:bg-[#FF3350] active:scale-[0.98] text-white font-semibold text-base pl-8 pr-3 py-3.5 rounded-full transition-all duration-200 shadow-xl shadow-[#FF1738]/25 hover:shadow-[#FF1738]/45 border border-[#FF1738]/40 group"
-              >
-                <span>Start a Project</span>
-                <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-0.5 group-hover:scale-110">
-                  <ArrowUpRight className="w-4 h-4 text-white" aria-hidden="true" />
-                </span>
-              </Link>
-            </Magnet>
-
-            <Link
-              href="/work"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 liquid-glass hover:bg-white/[0.06] active:scale-[0.98] text-[#F7F7F7] font-medium text-base px-8 py-4 rounded-full transition-all duration-200 border border-white/[0.12] hover:border-white/[0.25]"
-            >
-              <span>View Our Work</span>
-            </Link>
-          </motion.div>
-
-          {/* Liquid Glass Stats & Anchor Cards (Reference 2, 3 & 5) */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="pt-8 border-t border-white/[0.06] grid grid-cols-2 sm:grid-cols-3 gap-4 text-left"
-          >
-            <div className="liquid-glass rounded-2xl p-4 sm:p-5 hover:border-white/[0.18] transition-colors">
-              <div className="flex items-center gap-2 text-white text-sm font-semibold mb-1">
-                <CheckCircle2 className="w-4 h-4 text-[#FF1738]" />
-                <span>Single Studio Team</span>
-              </div>
-              <p className="text-xs text-[#A1A1AA]">
-                Strategy, UI/UX, code, and deployment handled together.
-              </p>
-            </div>
-
-            <div className="liquid-glass rounded-2xl p-4 sm:p-5 hover:border-white/[0.18] transition-colors">
-              <div className="flex items-center gap-2 text-white text-sm font-semibold mb-1">
-                <Code className="w-4 h-4 text-[#FF1738]" />
-                <span>100% Custom Code</span>
-              </div>
-              <p className="text-xs text-[#A1A1AA]">
-                Custom Next.js & React architectures. Zero template bloat.
-              </p>
-            </div>
-
-            <div className="col-span-2 sm:col-span-1 liquid-glass rounded-2xl p-4 sm:p-5 hover:border-white/[0.18] transition-colors">
-              <div className="flex items-center gap-2 text-white text-sm font-semibold mb-1">
-                <Sparkles className="w-4 h-4 text-[#FF1738]" />
-                <span>5 Verified Live Builds</span>
-              </div>
-              <p className="text-xs text-[#A1A1AA]">
-                Gyms, clinics, salons, real estate, and pharmaceuticals.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Landing Page Trust & Authority Strip (Reference 1 & 4) */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-xs font-mono text-zinc-400"
-          >
-            <span className="text-zinc-500 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Active live deployments:</span>
+            <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]" />
+            <span className="inline-flex items-center gap-2">
+              <span>Reach out...</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {[
-                { name: "Vikings Gym & Spa", href: "https://vikingsgym.in" },
-                { name: "BBC Pro Gym", href: "https://bbcpro.vercel.app" },
-                { name: "Real Looks Salon", href: "https://reallooks.vercel.app" },
-                { name: "Mars Remedies", href: "https://marsremedies.co.in" },
-                { name: "BB Real Estate", href: "https://bbrealestate.vercel.app" },
-              ].map((client) => (
-                <a
-                  key={client.name}
-                  href={client.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2.5 py-1 rounded-md liquid-glass hover:bg-white/[0.08] hover:border-[#FF1738]/40 text-zinc-300 hover:text-white transition-colors"
-                >
-                  {client.name} ↗
-                </a>
-              ))}
-            </div>
-          </motion.div>
+          </Link>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none">
+        <span className="text-[10px] text-muted uppercase tracking-[0.2em] font-medium">
+          SCROLL
+        </span>
+        <div className="relative w-px h-10 bg-stroke overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1/2 accent-gradient animate-scroll-down" />
         </div>
       </div>
     </section>

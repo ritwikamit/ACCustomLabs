@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site";
 import { ArrowUpRight, Mail, MapPin, ShieldCheck } from "lucide-react";
 
@@ -22,6 +25,12 @@ function GithubIcon({ className }: { className?: string }) {
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+
+  // If on homepage, the Section 7 ContactFooter handles the footer experience
+  if (pathname === "/") {
+    return null;
+  }
 
   return (
     <footer className="relative bg-[#050505] border-t border-white/[0.08] overflow-hidden">

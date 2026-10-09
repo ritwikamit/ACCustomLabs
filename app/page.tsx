@@ -1,25 +1,28 @@
+"use client";
+
+import { useState } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
 import Hero from "@/components/Hero";
 import CapabilityMarquee from "@/components/ui/CapabilityMarquee";
 import SelectedWork from "@/components/SelectedWork";
-import ServicesSection from "@/components/ServicesSection";
-import WhyUs from "@/components/WhyUs";
-import ProcessSection from "@/components/ProcessSection";
-import IndustriesSection from "@/components/IndustriesSection";
-import FAQSection from "@/components/FAQSection";
-import CTASection from "@/components/CTASection";
+import JournalSection from "@/components/JournalSection";
+import ExplorationsSection from "@/components/ExplorationsSection";
+import StatsSection from "@/components/StatsSection";
+import ContactFooter from "@/components/ContactFooter";
 
 export default function HomePage() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen bg-bg text-text-primary selection:bg-[#FF1738]/30 selection:text-white overflow-x-hidden">
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       <Hero />
       <CapabilityMarquee />
       <SelectedWork />
-      <ServicesSection />
-      <WhyUs />
-      <ProcessSection />
-      <IndustriesSection />
-      <FAQSection />
-      <CTASection />
+      <JournalSection />
+      <ExplorationsSection />
+      <StatsSection />
+      <ContactFooter />
     </div>
   );
 }

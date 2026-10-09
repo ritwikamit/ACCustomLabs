@@ -1,107 +1,128 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "motion/react";
 import { projectsData } from "@/data/projects";
-import { ArrowUpRight, ExternalLink, Globe, CheckCircle } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 
 export default function SelectedWork() {
-  return (
-    <section id="work" className="py-20 lg:py-32 bg-[#050505] relative border-t border-white/[0.04]">
-      {/* Background soft ambient glow */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-radial-[circle_at_center] from-[#FF1738]/5 to-transparent blur-3xl pointer-events-none" />
+  // 4 primary showcase projects matching the 7 / 5 / 5 / 7 alternate bento spans
+  const showcaseProjects = projectsData.slice(0, 4);
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+  return (
+    <section id="selected-works" className="bg-bg py-16 md:py-24 border-t border-stroke/40">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#FF1738]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF1738]" />
-              <span>[ 01 / VERIFIED LIVE CLIENT WORK ]</span>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16"
+        >
+          <div className="space-y-4 max-w-2xl">
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3">
+              <span className="w-8 h-px bg-stroke" />
+              <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+                Selected Work
+              </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white font-[family-name:var(--font-display)]">
-              Real projects delivered for real businesses.
+
+            {/* Heading */}
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary tracking-tight">
+              Featured <span className="font-display italic text-[#89AACC]">systems</span>
             </h2>
-            <p className="text-base text-[#A1A1AA] leading-relaxed">
-              Review live deployments across fitness centers, beauty salons, pharmaceutical distribution, and real estate.
-              Every build is engineered from strategy through live deployment on modern cloud architecture.
+
+            {/* Subtext */}
+            <p className="text-sm sm:text-base text-muted leading-relaxed max-w-lg">
+              A selection of verified digital platforms we have engineered, launched, and scaled, from strategic conception to production.
             </p>
           </div>
 
+          {/* Desktop "View all work" button */}
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#FF1738] transition-colors py-2 group shrink-0"
+            className="group relative hidden md:inline-flex items-center rounded-full text-xs font-medium px-5 py-2.5 text-text-primary transition-all duration-300 hover:scale-105 shrink-0"
           >
-            <span>View All 5 Case Studies</span>
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span className="absolute -inset-[1.5px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[0.5px]" />
+            <span className="relative z-10 inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 border border-stroke">
+              <span>View all work</span>
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
           </Link>
-        </div>
+        </motion.div>
 
-        {/* Projects Bento Showcase */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {projectsData.map((project, index) => {
-            const isFeatured = index === 0;
+        {/* Bento Grid: Alternate spans 7 / 5 / 5 / 7 */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
+          {showcaseProjects.map((project, index) => {
+            // Alternating 7 / 5 / 5 / 7 grid spans
+            const colSpan =
+              index === 0
+                ? "md:col-span-7"
+                : index === 1
+                ? "md:col-span-5"
+                : index === 2
+                ? "md:col-span-5"
+                : "md:col-span-7";
+
             return (
-              <article
+              <motion.article
                 key={project.id}
-                className={`group flex flex-col justify-between liquid-glass hover:border-white/[0.25] rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF1738]/10 relative overflow-hidden ${
-                  isFeatured ? "md:col-span-2 lg:col-span-2" : ""
-                }`}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                className={`group relative min-h-[380px] sm:min-h-[420px] rounded-3xl bg-surface border border-stroke overflow-hidden flex flex-col justify-between p-6 sm:p-8 transition-all duration-500 hover:border-stroke/80 ${colSpan}`}
               >
-                {/* Subtle hover red corner flare */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-radial-[circle_at_top_right] from-[#FF1738]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                {/* Background Pattern / Architecture Preview Graphic */}
+                <div className="absolute inset-0 bg-gradient-to-br from-surface via-surface-2 to-bg opacity-90 transition-transform duration-700 group-hover:scale-105" />
 
-                <div className="space-y-6">
-                  {/* Browser Mockup Window Chrome Bar */}
-                  <div className="flex items-center gap-2 px-3 py-2 bg-[#050505] rounded-xl border border-white/[0.06] text-xs font-mono">
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/80" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/80" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]/80" />
-                    </div>
-                    <div className="flex-1 mx-2 px-3 py-0.5 bg-white/[0.03] rounded-md text-[11px] text-zinc-400 truncate text-center font-mono">
-                      https://{project.displayUrl}
-                    </div>
-                    <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 shrink-0 font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      LIVE
+                {/* Halftone Overlay */}
+                <div
+                  className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
+                  style={{
+                    backgroundImage: "radial-gradient(circle, rgba(255, 255, 255, 0.4) 1px, transparent 1px)",
+                    backgroundSize: "6px 6px",
+                  }}
+                />
+
+                {/* Technical Meta & Window Chrome */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#10B981]" />
+                    <span className="text-[11px] font-mono uppercase text-muted tracking-wider">
+                      {project.category}
                     </span>
                   </div>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-text-primary transition-colors font-mono"
+                  >
+                    <span>{project.displayUrl}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
 
-                  {/* Header Tag Bar */}
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-mono uppercase px-3 py-1 rounded-full bg-white/[0.04] text-[#D4D4D8] border border-white/[0.08]">
-                      {project.category} · {project.industry}
-                    </span>
-                    <span className="text-xs font-mono text-zinc-500">
-                      0{index + 1} / 05
-                    </span>
-                  </div>
+                {/* Card Title & Content */}
+                <div className="relative z-10 mt-auto pt-16">
+                  <span className="text-xs text-muted uppercase tracking-widest font-mono block mb-2">
+                    Case 0{index + 1}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-display italic text-text-primary mb-3">
+                    {project.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted leading-relaxed line-clamp-2 max-w-md mb-4">
+                    {project.tagline}
+                  </p>
 
-                  {/* Title & Tagline */}
-                  <div className="space-y-2">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-[#FF1738] transition-colors font-[family-name:var(--font-display)]">
-                      {project.name}
-                    </h3>
-                    <p className="text-sm text-[#A1A1AA] leading-relaxed">
-                      {project.tagline}
-                    </p>
-                  </div>
-
-                  {/* Outcome Callout Box */}
-                  <div className="bg-[#111114] border border-white/[0.06] rounded-2xl p-4 sm:p-5 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#FF1738]" />
-                      <span>Production Impact</span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#E4E4E7] leading-relaxed">
-                      {project.outcome}
-                    </p>
-                  </div>
-
-                  {/* Technologies Tags */}
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {project.technologies.map((tech) => (
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/[0.02] border border-white/[0.06] text-[#A1A1AA]"
+                        className="text-[10px] uppercase font-mono px-2.5 py-1 rounded-full bg-stroke/40 border border-stroke text-muted"
                       >
                         {tech}
                       </span>
@@ -109,30 +130,37 @@ export default function SelectedWork() {
                   </div>
                 </div>
 
-                {/* Bottom Action Footer */}
-                <div className="pt-6 mt-6 border-t border-white/[0.06] flex items-center justify-between">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-mono font-medium text-white hover:text-[#FF1738] transition-colors"
-                    aria-label={`Visit live website for ${project.name} at ${project.displayUrl}`}
-                  >
-                    <Globe className="w-3.5 h-3.5 text-[#FF1738]" />
-                    <span>Visit Live Site</span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-60" />
-                  </a>
-
-                  <Link
-                    href={`/contact?project=${encodeURIComponent(project.name)}`}
-                    className="text-xs font-medium text-[#A1A1AA] hover:text-white transition-colors"
-                  >
-                    Request Similar Build →
-                  </Link>
+                {/* Hover Reveal Layer */}
+                <div className="absolute inset-0 bg-bg/75 backdrop-blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 z-20 pointer-events-none">
+                  {/* Hover label: pill with animated gradient border, white bg */}
+                  <div className="relative group/pill inline-flex items-center rounded-full p-[1.5px] accent-gradient shadow-2xl transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300 pointer-events-auto">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white text-black text-xs font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 hover:bg-neutral-100 transition-colors"
+                    >
+                      <span>View</span>
+                      <span className="text-neutral-400">•</span>
+                      <span className="font-display italic text-sm">{project.name}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
+        </div>
+
+        {/* Mobile "View all work" fallback button */}
+        <div className="mt-8 text-center md:hidden">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 text-xs font-medium px-5 py-3 rounded-full border border-stroke bg-surface text-text-primary"
+          >
+            <span>Explore All 5 Case Studies</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </section>

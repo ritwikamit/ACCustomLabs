@@ -1,18 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/data/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const spaceGrotesk = Space_Grotesk({
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
 });
 
 const inter = Inter({
-  variable: "--font-sans",
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
@@ -183,7 +185,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} dark scroll-smooth`}>
+    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} dark scroll-smooth`}>
       <head>
         <script
           type="application/ld+json"

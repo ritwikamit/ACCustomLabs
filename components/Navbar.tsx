@@ -2,137 +2,92 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/data/site";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+];
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 100);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on link clicks directly
-
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "bg-[#050505]/90 backdrop-blur-md border-b border-white/[0.08] shadow-lg shadow-black/40"
-          : "bg-[#050505]/40 backdrop-blur-sm border-b border-white/[0.04]"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Official Brand Logo */}
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
+      <nav
+        aria-label="Main Navigation"
+        className={`pointer-events-auto inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-surface/90 px-2 py-1.5 sm:py-2 transition-all duration-300 ${
+          scrolled
+            ? "shadow-lg shadow-black/40 border-white/15 bg-surface/95"
+            : "shadow-md shadow-black/10"
+        }`}
+      >
+        {/* 1. Logo: 9x9 (w-9 h-9) circle with accent gradient border */}
         <Link
           href="/"
-          className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF1738] rounded-md py-1"
-          aria-label="AC Custom Labs Homepage"
+          className="group relative flex items-center justify-center w-9 h-9 rounded-full transition-transform duration-200 hover:scale-110 focus-visible:outline-none"
+          aria-label="AC Custom Labs Home"
         >
-          <div className="relative h-10 w-44 sm:w-52 transition-transform duration-200 group-hover:scale-[1.02]">
-            <Image
-              src="/brand/logo.png"
-              alt="AC Custom Labs Logo"
-              fill
-              priority
-              sizes="(max-width: 640px) 176px, 208px"
-              className="object-contain object-left"
-            />
+          <div className="absolute inset-0 rounded-full accent-gradient p-[1.5px] transition-transform duration-500 group-hover:rotate-180">
+            <div className="w-full h-full rounded-full bg-bg flex items-center justify-center">
+              <span className="font-display italic text-text-primary text-[14px] font-bold tracking-tight">
+                AC
+              </span>
+            </div>
           </div>
         </Link>
 
-        {/* Desktop Navigation Links with Liquid Glass Pill (Prompt 5 Reference) */}
-        <nav
-          className="hidden md:flex items-center gap-1 lg:gap-1.5 liquid-glass rounded-full px-3 py-1.5 shadow-inner"
-          aria-label="Main Navigation"
-        >
-          {siteConfig.navLinks.map((link) => {
+        {/* 2. Divider */}
+        <div className="w-px h-5 bg-stroke mx-1.5 sm:mx-2 hidden sm:block" />
+
+        {/* 3. Nav Links */}
+        <div className="flex items-center gap-0.5 sm:gap-1">
+          {links.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium px-4 py-1.5 rounded-full transition-colors duration-150 ${
+                className={`text-xs sm:text-sm font-medium rounded-full px-2.5 sm:px-4 py-1.5 sm:py-2 transition-all duration-200 ${
                   isActive
-                    ? "text-white bg-white/[0.08]"
-                    : "text-[#A1A1AA] hover:text-white hover:bg-white/[0.04]"
+                    ? "text-text-primary bg-stroke/60 font-semibold"
+                    : "text-muted hover:text-text-primary hover:bg-stroke/40"
                 }`}
               >
                 {link.label}
               </Link>
             );
           })}
-        </nav>
-
-        {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/contact"
-            className="hidden sm:inline-flex items-center gap-2 bg-[#FF1738] hover:bg-[#FF3350] active:scale-[0.98] text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 shadow-md shadow-[#FF1738]/20 hover:shadow-[#FF1738]/35 border border-[#FF1738]/30"
-          >
-            <span>Start a Project</span>
-            <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-          </Link>
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-[#A1A1AA] hover:text-white hover:bg-white/[0.06] border border-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF1738]"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
-      </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div
-          id="mobile-navigation"
-          className="md:hidden border-b border-white/[0.08] bg-[#0B0B0D] px-4 pt-3 pb-6 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200"
+        {/* 4. Divider */}
+        <div className="w-px h-5 bg-stroke mx-1.5 sm:mx-2" />
+
+        {/* 5. "Say hi" / Contact Button */}
+        <Link
+          href="/contact"
+          className="group relative inline-flex items-center rounded-full text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 text-text-primary transition-all duration-300 hover:scale-105"
         >
-          <nav className="flex flex-col space-y-1" aria-label="Mobile Navigation">
-            {siteConfig.navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                    isActive
-                      ? "bg-[#FF1738]/10 text-[#FF1738] border border-[#FF1738]/20"
-                      : "text-[#F7F7F7] hover:bg-white/[0.05]"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
-          <div className="pt-3 border-t border-white/[0.08]">
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 bg-[#FF1738] hover:bg-[#FF3350] text-white font-semibold py-3 px-4 rounded-xl shadow-md transition-colors"
-            >
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      )}
+          {/* Animated gradient border behind on hover */}
+          <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[0.5px]" />
+          <span className="relative z-10 inline-flex items-center gap-1 rounded-full bg-surface px-2.5 py-1 backdrop-blur-md">
+            <span>Contact</span>
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </span>
+        </Link>
+      </nav>
     </header>
   );
 }

@@ -1,17 +1,29 @@
 @import "tailwindcss";
 
+@theme {
+  --font-body: var(--font-body), "Inter", sans-serif;
+  --font-display: var(--font-display), "Instrument Serif", serif;
+  --color-bg: hsl(var(--bg));
+  --color-surface: hsl(var(--surface));
+  --color-text-primary: hsl(var(--text));
+  --color-muted: hsl(var(--muted));
+  --color-stroke: hsl(var(--stroke));
+}
+
 :root {
-  --bg: #050505;
+  --bg: 0 0% 4%;
+  --surface: 0 0% 8%;
+  --text: 0 0% 96%;
+  --muted: 0 0% 53%;
+  --stroke: 0 0% 12%;
+  --accent: 0 0% 96%;
+  --brand-crimson: #FF1738;
   --black: #050505;
   --black-soft: #0B0B0D;
-  --surface: #111114;
   --surface-2: #18181B;
   --surface-3: #222227;
-  --text: #F7F7F7;
   --white: #FFFFFF;
-  --muted: #A1A1AA;
   --muted-light: #D4D4D8;
-  --accent: #FF1738;
   --accent-hover: #FF3350;
   --accent-dark: #C90F28;
   --accent-glow: rgba(255, 23, 56, 0.22);
@@ -20,19 +32,72 @@
   --border-strong: rgba(255, 255, 255, 0.16);
 }
 
+.accent-gradient {
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+}
+
+.accent-gradient-crimson {
+  background: linear-gradient(90deg, #FF1738 0%, #89AACC 100%);
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+.animate-scroll-down {
+  animation: scroll-down 1.5s ease-in-out infinite;
+}
+
+@keyframes role-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-role-fade-in {
+  animation: role-fade-in 0.4s ease-out;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
 html {
   scroll-behavior: smooth;
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: hsl(var(--bg));
+  color: hsl(var(--text));
   color-scheme: dark;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: hsl(var(--bg));
+  color: hsl(var(--text));
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body), var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
