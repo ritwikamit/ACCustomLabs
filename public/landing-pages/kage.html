@@ -4370,7 +4370,16 @@ function wireNav() {
      one link per section in matching order. With five links over four chapters
      every entry past the third lit for its neighbour: standing in Afterlight
      highlighted Stories. Reading the destination cannot drift. */
-  const linkSec = links.map(l => SECS.indexOf(document.querySelector(l.getAttribute('href'))));
+  const linkSec = links.map(l => {
+    const href = l.getAttribute('href');
+    if (!href || !href.startsWith('#')) return -1;
+    try {
+      const el = document.querySelector(href);
+      return el ? SECS.indexOf(el) : -1;
+    } catch (_) {
+      return -1;
+    }
+  });
   window.addEventListener('scroll', () => {
     const y = scrollY;
     nav.classList.toggle('stuck', y > 40);
@@ -4703,9 +4712,18 @@ function queue() { TIMER ? setTimeout(() => frame(performance.now()), 16) : requ
 /* ======================================================== 14 · booting */
 const JOBS = [
   ['Loading brand mark', () => new Promise(res => {
-    brandLogoImg = new Image();
-    brandLogoImg.onload = brandLogoImg.onerror = res;
-    brandLogoImg.src = '/brand/logo.png';
+    try {
+      brandLogoImg = new Image();
+      brandLogoImg.crossOrigin = 'anonymous';
+      let done = false;
+      const finish = () => { if (!done) { done = true; res(); } };
+      brandLogoImg.onload = brandLogoImg.onerror = finish;
+      brandLogoImg.src = '/brand/logo.png';
+      if (brandLogoImg.complete) return finish();
+      setTimeout(finish, 300);
+    } catch (_) {
+      res();
+    }
   })],
   ['Pouring the ground', () => { initGL(); WORLD.uT = { value: 0 }; buildRig(); buildLights(); }],
   ['Cutting the approach', () => buildShell()],
@@ -4753,28 +4771,50 @@ const JOBS = [
 ];
 
 function boot() {
-  makeGrain();
-  wireReveals(); wireForegroundStages(); wireNav(); wireHeroExit(); wireFocus(); wireCursor();
+  const watchdog = setTimeout(() => {
+    const pre = document.getElementById('pre');
+    if (pre && !pre.classList.contains('done')) {
+      console.warn('[kage] preloader watchdog triggered');
+      pre.classList.add('done');
+      document.body.classList.remove('is-locked');
+      document.querySelectorAll('[data-rv], .mask-line').forEach(e => e.classList.add('rv-in'));
+    }
+  }, 2400);
+
+  try { makeGrain(); } catch (e) { console.warn('makeGrain', e); }
+  try { wireReveals(); } catch (e) { console.warn('wireReveals', e); }
+  try { wireForegroundStages(); } catch (e) { console.warn('wireForegroundStages', e); }
+  try { wireNav(); } catch (e) { console.warn('wireNav', e); }
+  try { wireHeroExit(); } catch (e) { console.warn('wireHeroExit', e); }
+  try { wireFocus(); } catch (e) { console.warn('wireFocus', e); }
+  try { wireCursor(); } catch (e) { console.warn('wireCursor', e); }
   document.body.classList.add('is-locked');
+
   let i = 0;
   const step = () => {
     const j = JOBS[i];
     const done = () => {
       i++;
       const p = i / JOBS.length;
-      preFill.style.right = ((1 - p) * 100).toFixed(1) + '%';
-      prePct.textContent = Math.round(p * 100);
-      if (i < JOBS.length) setTimeout(step, 16); else setTimeout(start, 220);
+      if (preFill) preFill.style.right = ((1 - p) * 100).toFixed(1) + '%';
+      if (prePct) prePct.textContent = Math.round(p * 100);
+      if (i < JOBS.length) {
+        setTimeout(step, 16);
+      } else {
+        clearTimeout(watchdog);
+        setTimeout(start, 200);
+      }
     };
     let r;
     try { r = j[1](); }
     catch (err) {
       console.error('[kage] job "' + j[0] + '" failed', err);
-      if (i <= 1) return fallback(err);          /* no renderer, no scene */
+      if (i <= 1) return fallback(err);
+      return done();
     }
     (r && r.then) ? r.then(done, done) : done();
   };
-  setTimeout(step, 60);
+  setTimeout(step, 40);
 }
 
 function fallback(err) {
