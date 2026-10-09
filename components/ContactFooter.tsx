@@ -33,7 +33,7 @@ export default function ContactFooter() {
   }, []);
 
   return (
-    <footer className="relative bg-bg pt-20 md:pt-28 pb-10 md:pb-14 overflow-hidden border-t border-stroke/40">
+    <footer id="contact" className="relative bg-bg pt-20 md:pt-28 pb-10 md:pb-14 overflow-hidden border-t border-stroke/40">
       {/* Background Video flipped vertically with heavier dark overlay */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <HlsVideo src={HLS_URL} flipped className="opacity-40" />

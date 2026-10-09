@@ -75,7 +75,7 @@ export default function ExplorationsSection() {
   const [activeItem, setActiveItem] = useState<ExplorationItem | null>(null);
 
   return (
-    <section className="bg-bg py-20 lg:py-32 border-t border-stroke/40 relative overflow-hidden">
+    <section id="explorations" className="bg-bg py-20 lg:py-32 border-t border-stroke/40 relative overflow-hidden">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-radial from-[#89AACC]/5 to-transparent blur-3xl pointer-events-none" />
 

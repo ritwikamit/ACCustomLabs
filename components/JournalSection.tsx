@@ -45,7 +45,7 @@ const entries: JournalEntry[] = [
 
 export default function JournalSection() {
   return (
-    <section className="bg-bg py-16 md:py-24 border-t border-stroke/40">
+    <section id="journal" className="bg-bg py-16 md:py-24 border-t border-stroke/40">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Header matching pattern */}
         <motion.div
