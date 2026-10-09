@@ -11,7 +11,7 @@ export function Scene() {
         bodyFont="onest"
         headingWeight="400"
         bodyWeight="300"
-        primaryColor="#e0231c"
+        primaryColor="#38bdf8"
         headingSize={56}
         bodySize={17}
         headingLetterSpacing={-0.015}

@@ -361,7 +361,7 @@ export const KAGE_TYPOGRAPHY: PageTypographyRecipe = {
   headingWeight: "400",
   bodyWeights: ["300", "400", "500", "600"],
   bodyWeight: "300",
-  primaryColor: "#e0231c",
+  primaryColor: "#38bdf8",
   headingSize: [30, 46, 72],
   bodySize: [13, 17, 24],
   headingLetterSpacing: [-0.06, -0.012, 0.12],
