@@ -19,7 +19,7 @@ export const siteConfig = {
   },
   secondaryCta: {
     label: "View Our Work",
-    href: "/work",
+    href: "/#gate",
   },
   contact: {
     email: "contact@accustomlabs.com",
@@ -30,11 +30,10 @@ export const siteConfig = {
     availability: "Accepting select client projects for this quarter",
   },
   navLinks: [
-    { label: "Services", href: "/services" },
-    { label: "Work", href: "/work" },
-    { label: "Process", href: "/#process" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: "Services", href: "/#pathways" },
+    { label: "Work", href: "/#gate" },
+    { label: "Disciplines", href: "/#lessons" },
+    { label: "Contact", href: "/#eternity" },
   ] as NavLink[],
   socials: [
     { name: "GitHub", href: "https://github.com/ritwikamit/ACCustomLabs" },

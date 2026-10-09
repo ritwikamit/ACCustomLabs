@@ -58,8 +58,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/work" className="hover:text-[#dfe7e0] transition-colors">
-                  Case Studies (/work)
+                <Link href="/#gate" className="hover:text-[#dfe7e0] transition-colors">
+                  Selected Work
                 </Link>
               </li>
             </ul>
@@ -72,29 +72,29 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-xs font-light text-[#aab4ad]">
               <li>
-                <Link href="/work#vikings-gym" className="hover:text-[#dfe7e0] transition-colors">
+                <a href="https://vikingsgym.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
                   Vikings Gym
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/work#bbc-pro-gym" className="hover:text-[#dfe7e0] transition-colors">
+                <a href="https://bbcpro.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
                   BBC Pro Gym
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/work#real-looks-salon" className="hover:text-[#dfe7e0] transition-colors">
+                <a href="https://reallookssalon.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
                   Real Looks Salon
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/work#mars-remedies" className="hover:text-[#dfe7e0] transition-colors">
+                <a href="https://marsremedies.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
                   Mars Remedies
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/work#bb-real-estate" className="hover:text-[#dfe7e0] transition-colors">
+                <a href="https://bbrealestate.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
                   BB Real Estate
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

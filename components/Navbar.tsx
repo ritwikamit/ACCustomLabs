@@ -10,7 +10,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  // On the root landing page, kage.html renders its own authored header
+  // On the root landing page, the authored 3D experience renders its own integrated header
   if (pathname === "/") {
     return null;
   }
@@ -50,12 +50,8 @@ export default function Navbar() {
         </Link>
 
         <Link
-          href="/work"
-          className={`group relative text-[11px] font-medium tracking-[0.2em] uppercase transition-colors ${
-            pathname === "/work"
-              ? "text-[#dfe7e0] after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-[1px] after:bg-[#e0231c]"
-              : "text-[#aab4ad] hover:text-[#dfe7e0]"
-          }`}
+          href="/#gate"
+          className="group relative text-[11px] font-medium tracking-[0.2em] uppercase text-[#aab4ad] hover:text-[#dfe7e0] transition-colors"
         >
           <span>Work</span>
           <span className="ml-1 text-[9px] text-[#78837c]">01</span>
@@ -77,27 +73,17 @@ export default function Navbar() {
           <span className="ml-1 text-[9px] text-[#78837c]">03</span>
         </Link>
 
-        {/* Glass AI Enquire Button */}
-        <Link href="/enquire" className="nav-enquire">
-          <span className="orb" aria-hidden="true" />
-          <span>Enquire</span>
-          <svg viewBox="0 0 14 14" fill="none" width="11" height="11">
-            <path
-              d="M3 11 11 3M5 3h6v6"
-              stroke="currentColor"
-              strokeWidth="1.3"
-            />
-          </svg>
+        <Link
+          href="/#eternity"
+          className="group relative text-[11px] font-medium tracking-[0.2em] uppercase text-[#aab4ad] hover:text-[#dfe7e0] transition-colors"
+        >
+          <span>Contact</span>
+          <span className="ml-1 text-[9px] text-[#78837c]">04</span>
         </Link>
       </nav>
 
-      {/* Mobile Right Controls */}
+      {/* Mobile Menu Trigger */}
       <div className="flex md:hidden items-center gap-3">
-        <Link href="/enquire" className="nav-enquire scale-90">
-          <span className="orb" aria-hidden="true" />
-          <span>Enquire</span>
-        </Link>
-
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="p-2 text-[#dfe7e0] hover:text-white"
@@ -118,7 +104,7 @@ export default function Navbar() {
             Index // 00
           </Link>
           <Link
-            href="/work"
+            href="/#gate"
             onClick={() => setMobileOpen(false)}
             className="text-xs font-mono uppercase tracking-[0.2em] text-[#dfe7e0] py-2 border-b border-white/[0.05]"
           >
@@ -139,12 +125,11 @@ export default function Navbar() {
             Disciplines // 03
           </Link>
           <Link
-            href="/enquire"
+            href="/#eternity"
             onClick={() => setMobileOpen(false)}
-            className="cta mt-2 justify-center"
+            className="text-xs font-mono uppercase tracking-[0.2em] text-[#aab4ad] hover:text-[#dfe7e0] py-2 border-b border-white/[0.05]"
           >
-            <i />
-            <span>Project Enquiry</span>
+            Contact // 04
           </Link>
         </div>
       )}
