@@ -12,9 +12,9 @@ export function Scene() {
         headingWeight="400"
         bodyWeight="300"
         primaryColor="#e0231c"
-        headingSize={46}
+        headingSize={56}
         bodySize={17}
-        headingLetterSpacing={-0.012}
+        headingLetterSpacing={-0.015}
       />
     </div>
   );

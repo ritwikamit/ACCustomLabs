@@ -379,23 +379,30 @@ body {
   will-change: transform;
 }
 
-/* Custom modern scrollbar */
+/* Custom sleek scrollbar: invisible track, small cylinder thumb */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #08080A;
+  background: transparent !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272A;
-  border-radius: 4px;
+  background: rgba(223, 231, 224, 0.22);
+  border-radius: 9999px;
+  border: none;
+  transition: background 0.25s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3F3F46;
+  background: rgba(223, 231, 224, 0.5);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(223, 231, 224, 0.22) transparent;
 }
 
 /* Reduced motion preference */

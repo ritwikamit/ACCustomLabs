@@ -43,6 +43,29 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
+/* ============================================================= custom scrollbar */
+/* Invisible track strip, small sleek cylinder thumb */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(223, 231, 224, 0.22);
+  border-radius: 9999px;
+  border: none;
+  transition: background 0.25s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(223, 231, 224, 0.5);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(223, 231, 224, 0.22) transparent;
+}
+
 /* ============================================================= layers */
 #gl{
   position:fixed; inset:0; width:100%; height:100%;
@@ -70,7 +93,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   text-transform:uppercase; line-height:1.055; letter-spacing:-.012em;
   font-weight:400; text-shadow:0 2px 34px rgba(3,6,8,.72);
 }
-.h-hero{ font-size:clamp(26px,3.05vw,46px); }
+.h-hero{ font-size:clamp(32px,4.1vw,58px); line-height:1.08; letter-spacing:-.016em; }
 .h-sec{ font-size:clamp(30px,4.0vw,60px); }
 .body-lg{ font-size:clamp(14px,1.02vw,17px); line-height:1.72; color:#b4bfb7; font-weight:300; text-shadow:0 1px 20px rgba(3,6,8,.88); }
 .body{ font-size:14px; line-height:1.68; color:#9aa5a0; font-weight:300; text-shadow:0 1px 18px rgba(3,6,8,.85); }
@@ -167,12 +190,12 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .hero{ position:relative; min-height:100svh; padding:0 var(--pad); display:flex; flex-direction:column; }
 .hero::before{ content:''; position:absolute; left:0; right:0; top:0; height:46%; pointer-events:none;
   background:linear-gradient(rgba(3,6,9,.72), rgba(3,6,9,.34) 46%, transparent); }
-.hero-top{ padding-top:calc(var(--nav-h) + clamp(12px,2.6vh,34px)); max-width:min(560px,46vw); position:relative; z-index:2; }
+.hero-top{ padding-top:calc(var(--nav-h) + clamp(12px,2.6vh,34px)); max-width:min(740px,58vw); position:relative; z-index:2; }
 .hero-top .eyebrow{ display:flex; align-items:center; gap:10px; margin-bottom:20px; }
-.hero-top .eyebrow .dot{ width:5px; height:5px; border-radius:50%; background:var(--vermilion); box-shadow:0 0 10px var(--vermilion); }
-.hero h1{ margin-bottom:18px; }
-.hero-sub{ max-width:322px; text-shadow:0 1px 26px rgba(3,6,8,.95); }
-.hero-spacer{ flex:1 1 auto; min-height:clamp(140px,26vh,300px); }
+.hero-top .eyebrow .dot{ display:none; }
+.hero h1{ margin-bottom:20px; }
+.hero-sub{ max-width:480px; font-size:clamp(14px,1.1vw,17px); line-height:1.7; text-shadow:0 1px 26px rgba(3,6,8,.95); }
+.hero-spacer{ flex:1 1 auto; min-height:clamp(120px,22vh,260px); }
 .hero-foot{ padding-bottom:clamp(22px,4.2vh,42px); position:relative; z-index:2; }
 .hero-cue{ display:flex; align-items:center; justify-content:flex-end; gap:12px; margin-bottom:14px;
   font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); }
@@ -180,20 +203,38 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .hero-cue .track i{ position:absolute; inset:0; background:var(--bone); transform-origin:left;
   animation:cue 2.8s var(--ease-io) infinite; }
 .chapters{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,2.4vw,40px);
-  border-top:1px solid var(--line-soft); padding-top:18px;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.8vw,28px);
+  border-top:1px solid var(--line-soft); padding-top:20px;
 }
-.chip{ display:flex; gap:14px; align-items:flex-start; cursor:pointer; }
+.chip{
+  display:flex; gap:14px; align-items:flex-start; cursor:pointer;
+  padding:14px 16px; border-radius:12px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  border:1px solid rgba(255,255,255,0.07);
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);
+  transition:all .35s var(--ease-out);
+}
 .chip .num{ line-height:1; flex:0 0 auto; transition:color .4s, transform .5s var(--ease-out); }
-.chip .tx{ min-width:0; padding-top:3px; }
+.chip .tx{ min-width:0; padding-top:2px; }
 .chip b{ display:block; font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
-  color:var(--bone-dim); margin-bottom:6px; transition:color .4s;
+  color:var(--bone-dim); margin-bottom:5px; transition:color .4s;
   text-shadow:0 1px 16px rgba(3,6,8,.9); }
-.chip p{ margin:0; font-size:11px; line-height:1.5; color:#7d8781; max-width:22ch;
+.chip p{ margin:0; font-size:11px; line-height:1.45; color:#7d8781; max-width:24ch;
   transition:color .4s; }
+.chip:hover{
+  background:linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+  border-color:rgba(255,255,255,0.18);
+  box-shadow:0 14px 30px -10px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.16);
+  transform:translate3d(0,-3px,0);
+}
 .chip:hover .num{ color:var(--ember); transform:translate3d(0,-2px,0); }
 .chip:hover b{ color:var(--bone); }
 .chip:hover p{ color:var(--bone-dim); }
+.chip.on{
+  border-color:rgba(224,35,28,0.4);
+  background:linear-gradient(135deg, rgba(224,35,28,0.08) 0%, rgba(255,255,255,0.02) 100%);
+}
 .chip.on .num{ color:var(--ember); }
 .chip.on b{ color:var(--bone); }
 /* the floating window: a generated Sanmon still carried over the hero */
@@ -279,14 +320,17 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
    into this rectangle with a scissored viewport, so each card is a live
    window onto a different corner of the sanctuary */
 .card-fr{
-  position:relative; aspect-ratio:4/5; background:#080b0e;
-  outline:1px solid var(--line-soft); outline-offset:-1px;
-  border-radius:14px; overflow:hidden;
+  position:relative; aspect-ratio:4/5;
+  background:linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%), #080b0e;
+  outline:1px solid rgba(255,255,255,0.09); outline-offset:-1px;
+  border-radius:16px; overflow:hidden;
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 22px 50px -15px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,0.12);
   transition:outline-color .5s var(--ease), box-shadow .4s var(--ease);
 }
 .card:hover .card-fr{
-  outline-color:rgba(224,35,28,.45);
-  box-shadow:0 24px 60px -15px rgba(0,0,0,.9), 0 0 35px rgba(224,35,28,.2);
+  outline-color:rgba(56,189,248,.5);
+  box-shadow:0 30px 70px -15px rgba(0,0,0,.95), 0 0 35px rgba(56,189,248,.22), inset 0 1px 0 rgba(255,255,255,0.22);
 }
 .card-bg-img{
   position:absolute; inset:0; width:100%; height:100%;
@@ -362,8 +406,8 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 /* fixed, or the gradient is measured against a 6000-pixel body box and the
    moon ends up somewhere around the curriculum table */
 .no-webgl body{ background:
-  radial-gradient(11vw 11vw at 73% 17%, rgba(232,52,28,.95), rgba(158,20,16,.62) 44%, rgba(96,12,12,.20) 64%, transparent 72%),
-  radial-gradient(38vw 32vw at 50% 46%, rgba(228,104,24,.40), rgba(122,42,10,.18) 54%, transparent 74%),
+  radial-gradient(11vw 11vw at 73% 17%, rgba(56,189,248,.95), rgba(37,99,235,.62) 44%, rgba(29,78,216,.20) 64%, transparent 72%),
+  radial-gradient(38vw 32vw at 50% 46%, rgba(14,165,233,.35), rgba(30,58,138,.18) 54%, transparent 74%),
   radial-gradient(120% 80% at 50% 0%, rgba(120,150,158,.16), transparent 60%), #05070a;
   background-attachment:fixed; }
 .no-webgl .peek-fr{ background:linear-gradient(160deg,#162326,#0b1013 55%,#241010); }
@@ -446,21 +490,22 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   }
 }
 .init-card {
-  background: rgba(10, 14, 18, 0.88);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 28px 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(10, 14, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  padding: 30px 26px;
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: all 0.35s var(--ease);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.35s var(--ease-out);
   position: relative;
 }
 .init-card:hover {
-  border-color: rgba(223, 231, 224, 0.35);
+  border-color: rgba(255, 255, 255, 0.22);
   transform: translateY(-4px);
-  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .init-step {
   display: flex;
@@ -517,13 +562,13 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
   gap: clamp(24px, 4vw, 50px);
-  background: linear-gradient(150deg, rgba(14, 18, 24, 0.95), rgba(8, 11, 15, 0.98));
-  border: 1px solid var(--line);
-  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(8, 12, 16, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
   padding: clamp(28px, 4vw, 48px);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(223, 231, 224, 0.12);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.16);
   width: 100%;
 }
 @media (max-width: 960px) {
@@ -1178,15 +1223,15 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 }
 
 .preview-box {
-  background: rgba(10, 14, 18, 0.88);
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(10, 14, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(223, 231, 224, 0.08);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
   position: relative;
   text-decoration: none;
@@ -1194,17 +1239,19 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   width: 100%;
 }
 .preview-box:hover {
-  border-color: rgba(223, 231, 224, 0.35);
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-5px);
-  box-shadow: 0 28px 65px -15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(224, 35, 28, 0.18);
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(56, 189, 248, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .box-chrome {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  background: rgba(5, 7, 10, 0.94);
-  border-bottom: 1px solid var(--line-soft);
+  background: rgba(5, 7, 10, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   gap: 10px;
 }
 .box-dots {
@@ -1451,13 +1498,13 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <!-- ============================================================ hero -->
 <section class="hero" id="hero" data-cam="0">
   <div class="hero-top">
-    <div class="eyebrow" data-rv="fade"><span class="dot"></span> DIGITAL PRODUCT & ENGINEERING AGENCY</div>
+    <div class="eyebrow" data-rv="fade">AC CUSTOM LABS · DIGITAL PRODUCT &amp; ENGINEERING STUDIO</div>
     <h1 class="display h-hero">
-      <span class="mask-line"><span>Software. Websites.</span></span>
-      <span class="mask-line"><span>Mobile Applications.</span></span>
-      <span class="mask-line"><span>Engineered to scale.</span></span>
+      <span class="mask-line"><span>Custom software,</span></span>
+      <span class="mask-line"><span>web platforms, &amp; apps</span></span>
+      <span class="mask-line"><span>built for performance.</span></span>
     </h1>
-    <p class="hero-sub body" data-rv="up">We partner with founders, brands, and modern businesses to design and develop custom software, high-speed web platforms, and mobile apps with end-to-end architectural rigor.</p>
+    <p class="hero-sub body" data-rv="up">Independent product engineering studio. We build custom software systems, high-speed web platforms, and mobile applications with end-to-end architectural rigor—taking technical products from initial blueprint directly to production launch.</p>
   </div>
 
   <div class="hero-spacer"></div>
@@ -3453,15 +3500,15 @@ function buildMoon() {
        is decoded out of sRGB before this multiplies it, so the tint has to be
        written in linear, where the same look is ≈ .21. Reading the ratio
        straight off the reference is what left the moon a pale pink. */
-    new THREE.MeshBasicMaterial({ map: tx(texMoon()), color: hdr(3.6, .64, .61),
+    new THREE.MeshBasicMaterial({ map: tx(texMoon()), color: hdr(0.55, 1.85, 4.2),
       transparent: true, depthWrite: false, fog: false, toneMapped: false }));
   disc.position.set(MOON.x, MOON.y, MOON.z); disc.renderOrder = 1;
   scene.add(disc); WORLD.moon = disc;
 
   /* the air around it — a wide, weak corona that the bloom picks up */
   const halo = new THREE.Mesh(new THREE.PlaneGeometry(MOON.r * 6.4, MOON.r * 6.4),
-    new THREE.MeshBasicMaterial({ map: tx(texGlow('rgba(255,124,112,.90)', 'rgba(206,52,48,.26)')),
-      transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, fog: false, opacity: .44 }));
+    new THREE.MeshBasicMaterial({ map: tx(texGlow('rgba(96,195,255,.92)', 'rgba(30,110,245,.28)')),
+      transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, fog: false, opacity: .48 }));
   halo.position.set(MOON.x, MOON.y, MOON.z - .3); halo.renderOrder = 0;
   scene.add(halo); WORLD.moonHalo = halo;
 }
@@ -4632,7 +4679,7 @@ function buildLights() {
 
   /* moonlight: no shadow, no fill, purely a rim down the right-hand slope of
      every roof — without it the hall is a flat black cut-out against the sky */
-  const moonKey = new THREE.DirectionalLight(0xff6a42, .52);
+  const moonKey = new THREE.DirectionalLight(0x38bdf8, .68);
   moonKey.position.set(26, 30, -60);
   moonKey.target.position.set(0, 8, -40); scene.add(moonKey.target);
   scene.add(moonKey);
@@ -4647,9 +4694,9 @@ function buildLights() {
     w.position.set(s * 11.4, PODIUM + 1.2, TEMPLE_Z + 5.6); scene.add(w);
   });
 
-  /* the moon throws almost nothing, but a trace of red high on the right
-     keeps it attached to the scene instead of floating on top of it */
-  const moonL = new THREE.PointLight(0xff3a1c, 3.0, 46, 2);
+  /* the moon throws a cool blue sheen high on the right
+     keeping it attached to the scene with celestial depth */
+  const moonL = new THREE.PointLight(0x2563eb, 3.4, 52, 2);
   moonL.position.set(11.0, 17.0, -24.0); scene.add(moonL); WORLD.moonLight = moonL;
 
   const fill = new THREE.PointLight(0x86c6d2, 0.95, 30, 2);
@@ -5401,6 +5448,34 @@ function updateWorld(dt) {
     m.material.opacity = a;
     m.visible = a > .006;
   });
+  /* --- 3D interaction for Temple (House) & Moon while scrolling --- */
+  if (WORLD.temple) {
+    const s = RIG.smooth;
+    WORLD.temple.rotation.y = s * 0.034 + RIG.mx * 0.04;
+    WORLD.temple.rotation.x = -RIG.my * 0.02 + Math.sin(s * 0.5) * 0.012;
+    WORLD.temple.position.x = RIG.mx * 0.82 + Math.sin(s * 0.75) * 0.45;
+    WORLD.temple.position.y = (s * 0.22) - RIG.my * 0.32;
+    WORLD.temple.position.z = Math.sin(s * 0.4) * 0.8;
+  }
+  if (WORLD.moon) {
+    const s = RIG.smooth;
+    const baseX = MOON.x * (1 - .40 * aspectFix());
+    const mx = baseX + Math.sin(s * 0.55) * 3.8 + RIG.mx * 2.0;
+    const my = MOON.y + Math.cos(s * 0.45) * 2.2 + RIG.my * 1.3;
+    const mz = MOON.z + s * 5.2;
+    WORLD.moon.position.set(mx, my, mz);
+    WORLD.moon.rotation.y = s * 0.14 + RIG.mx * 0.16;
+    WORLD.moon.rotation.x = -RIG.my * 0.12 + Math.sin(s * 0.35) * 0.07;
+    if (WORLD.moonHalo) {
+      WORLD.moonHalo.position.set(mx, my, mz - 0.3);
+      WORLD.moonHalo.rotation.copy(WORLD.moon.rotation);
+    }
+    if (WORLD.moonLight) {
+      WORLD.moonLight.position.set(mx * 0.65, my * 0.58, -24.0);
+      WORLD.moonLight.intensity = 3.4 + Math.sin(s * 1.2) * 0.8;
+    }
+  }
+
   updateLeaves(dt);
   updateWisps(dt);
   if (CARDS.length) CARDS.forEach(C => { const u = C.cam.userData; u.push = damp(u.push, u.want, 3.4, dt); });
@@ -5439,8 +5514,9 @@ function frame(now) {
   if (window.__lenis) {
     window.__lenis.raf(now);
   }
-  RIG.prog = progressFor(scrollY);
-  RIG.smooth = REDUCE ? RIG.prog : damp(RIG.smooth, RIG.prog, 12.0, dt);
+  const curScroll = (window.__lenis && typeof window.__lenis.scroll === 'number') ? window.__lenis.scroll : scrollY;
+  RIG.prog = progressFor(curScroll);
+  RIG.smooth = REDUCE ? RIG.prog : damp(RIG.smooth, RIG.prog, 9.5, dt);
   RIG.mx = damp(RIG.mx, RIG.tmx, 2.6, dt);
   RIG.my = damp(RIG.my, RIG.tmy, 2.6, dt);
   if (INTRO.t0) {
@@ -5606,13 +5682,14 @@ function start() {
   if (typeof Lenis !== 'undefined' && !REDUCE) {
     try {
       window.__lenis = new Lenis({
-        duration: 1.15,
+        lerp: 0.08,
+        duration: 1.25,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
         wheelMultiplier: 0.95,
-        touchMultiplier: 1.25,
+        touchMultiplier: 1.15,
         infinite: false,
       });
     } catch (e) {
