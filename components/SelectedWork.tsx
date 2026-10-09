@@ -31,12 +31,12 @@ export default function SelectedWork() {
 
             {/* Heading */}
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary tracking-tight">
-              Featured <span className="font-display italic text-[#89AACC]">systems</span>
+              Featured <span className="font-display italic text-[#89AACC]">projects</span>
             </h2>
 
             {/* Subtext */}
             <p className="text-sm sm:text-base text-muted leading-relaxed max-w-lg">
-              A selection of verified digital platforms we have engineered, launched, and scaled, from strategic conception to production.
+              A selection of projects I&apos;ve worked on, from concept to launch.
             </p>
           </div>
 

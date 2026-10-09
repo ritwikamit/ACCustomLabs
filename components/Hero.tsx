@@ -4,15 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import HlsVideo from "@/components/ui/HlsVideo";
-import Magnet from "@/components/ui/Magnet";
-import { ArrowDown, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 
-const roles = [
-  "Digital Product Studio",
-  "Full-Stack Engineering Team",
-  "Custom Web & App Lab",
-  "Modern Creative Studio",
-];
+const roles = ["Creative", "Fullstack", "Founder", "Engineer"];
 
 const HLS_URL =
   "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
@@ -55,111 +49,75 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-bg px-4 sm:px-6 pt-28 pb-16 select-none"
+      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-bg px-4 sm:px-6 pt-24 pb-16 select-none"
     >
-      {/* Background Video (Prompt Specification: HLS source, autoPlay muted loop, bg-black/20 overlay, h-48 bottom fade) */}
+      {/* Background Video: HLS source, autoPlay muted loop playsInline, bg-black/20 overlay, h-48 bottom fade */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <HlsVideo src={HLS_URL} className="w-full h-full opacity-95" />
-        {/* Dark overlay: strictly bg-black/20 */}
         <div className="absolute inset-0 bg-black/20" />
-        {/* Bottom fade: strictly h-48 bg-gradient-to-t from-bg to-transparent */}
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent pointer-events-none" />
       </div>
 
       {/* Hero Content (centered, z-10) */}
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center mt-4">
+      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center mt-6">
         {/* Eyebrow */}
-        <div className="blur-in inline-flex items-center gap-2 mb-6 sm:mb-8 px-4 py-1.5 rounded-full border border-stroke bg-surface/80 backdrop-blur-md shadow-lg shadow-black/20">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#FF1738] animate-pulse" />
-          <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium font-mono">
-            COLLECTION &apos;26 • FREELANCER-LED DIGITAL LAB
-          </span>
-        </div>
+        <p className="blur-in text-xs text-muted uppercase tracking-[0.3em] mb-8">
+          COLLECTION &apos;26
+        </p>
 
-        {/* Name / Studio Title in Instrument Serif italic */}
-        <h1 className="name-reveal text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6 drop-shadow-md">
+        {/* Name in Instrument Serif italic */}
+        <h1 className="name-reveal text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6">
           AC Custom Labs
         </h1>
 
-        {/* Role line cycling */}
-        <div className="blur-in text-base sm:text-lg md:text-xl text-text-primary/90 mb-4 font-normal drop-shadow">
+        {/* Role line */}
+        <p className="blur-in text-base sm:text-lg md:text-xl text-muted mb-4 font-normal">
           <span>A </span>
           <span
             key={roleIndex}
-            className="font-display italic text-[#89AACC] animate-role-fade-in inline-block text-xl sm:text-2xl md:text-3xl mx-1"
+            className="font-display italic text-text-primary animate-role-fade-in inline-block text-xl sm:text-2xl md:text-3xl mx-1"
           >
             {roles[roleIndex]}
           </span>
           <span> based in India, building worldwide.</span>
-        </div>
-
-        {/* Description */}
-        <p className="blur-in text-sm sm:text-base text-muted max-w-xl mb-10 leading-relaxed font-normal">
-          We engineer high-performance web applications, mobile platforms, and automated digital systems by focusing on the unique nuances that bring products to life.
         </p>
 
-        {/* CTA Buttons with Magnetic Spring Interaction */}
-        <div className="blur-in inline-flex flex-wrap items-center justify-center gap-4 mb-12">
+        {/* Description */}
+        <p className="blur-in text-sm md:text-base text-muted max-w-md mb-12 leading-relaxed">
+          Designing digital interactions by focusing on the unique nuances which bring systems to life.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="blur-in inline-flex items-center justify-center gap-4 flex-wrap">
           {/* Button 1: See Works (Solid) */}
-          <Magnet strength={12}>
-            <Link
-              href="#selected-works"
-              className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-8 py-4 bg-text-primary text-bg hover:bg-bg hover:text-text-primary transition-all duration-300 hover:scale-105 shadow-xl shadow-black/40"
-            >
-              <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]" />
-              <span className="inline-flex items-center gap-2">
-                <span>See Works</span>
-                <ArrowDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
-              </span>
-            </Link>
-          </Magnet>
+          <Link
+            href="#selected-works"
+            className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-7 py-3.5 bg-text-primary text-bg hover:bg-bg hover:text-text-primary transition-all duration-300 hover:scale-105"
+          >
+            <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]" />
+            <span className="inline-flex items-center gap-2">
+              <span>See Works</span>
+              <ArrowDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
+            </span>
+          </Link>
 
-          {/* Button 2: Reach out (Outlined) */}
-          <Magnet strength={12}>
-            <Link
-              href="/#contact"
-              className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-8 py-4 border-2 border-stroke bg-bg/80 backdrop-blur-sm text-text-primary hover:border-transparent transition-all duration-300 hover:scale-105 shadow-lg shadow-black/30"
-            >
-              <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]" />
-              <span className="inline-flex items-center gap-2">
-                <span>Reach out...</span>
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </span>
-            </Link>
-          </Magnet>
-        </div>
-
-        {/* Verified Live Client Strip */}
-        <div className="blur-in pt-6 border-t border-stroke/40 flex flex-col sm:flex-row items-center justify-center gap-3 text-xs font-mono text-muted">
-          <span className="uppercase tracking-wider text-[11px] flex items-center gap-1.5 text-text-primary">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Active live deployments:</span>
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            {[
-              { name: "Vikings Gym & Spa", href: "https://vikingsgym.in" },
-              { name: "BBC Pro Gym", href: "https://bbcpro.vercel.app" },
-              { name: "Real Looks Salon", href: "https://reallooks.vercel.app" },
-              { name: "Mars Remedies", href: "https://marsremedies.co.in" },
-              { name: "BB Real Estate", href: "https://bbrealestate.vercel.app" },
-            ].map((client) => (
-              <a
-                key={client.name}
-                href={client.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1 rounded-full border border-stroke bg-surface/70 hover:bg-surface hover:border-stroke/80 text-muted hover:text-text-primary transition-colors backdrop-blur-sm"
-              >
-                {client.name} ↗
-              </a>
-            ))}
-          </div>
+          {/* Button 2: Reach out... (Outlined) */}
+          <Link
+            href="/#contact"
+            className="group relative inline-flex items-center justify-center rounded-full text-sm font-medium px-7 py-3.5 border-2 border-stroke bg-bg text-text-primary hover:border-transparent transition-all duration-300 hover:scale-105"
+          >
+            <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-[1px]" />
+            <span className="inline-flex items-center gap-2">
+              <span>Reach out...</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </Link>
         </div>
       </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none">
-        <span className="text-[10px] text-muted uppercase tracking-[0.2em] font-medium font-mono">
+        <span className="text-xs text-muted uppercase tracking-[0.2em]">
           SCROLL
         </span>
         <div className="relative w-px h-10 bg-stroke overflow-hidden">

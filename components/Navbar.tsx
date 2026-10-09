@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
-const navItems = [
+const navLinks = [
   { href: "/#hero", label: "Home", targetId: "hero" },
   { href: "/#selected-works", label: "Work", targetId: "selected-works" },
   { href: "/#journal", label: "Journal", targetId: "journal" },
@@ -15,23 +15,22 @@ const navItems = [
 ];
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 100);
 
-      // Detect active section on scroll
       if (pathname === "/") {
-        const sections = ["hero", "selected-works", "journal", "explorations", "stats", "contact"];
-        for (const id of sections) {
+        const ids = ["hero", "selected-works", "journal", "explorations", "stats", "contact"];
+        for (const id of ids) {
           const el = document.getElementById(id);
           if (el) {
             const rect = el.getBoundingClientRect();
-            if (rect.top <= 200 && rect.bottom >= 200) {
+            if (rect.top <= 250 && rect.bottom >= 250) {
               setActiveSection(id);
               break;
             }
@@ -39,7 +38,6 @@ export default function Navbar() {
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
@@ -54,136 +52,98 @@ export default function Navbar() {
         setActiveSection(targetId);
       }
     }
-    setMobileMenuOpen(false);
-  };
-
-  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === "/") {
-      e.preventDefault();
-      const el = document.getElementById("contact");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        window.history.pushState(null, "", "/#contact");
-      }
-    }
-    setMobileMenuOpen(false);
+    setMobileOpen(false);
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "bg-[#050505]/90 backdrop-blur-md border-b border-white/[0.08] shadow-lg shadow-black/40"
-          : "bg-[#050505]/40 backdrop-blur-sm border-b border-white/[0.04]"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Official Brand Logo (Exact official image kept as before) */}
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
+      <div
+        className={`pointer-events-auto inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-surface/90 px-3 py-2 transition-all duration-300 ${
+          scrolled ? "shadow-md shadow-black/20 border-white/20 bg-surface/95" : ""
+        }`}
+      >
+        {/* 1. Official Logo (Kept as before) */}
         <Link
           href="/"
           onClick={(e) => handleNavClick(e, "hero")}
-          className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF1738] rounded-md py-1"
+          className="group flex items-center pr-2 pl-1 py-0.5 focus-visible:outline-none"
           aria-label="AC Custom Labs Homepage"
         >
-          <div className="relative h-10 w-44 sm:w-52 transition-transform duration-200 group-hover:scale-[1.02]">
+          <div className="relative h-7 w-28 sm:h-8 sm:w-36 transition-transform duration-200 group-hover:scale-[1.03]">
             <Image
               src="/brand/logo.png"
               alt="AC Custom Labs Logo"
               fill
               priority
-              sizes="(max-width: 640px) 176px, 208px"
+              sizes="144px"
               className="object-contain object-left"
             />
           </div>
         </Link>
 
-        {/* Desktop Smooth Scroll Navigation Links */}
-        <nav
-          className="hidden md:flex items-center gap-1 lg:gap-1.5 liquid-glass rounded-full px-3 py-1.5 shadow-inner"
-          aria-label="Main Navigation"
-        >
-          {navItems.map((item) => {
-            const isActive = pathname === "/" ? activeSection === item.targetId : false;
+        {/* 2. Divider */}
+        <div className="w-px h-5 bg-stroke mx-1.5 hidden md:block" />
+
+        {/* 3. Nav Links */}
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => {
+            const isActive = pathname === "/" && activeSection === link.targetId;
             return (
               <Link
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.targetId)}
-                className={`text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.targetId)}
+                className={`text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition-all duration-200 ${
                   isActive
-                    ? "text-white bg-white/[0.1] shadow-sm font-semibold"
-                    : "text-[#A1A1AA] hover:text-white hover:bg-white/[0.05]"
+                    ? "text-text-primary bg-stroke/60 font-semibold"
+                    : "text-muted hover:text-text-primary hover:bg-stroke/50"
                 }`}
               >
-                {item.label}
+                {link.label}
               </Link>
             );
           })}
         </nav>
 
-        {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/#contact"
-            onClick={handleContactClick}
-            className="group relative hidden sm:inline-flex items-center justify-center rounded-full text-sm font-semibold px-6 py-2.5 text-white transition-all duration-300 hover:scale-105 cursor-pointer"
-          >
-            <span className="absolute -inset-[1.5px] rounded-full accent-gradient opacity-80 group-hover:opacity-100 transition-opacity duration-300 blur-[0.5px]" />
-            <span className="relative z-10 inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 border border-stroke text-text-primary">
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
-          </Link>
+        {/* 4. Divider */}
+        <div className="w-px h-5 bg-stroke mx-1.5" />
 
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-[#A1A1AA] hover:text-white hover:bg-white/[0.06] border border-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF1738]"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        {/* 5. "Say hi" / Contact Button */}
+        <Link
+          href="/#contact"
+          onClick={(e) => handleNavClick(e, "contact")}
+          className="group relative inline-flex items-center rounded-full text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 text-text-primary transition-all duration-300 hover:scale-105"
+        >
+          <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[0.5px]" />
+          <span className="relative z-10 inline-flex items-center gap-1 rounded-full bg-surface px-2.5 py-1 backdrop-blur-md">
+            <span>Say hi</span>
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </span>
+        </Link>
+
+        {/* Mobile menu trigger */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden ml-1 p-1.5 rounded-full text-muted hover:text-white"
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+        </button>
       </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div
-          id="mobile-navigation"
-          className="md:hidden border-b border-white/[0.08] bg-[#0B0B0D] px-4 pt-3 pb-6 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200"
-        >
-          <nav className="flex flex-col space-y-1" aria-label="Mobile Navigation">
-            {navItems.map((item) => {
-              const isActive = pathname === "/" && activeSection === item.targetId;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.targetId)}
-                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors cursor-pointer ${
-                    isActive
-                      ? "bg-[#FF1738]/10 text-[#FF1738] border border-[#FF1738]/20"
-                      : "text-[#F7F7F7] hover:bg-white/[0.05]"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-          <div className="pt-3 border-t border-white/[0.08]">
+      {/* Mobile Drawer */}
+      {mobileOpen && (
+        <div className="pointer-events-auto absolute top-20 left-4 right-4 rounded-3xl bg-surface border border-stroke p-4 shadow-2xl flex flex-col gap-2 md:hidden">
+          {navLinks.map((link) => (
             <Link
-              href="/#contact"
-              onClick={handleContactClick}
-              className="w-full flex items-center justify-center gap-2 bg-[#FF1738] hover:bg-[#FF3350] text-white font-semibold py-3 px-4 rounded-xl shadow-md transition-colors cursor-pointer"
+              key={link.href}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.targetId)}
+              className="text-sm px-4 py-2.5 rounded-xl text-text-primary hover:bg-stroke/40"
             >
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              {link.label}
             </Link>
-          </div>
+          ))}
         </div>
       )}
     </header>

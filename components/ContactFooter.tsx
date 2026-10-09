@@ -10,19 +10,19 @@ import { siteConfig } from "@/data/site";
 const HLS_URL =
   "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
 
-const marqueeText = "BUILDING THE FUTURE OF DIGITAL PRODUCTS • HIGH-PERFORMANCE WEB & APPS • ";
+const marqueeText = "BUILDING THE FUTURE • ";
 
 export default function ContactFooter() {
   const marqueeRef = useRef<HTMLDivElement | null>(null);
 
-  // GSAP Marquee: xPercent -50, duration 40s, ease none, repeat -1
+  // GSAP Marquee: xPercent: -50, duration: 40, ease: "none", repeat: -1
   useEffect(() => {
     const el = marqueeRef.current;
     if (!el) return;
 
     const tween = gsap.to(el, {
       xPercent: -50,
-      duration: 35,
+      duration: 40,
       ease: "none",
       repeat: -1,
     });
@@ -41,10 +41,10 @@ export default function ContactFooter() {
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center text-center mb-16">
-        {/* GSAP Marquee Container */}
+        {/* GSAP Marquee Container (repeated 10x) */}
         <div className="w-full overflow-hidden whitespace-nowrap mb-12 sm:mb-16 py-3 border-y border-stroke/50 bg-surface/30 backdrop-blur-sm">
           <div ref={marqueeRef} className="inline-flex will-change-transform">
-            {Array.from({ length: 8 }).map((_, i) => (
+            {Array.from({ length: 10 }).map((_, i) => (
               <span
                 key={i}
                 className="text-xs sm:text-sm font-mono tracking-[0.25em] text-muted uppercase px-4"

@@ -90,7 +90,7 @@ export default function ExplorationsSection() {
           </div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary tracking-tight mb-4">
-            Technical <span className="font-display italic text-[#89AACC]">playground</span>
+            Visual <span className="font-display italic text-[#89AACC]">playground</span>
           </h2>
 
           <p className="text-sm sm:text-base text-muted leading-relaxed mb-6">

@@ -66,7 +66,7 @@ export default function JournalSection() {
 
             {/* Heading */}
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary tracking-tight">
-              Recent <span className="font-display italic text-[#89AACC]">breakdowns</span>
+              Recent <span className="font-display italic text-[#89AACC]">thoughts</span>
             </h2>
 
             {/* Subtext */}
@@ -82,7 +82,7 @@ export default function JournalSection() {
           >
             <span className="absolute -inset-[1.5px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[0.5px]" />
             <span className="relative z-10 inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 border border-stroke">
-              <span>View all notes</span>
+              <span>View all</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </Link>
