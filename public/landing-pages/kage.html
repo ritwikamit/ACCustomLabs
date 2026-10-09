@@ -279,28 +279,30 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
    into this rectangle with a scissored viewport, so each card is a live
    window onto a different corner of the sanctuary */
 .card-fr{
-  position:relative; aspect-ratio:4/5; background:transparent;
+  position:relative; aspect-ratio:4/5; background:#080b0e;
   outline:1px solid var(--line-soft); outline-offset:-1px;
-  transition:outline-color .5s var(--ease);
+  border-radius:14px; overflow:hidden;
+  transition:outline-color .5s var(--ease), box-shadow .4s var(--ease);
 }
-.card:hover .card-fr{ outline-color:rgba(223,231,224,.30); }
-.card:nth-child(1) .card-fr{
-  background:
-    linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.72) 100%),
-    url('secret-pathways-assets/foreground/png/kage-approach.webp') center / cover no-repeat;
+.card:hover .card-fr{
+  outline-color:rgba(224,35,28,.45);
+  box-shadow:0 24px 60px -15px rgba(0,0,0,.9), 0 0 35px rgba(224,35,28,.2);
 }
-.card:nth-child(2) .card-fr{
-  background:
-    linear-gradient(180deg,rgba(3,6,9,.06) 36%,rgba(3,6,9,.74) 100%),
-    url('secret-pathways-assets/foreground/png/kage-lantern-court.webp') center / cover no-repeat;
+.card-bg-img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; z-index:0;
+  transition:transform .7s cubic-bezier(.16,1,.3,1), filter .4s ease;
+  filter:brightness(.85) contrast(1.08);
 }
-.card:nth-child(3) .card-fr{
-  background:
-    linear-gradient(180deg,rgba(3,6,9,.05) 36%,rgba(3,6,9,.74) 100%),
-    url('secret-pathways-assets/foreground/png/kage-moonwater.webp') center / cover no-repeat;
+.card:hover .card-bg-img{
+  transform:scale(1.06);
+  filter:brightness(1.02) contrast(1.12);
 }
-.card-fr::after{ content:''; position:absolute; inset:0;
-  background:linear-gradient(transparent 46%, rgba(4,6,9,.80)); pointer-events:none; }
+.card:nth-child(1) .card-fr{ background:#0a0e13; }
+.card:nth-child(2) .card-fr{ background:#0b0d11; }
+.card:nth-child(3) .card-fr{ background:#090b0e; }
+.card-fr::after{ content:''; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg, rgba(5,7,10,.08) 0%, rgba(5,7,10,.35) 45%, rgba(5,7,10,.92) 100%); pointer-events:none; }
 /* The fabric overdraws its card by CL_BLEED on every side so the billow and
    the contact shadow have somewhere to go, so the frame cannot clip it. The
    card's outline is not here at all: it is drawn in the cloth shader, where it
@@ -415,11 +417,208 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   transform:scaleX(0); transform-origin:left; transition:transform .7s var(--ease-out); }
 .les:hover .bar{ transform:scaleX(1); }
 
-/* — chapter IV: eternity */
-.fin{ min-height:100svh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
-.fin .eyebrow{ margin-bottom:26px; }
-.fin h2{ font-size:clamp(38px,7.4vw,124px); line-height:.94; letter-spacing:-.03em; text-transform:uppercase; }
-.fin p{ max-width:44ch; margin:26px auto 0; }
+/* — chapter IV: eternity / Project Initiation */
+.fin {
+  min-height: auto;
+  position: relative;
+  z-index: 2;
+  padding: clamp(80px, 12vh, 160px) var(--pad);
+}
+.init-head {
+  max-width: 860px;
+  margin-bottom: clamp(36px, 5vh, 60px);
+}
+.init-head h2 {
+  max-width: 18ch;
+  margin-bottom: 18px;
+}
+.init-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: clamp(36px, 5vh, 56px);
+  width: 100%;
+}
+@media (max-width: 960px) {
+  .init-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+.init-card {
+  background: rgba(10, 14, 18, 0.88);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.35s var(--ease);
+  position: relative;
+}
+.init-card:hover {
+  border-color: rgba(223, 231, 224, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.85);
+}
+.init-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.init-step span {
+  color: var(--vermilion);
+  font-weight: 500;
+}
+.init-step b {
+  color: var(--muted);
+  font-weight: 400;
+}
+.init-card h4 {
+  font-size: clamp(16px, 1.25vw, 19px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+.init-card p {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #909b95;
+  margin: 0 0 20px;
+  flex: 1 1 auto;
+}
+.init-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.5px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  color: var(--bone);
+  background: rgba(223, 231, 224, 0.05);
+  border: 1px solid var(--line-soft);
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-top: auto;
+}
+.init-badge i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--vermilion);
+}
+.init-console {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
+  gap: clamp(24px, 4vw, 50px);
+  background: linear-gradient(150deg, rgba(14, 18, 24, 0.95), rgba(8, 11, 15, 0.98));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(28px, 4vw, 48px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(223, 231, 224, 0.12);
+  width: 100%;
+}
+@media (max-width: 960px) {
+  .init-console {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+.console-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #27c93f;
+  margin-bottom: 14px;
+  background: rgba(39, 201, 63, 0.08);
+  border: 1px solid rgba(39, 201, 63, 0.22);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.console-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #27c93f;
+  animation: orb-pulse 2s infinite;
+}
+.console-h3 {
+  font-size: clamp(20px, 2.2vw, 32px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin: 0 0 12px;
+}
+.console-p {
+  font-size: 13.5px;
+  line-height: 1.62;
+  color: #9aa59f;
+  margin: 0 0 28px;
+  max-width: 48ch;
+}
+.console-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.init-cta {
+  margin-top: 0 !important;
+}
+.console-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  justify-content: center;
+  border-left: 1px solid var(--line-soft);
+  padding-left: clamp(20px, 3vw, 40px);
+}
+@media (max-width: 960px) {
+  .console-meta-list {
+    border-left: 0;
+    border-top: 1px solid var(--line-soft);
+    padding-left: 0;
+    padding-top: 24px;
+  }
+}
+.console-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.meta-label {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta-val {
+  font-size: 12.5px;
+  color: var(--bone);
+  font-weight: 400;
+}
+.meta-link {
+  font-size: 12.5px;
+  color: var(--ember);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.meta-link:hover {
+  color: #ffffff;
+}
 .cta{
   position:relative; display:inline-flex; align-items:center; gap:14px; margin-top:44px;
   padding:17px 30px; border:1px solid var(--line); border-radius:100px; overflow:hidden;
@@ -1266,14 +1465,14 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="hero-foot">
     <div class="hero-cue" data-rv="fade"><span>Scroll to view</span><span class="track"><i></i></span></div>
     <div class="chapters" id="chips">
-      <div class="chip" data-chip="0" data-rv="up" data-cursor><span class="num">01</span>
+      <div class="chip" data-chip="0" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#pathways',{duration:1.2})}else{document.querySelector('#pathways').scrollIntoView({behavior:'smooth'})}"><span class="num">01</span>
         <span class="tx"><b>Custom Software</b><p>Enterprise portals, secure cloud backends, and low-latency APIs.</p></span></div>
-      <div class="chip" data-chip="1" data-rv="up" data-cursor><span class="num">02</span>
+      <div class="chip" data-chip="1" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#pathways',{duration:1.2})}else{document.querySelector('#pathways').scrollIntoView({behavior:'smooth'})}"><span class="num">02</span>
         <span class="tx"><b>Web Platforms</b><p>Next.js web apps, interactive 3D WebGL, and conversion architecture.</p></span></div>
-      <div class="chip" data-chip="2" data-rv="up" data-cursor><span class="num">03</span>
+      <div class="chip" data-chip="2" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#pathways',{duration:1.2})}else{document.querySelector('#pathways').scrollIntoView({behavior:'smooth'})}"><span class="num">03</span>
         <span class="tx"><b>Mobile Apps</b><p>High-performance iOS and Android apps built for user retention.</p></span></div>
-      <div class="chip" data-chip="3" data-rv="up" data-cursor><span class="num">04</span>
-        <span class="tx"><b>WhatsApp Enquire</b><p>Instant direct consultation with lead developer (+91 9113445763).</p></span></div>
+      <div class="chip" data-chip="3" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}"><span class="num">04</span>
+        <span class="tx"><b>Project Initiation</b><p>Direct architectural scoping, timelines & fixed quote within 24h.</p></span></div>
     </div>
   </div>
 </section>
@@ -1509,25 +1708,28 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <span class="k"><b>02</b> — Studio Capabilities</span><span class="rule"></span><span class="k">STACK</span>
   </div>
   <div class="cards" id="cards">
-    <article class="card" data-rv="up" data-view="0" data-cursor>
-      <div class="card-fr" data-frame>
-                <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+    <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
+      <div class="card-fr">
+        <img class="card-bg-img" src="/capabilities/custom-software.webp" alt="Custom Software Systems" loading="lazy" />
+        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:80.2%; --gy:23.9%; --gr:22%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(255,142,108,.50); --gc2:rgba(212,56,38,.24)"></i>
         <div class="card-lab"><b>Custom Software</b><span>SYSTEMS</span></div>
       </div>
       <div class="card-meta"><span>Cloud Architecture & APIs</span><span>01 / 03</span></div>
     </article>
-    <article class="card" data-rv="up" data-view="1" data-cursor>
-      <div class="card-fr" data-frame>
-                <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+    <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
+      <div class="card-fr">
+        <img class="card-bg-img" src="/capabilities/web-development.webp" alt="High-Performance Web Development" loading="lazy" />
+        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow glow--flame" style="--gx:70.5%; --gy:47.2%; --gr:14%; --gt:3.7s; --gt2:5.3s; --gc1:rgba(255,198,124,.62); --gc2:rgba(226,118,40,.30)"></i>
         <div class="card-lab"><b>Web Development</b><span>FRONTEND</span></div>
       </div>
       <div class="card-meta"><span>Next.js, 3D WebGL & Performance</span><span>02 / 03</span></div>
     </article>
-    <article class="card" data-rv="up" data-view="2" data-cursor>
-      <div class="card-fr" data-frame>
-                <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+    <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
+      <div class="card-fr">
+        <img class="card-bg-img" src="/capabilities/mobile-apps.webp" alt="iOS & Android Mobile Applications" loading="lazy" />
+        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:48.0%; --gy:16.8%; --gr:20%; --gt:7.3s; --gt2:11.2s; --gc1:rgba(255,138,104,.52); --gc2:rgba(208,54,36,.24)"></i>
         <div class="card-lab"><b>Mobile Apps</b><span>iOS & ANDROID</span></div>
       </div>
@@ -1608,18 +1810,77 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <img crossorigin="anonymous" src="secret-pathways-assets/foreground/png/sakura-branch.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async">
     </span>
   </div>
-  <div class="eyebrow" data-rv="fade">04 — Project Initiation</div>
-  <h2 class="display" data-rv="up">Have a project in mind? Let's build it.</h2>
-  <p class="body-lg" data-rv="up">Connect directly with our lead developer on WhatsApp for project scoping, quotes, and delivery timelines. We respond within a few hours.</p>
-  <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
-    <a class="cta" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project." target="_blank" rel="noopener noreferrer" data-rv="fade" data-cursor>
-      <i></i><span>Chat on WhatsApp (+91 9113445763)</span>
-      <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#05070a" stroke-width="1.3"/></svg>
-    </a>
-    <a class="arrowlink" href="tel:+919113445763" data-rv="fade" data-cursor>
-      <span>Call +91 9113445763</span>
-      <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-    </a>
+  <div class="sec-head" data-rv="fade">
+    <span class="k"><b>04</b> — Project Initiation</span><span class="rule"></span><span class="k">ENGAGEMENT</span>
+  </div>
+  <div class="init-head" data-rv="up">
+    <h2 class="display h-sec">Direct senior engineering from day one.</h2>
+    <p class="body-lg">Eliminate agency overhead and middle management. Partner directly with lead engineering to scope architectures, set timelines, and establish fixed-price milestones with absolute clarity.</p>
+  </div>
+
+  <div class="init-grid" data-rv="up">
+    <div class="init-card">
+      <div class="init-step"><span>PHASE 01</span><b>DISCOVERY</b></div>
+      <h4>Technical Scoping & Roadmap</h4>
+      <p>Share your vision, codebase, or product requirements. We assess architectural feasibility, recommend high-speed tech stacks, and produce a transparent fixed-price roadmap.</p>
+      <div class="init-badge"><i></i> Turnaround: &lt; 24 Hours</div>
+    </div>
+    <div class="init-card">
+      <div class="init-step"><span>PHASE 02</span><b>ARCHITECTURE</b></div>
+      <h4>Design Systems & Prototyping</h4>
+      <p>High-fidelity UI/UX design tokens, responsive layout architecture, component specifications, and verified database schemas engineered before writing a line of code.</p>
+      <div class="init-badge"><i></i> Fixed Milestones & Zero Scope Creep</div>
+    </div>
+    <div class="init-card">
+      <div class="init-step"><span>PHASE 03</span><b>EXECUTION</b></div>
+      <h4>Full-Stack Build & IP Handover</h4>
+      <p>Senior-level Next.js, WebGL, or mobile engineering with automated CI/CD pipelines, edge CDN caching, performance auditing, and 100% full intellectual property ownership.</p>
+      <div class="init-badge"><i></i> Production Release & Direct Handover</div>
+    </div>
+  </div>
+
+  <div class="init-console" data-rv="up">
+    <div class="console-left">
+      <div class="console-status">
+        <span class="console-pulse"></span>
+        <span>Lead Engineer Available for Engagements</span>
+      </div>
+      <h3 class="console-h3">Initiate Direct Technical Consultation</h3>
+      <p class="console-p">Speak directly with our principal engineer on WhatsApp for instant architectural guidance, preliminary budget ranges, and delivery timelines.</p>
+      
+      <div class="console-actions">
+        <a class="cta init-cta" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20discuss%20initiating%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
+          <i></i>
+          <span>Chat on WhatsApp (+91 9113445763)</span>
+          <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#05070a" stroke-width="1.3"/></svg>
+        </a>
+        <a class="arrowlink" href="tel:+919113445763" data-cursor>
+          <span>Call Direct</span>
+          <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="console-right">
+      <div class="console-meta-list">
+        <div class="console-meta-item">
+          <span class="meta-label">Response Guarantee</span>
+          <span class="meta-val">Within 2 Hours (Direct to Lead Dev)</span>
+        </div>
+        <div class="console-meta-item">
+          <span class="meta-label">Core Capabilities</span>
+          <span class="meta-val">Custom Software · Next.js Web · Mobile Apps</span>
+        </div>
+        <div class="console-meta-item">
+          <span class="meta-label">Engagement Models</span>
+          <span class="meta-val">Fixed-Price Sprints · Greenfield Builds · Technical Audit</span>
+        </div>
+        <div class="console-meta-item">
+          <span class="meta-label">Direct Studio Email</span>
+          <a href="mailto:contact@accustomlabs.com" class="meta-link">contact@accustomlabs.com ↗</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
