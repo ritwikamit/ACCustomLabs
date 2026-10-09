@@ -185,7 +185,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} dark scroll-smooth`}>
+    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} dark`}>
       <head>
         <script
           type="application/ld+json"

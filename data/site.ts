@@ -23,8 +23,8 @@ export const siteConfig = {
   },
   contact: {
     email: "contact@accustomlabs.com",
-    phone: "+91 8877665544", // placeholder business line format
-    whatsapp: "https://wa.me/918877665544",
+    phone: "+91 9113445763",
+    whatsapp: "https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project.",
     location: "India (Serving Global & Local Clients)",
     github: "https://github.com/ritwikamit/ACCustomLabs",
     availability: "Accepting select client projects for this quarter",

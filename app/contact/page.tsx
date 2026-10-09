@@ -64,7 +64,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <span className="text-xs font-mono text-[#71717A] block">WhatsApp</span>
-                  <span className="text-white font-medium">Message our studio</span>
+                  <span className="text-white font-medium">+91 9113445763</span>
                 </div>
               </a>
 

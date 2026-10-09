@@ -124,6 +124,15 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-[#FF1738]" />
                 <span className="truncate">{siteConfig.contact.email}</span>
               </a>
+              <a
+                href={siteConfig.contact.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-white hover:text-[#FF1738] transition-colors font-medium"
+              >
+                <ArrowUpRight className="w-4 h-4 text-[#FF1738]" />
+                <span>WhatsApp: +91 9113445763</span>
+              </a>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#FF1738] shrink-0 mt-0.5" />
                 <span>{siteConfig.contact.location}</span>
