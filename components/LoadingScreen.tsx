@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { ArrowRight } from "lucide-react";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -14,17 +15,29 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [wordIndex, setWordIndex] = useState(0);
   const [isDone, setIsDone] = useState(false);
 
-  // RAF Counter from 0 to 100 over ~2400ms
+  // RAF Counter from 000 to 100 with guaranteed completion in ~1500ms
   useEffect(() => {
-    const startTime = performance.now();
-    const duration = 2400;
-
     let frameId: number;
+    let completed = false;
+    const startTime = performance.now();
+    const duration = 1500;
+
+    const finish = () => {
+      if (completed) return;
+      completed = true;
+      setCount(100);
+      setIsDone(true);
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("ac_seen_intro", "1");
+      }
+      setTimeout(() => {
+        onComplete();
+      }, 300);
+    };
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Easing out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       const currentCount = Math.floor(eased * 100);
 
@@ -33,52 +46,72 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       if (progress < 1) {
         frameId = requestAnimationFrame(animate);
       } else {
-        setCount(100);
-        const timer = setTimeout(() => {
-          setIsDone(true);
-          setTimeout(() => {
-            onComplete();
-          }, 400);
-        }, 300);
-        return () => clearTimeout(timer);
+        finish();
       }
     };
 
     frameId = requestAnimationFrame(animate);
 
-    return () => cancelAnimationFrame(frameId);
+    // Guaranteed fallback timeout so it NEVER stalls
+    const timeout = setTimeout(() => {
+      finish();
+    }, 1800);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      clearTimeout(timeout);
+    };
   }, [onComplete]);
 
-  // Word cycling every 800ms
+  // Word cycling every 500ms
   useEffect(() => {
     const wordInterval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % words.length);
-    }, 800);
+    }, 500);
 
     return () => clearInterval(wordInterval);
   }, []);
 
+  const handleSkip = () => {
+    setIsDone(true);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("ac_seen_intro", "1");
+    }
+    onComplete();
+  };
+
   return (
     <motion.aside
       aria-label="Loading portfolio"
-      aria-live="polite"
       initial={{ opacity: 1 }}
       animate={{ opacity: isDone ? 0 : 1 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="fixed inset-0 z-[9999] bg-[hsl(var(--bg))] flex flex-col justify-between p-6 sm:p-10 md:p-16 select-none pointer-events-auto"
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className={`fixed inset-0 z-[9999] bg-[hsl(var(--bg))] flex flex-col justify-between p-6 sm:p-10 md:p-16 select-none ${
+        isDone ? "pointer-events-none" : "pointer-events-auto"
+      }`}
     >
-      {/* Top Left Label */}
-      <motion.div
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex items-center gap-3"
-      >
-        <span className="w-2 h-2 rounded-full bg-[#FF1738] animate-ping" />
-        <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-          AC Custom Labs • Portfolio &apos;26
-        </span>
-      </motion.div>
+      {/* Top Left Label & Skip Button */}
+      <div className="flex items-center justify-between">
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex items-center gap-3"
+        >
+          <span className="w-2 h-2 rounded-full bg-[#FF1738] animate-ping" />
+          <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium font-mono">
+            AC Custom Labs • Portfolio &apos;26
+          </span>
+        </motion.div>
+
+        <button
+          onClick={handleSkip}
+          className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-text-primary uppercase tracking-widest font-mono transition-colors px-3 py-1.5 rounded-full border border-stroke/60 hover:border-stroke"
+        >
+          <span>Skip</span>
+          <ArrowRight className="w-3 h-3" />
+        </button>
+      </div>
 
       {/* Center Rotating Words */}
       <div className="flex items-center justify-center h-40">
@@ -86,10 +119,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           <motion.span
             key={words[wordIndex]}
             initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 0.9 }}
+            animate={{ y: 0, opacity: 0.95 }}
             exit={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display italic text-text-primary tracking-tight text-center"
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="text-5xl sm:text-7xl md:text-8xl font-display italic text-text-primary tracking-tight text-center"
           >
             {words[wordIndex]}
           </motion.span>
@@ -99,7 +132,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       {/* Bottom Counter Display */}
       <div className="flex items-end justify-between">
         <div className="hidden sm:block text-xs text-muted max-w-xs font-mono">
-          [System Ready] Turbopack / Next.js 16 / TypeScript / GSAP / Motion
+          [System Ready] Next.js 16 • Turbopack • TypeScript • GSAP • Motion
         </div>
         <div className="text-6xl sm:text-8xl md:text-9xl font-display text-text-primary tabular-nums font-normal ml-auto">
           {String(count).padStart(3, "0")}
