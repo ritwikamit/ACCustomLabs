@@ -884,6 +884,24 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   [data-rv]{ opacity:1 !important; transform:none !important; }
   .mask-line > span,.word{ opacity:1 !important; transform:none !important; }
 }
+
+/* ==================================== custom enquire button & smooth scroll */
+.nav-enquire {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--vermilion); color: #fff !important;
+  padding: 5px 14px; border-radius: 999px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s ease;
+  box-shadow: 0 0 16px rgba(224, 35, 28, 0.4);
+}
+.nav-enquire:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 0 24px rgba(224, 35, 28, 0.65);
+  background: #ff2d25;
+}
+.nav-enquire svg { display: inline-block; }
+html { scroll-behavior: smooth !important; }
+
 </style>
 </head>
 <body data-layout-hero="b" data-layout-story="b" data-layout-gallery="b"
@@ -911,14 +929,17 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <!-- ============================================================ nav -->
 <header class="nav" id="nav">
   <a class="brand" href="#top" data-cursor>
-    <img src="/brand/logo.png" alt="AC Custom Labs" class="brand-logo" />
-    <span class="brand-tx"><b>DIGITAL PRODUCT STUDIO</b><i>BENGALURU // GLOBAL</i></span>
+    <span class="brand-tx"><b>AC CUSTOM LABS</b><i>SOFTWARE · WEB · APPS</i></span>
   </a>
   <nav class="nav-links" id="navlinks">
-    <a class="nav-link" href="#gate" data-cursor><span>Work</span><span class="alt">01</span></a>
+    <a class="nav-link" href="/work" target="_top" data-cursor><span>Work</span><span class="alt">01</span></a>
     <a class="nav-link" href="#pathways" data-cursor><span>Capabilities</span><span class="alt">02</span></a>
     <a class="nav-link" href="#lessons" data-cursor><span>Disciplines</span><span class="alt">03</span></a>
-    <a class="nav-link" href="#eternity" data-cursor><span>Initiate</span><span class="alt">04</span></a>
+    <a class="nav-link" href="#eternity" data-cursor><span>Contact</span><span class="alt">04</span></a>
+    <a class="nav-enquire" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
+      <span>Enquire</span>
+      <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.962h.004c4.368 0 7.927-3.559 7.93-7.93a7.9 7.9 0 0 0-2.327-5.604M7.994 14.521a6.6 6.6 0 0 1-3.344-.919l-.24-.143-2.485.652.663-2.423-.156-.25a6.56 6.56 0 0 1-1.007-3.513c.004-3.624 2.961-6.58 6.587-6.58a6.55 6.55 0 0 1 4.656 1.928 6.56 6.56 0 0 1 1.924 4.659c-.004 3.624-2.961 6.58-6.585 6.58"/></svg>
+    </a>
   </nav>
   <button class="nav-burger" aria-label="Menu" data-cursor><i></i><i></i></button>
 </header>
@@ -928,13 +949,13 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <!-- ============================================================ hero -->
 <section class="hero" id="hero" data-cam="0">
   <div class="hero-top">
-    <div class="eyebrow" data-rv="fade"><span class="dot"></span> STUDIO DIRECTORY // 2026 RELEASE</div>
+    <div class="eyebrow" data-rv="fade"><span class="dot"></span> DIGITAL PRODUCT & ENGINEERING AGENCY</div>
     <h1 class="display h-hero">
-      <span class="mask-line"><span>Engineered precision</span></span>
-      <span class="mask-line"><span>for category</span></span>
-      <span class="mask-line"><span>defining products.</span></span>
+      <span class="mask-line"><span>Software. Websites.</span></span>
+      <span class="mask-line"><span>Mobile Applications.</span></span>
+      <span class="mask-line"><span>Engineered to scale.</span></span>
     </h1>
-    <p class="hero-sub body" data-rv="up">We design and build high-performance web applications, interactive 3D platforms, and digital ecosystems with surgical attention to detail.</p>
+    <p class="hero-sub body" data-rv="up">We partner with founders, brands, and modern businesses to design and develop custom software, high-speed web platforms, and mobile apps with end-to-end architectural rigor.</p>
   </div>
 
   <div class="hero-spacer"></div>
@@ -943,13 +964,13 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <div class="hero-cue" data-rv="fade"><span>Scroll to view</span><span class="track"><i></i></span></div>
     <div class="chapters" id="chips">
       <div class="chip" data-chip="0" data-rv="up" data-cursor><span class="num">01</span>
-        <span class="tx"><b>Production Work</b><p>Verified deployments built for high-growth category leaders.</p></span></div>
+        <span class="tx"><b>Custom Software</b><p>Enterprise portals, secure cloud backends, and low-latency APIs.</p></span></div>
       <div class="chip" data-chip="1" data-rv="up" data-cursor><span class="num">02</span>
-        <span class="tx"><b>Creative Tech</b><p>Real-time WebGL, interactive shaders, and full-stack architecture.</p></span></div>
+        <span class="tx"><b>Web Platforms</b><p>Next.js web apps, interactive 3D WebGL, and conversion architecture.</p></span></div>
       <div class="chip" data-chip="2" data-rv="up" data-cursor><span class="num">03</span>
-        <span class="tx"><b>Studio Principles</b><p>Senior-only execution with transparent delivery milestones.</p></span></div>
+        <span class="tx"><b>Mobile Apps</b><p>High-performance iOS and Android apps built for user retention.</p></span></div>
       <div class="chip" data-chip="3" data-rv="up" data-cursor><span class="num">04</span>
-        <span class="tx"><b>Initiate Project</b><p>Direct technical discovery with principal engineers.</p></span></div>
+        <span class="tx"><b>WhatsApp Enquire</b><p>Instant direct consultation with lead developer (+91 9113445763).</p></span></div>
     </div>
   </div>
 </section>
@@ -972,19 +993,25 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <span class="k"><b>01</b> — Selected Work</span><span class="rule"></span><span class="k">VERIFIED</span>
   </div>
   <div class="gate-grid">
-    <h2 class="display h-sec" data-rv="up">Production deployments engineered for category leaders.</h2>
+    <h2 class="display h-sec" data-rv="up">Proven production systems built for category leaders.</h2>
     <div class="gate-copy">
-      <p class="lead" data-rv="up">We partner with ambitious founders and modern operators to engineer resilient digital products, interactive web environments, and scalable software ecosystems.</p>
-      <p class="body" data-rv="up">From Vikings Gym's high-traffic booking portal to Mars Remedies' pharmaceutical platform and BBC Pro Gym's member infrastructure, our engineering delivers high-speed performance, clean typography, and enduring reliability.</p>
-      <a class="arrowlink" href="#pathways" data-rv="fade" data-cursor>
-        <span>View Capabilities</span>
-        <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-      </a>
+      <p class="lead" data-rv="up">We design, develop, and launch high-impact digital products. Every build is engineered from clean foundations for measurable performance, rapid load times, and conversion fidelity.</p>
+      <p class="body" data-rv="up">Explore our full suite of verified production deployments across fitness, healthcare, real estate, and consumer brands on our dedicated case studies showcase.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:16px;">
+        <a class="cta" href="/work" target="_top" data-rv="fade" data-cursor style="margin-top:0;">
+          <i></i><span>View All Case Studies (/work)</span>
+          <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg>
+        </a>
+        <a class="arrowlink" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" data-rv="fade" data-cursor>
+          <span>Chat on WhatsApp</span>
+          <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        </a>
+      </div>
     </div>
   </div>
   <div class="gate-stats" data-rv="up">
-    <div><b>05</b><span>Client Case Studies</span></div>
-    <div><b>100%</b><span>TypeScript Codebase</span></div>
+    <div><b>05+</b><span>Live Deployments</span></div>
+    <div><b>3</b><span>Core Stacks: Web, App, Software</span></div>
     <div><b>&lt;1s</b><span>Load Performance</span></div>
     <div><b>0</b><span>Junior Hand-offs</span></div>
   </div>
@@ -1015,25 +1042,25 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <div class="card-fr" data-frame>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:80.2%; --gy:23.9%; --gr:22%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(255,142,108,.50); --gc2:rgba(212,56,38,.24)"></i>
-        <div class="card-lab"><b>3D & WebGL</b><span>CREATIVE</span></div>
+        <div class="card-lab"><b>Custom Software</b><span>SYSTEMS</span></div>
       </div>
-      <div class="card-meta"><span>Custom Shaders & Canvas</span><span>01 / 03</span></div>
+      <div class="card-meta"><span>Cloud Architecture & APIs</span><span>01 / 03</span></div>
     </article>
     <article class="card" data-rv="up" data-view="1" data-cursor>
       <div class="card-fr" data-frame>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow glow--flame" style="--gx:70.5%; --gy:47.2%; --gr:14%; --gt:3.7s; --gt2:5.3s; --gc1:rgba(255,198,124,.62); --gc2:rgba(226,118,40,.30)"></i>
-        <div class="card-lab"><b>Web Engineering</b><span>FULL-STACK</span></div>
+        <div class="card-lab"><b>Web Development</b><span>FRONTEND</span></div>
       </div>
-      <div class="card-meta"><span>Next.js & TypeScript</span><span>02 / 03</span></div>
+      <div class="card-meta"><span>Next.js, 3D WebGL & Performance</span><span>02 / 03</span></div>
     </article>
     <article class="card" data-rv="up" data-view="2" data-cursor>
       <div class="card-fr" data-frame>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         <i class="glow" style="--gx:48.0%; --gy:16.8%; --gr:20%; --gt:7.3s; --gt2:11.2s; --gc1:rgba(255,138,104,.52); --gc2:rgba(208,54,36,.24)"></i>
-        <div class="card-lab"><b>Design Systems</b><span>SYSTEMS</span></div>
+        <div class="card-lab"><b>Mobile Apps</b><span>iOS & ANDROID</span></div>
       </div>
-      <div class="card-meta"><span>Token Hierarchies & UI</span><span>03 / 03</span></div>
+      <div class="card-meta"><span>React Native & Native Modules</span><span>03 / 03</span></div>
     </article>
   </div>
 </section>
@@ -1111,12 +1138,18 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </span>
   </div>
   <div class="eyebrow" data-rv="fade">04 — Project Initiation</div>
-  <h2 class="display" data-rv="up">Start a conversation.</h2>
-  <p class="body-lg" data-rv="up">Ready to engineer your next digital platform? Reach out to schedule a technical discovery call and receive a clear project roadmap.</p>
-  <a class="cta" href="mailto:contact@accustomlabs.com" data-rv="fade" data-cursor>
-    <i></i><span>Schedule Discovery Call</span>
-    <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg>
-  </a>
+  <h2 class="display" data-rv="up">Have a project in mind? Let's build it.</h2>
+  <p class="body-lg" data-rv="up">Connect directly with our lead developer on WhatsApp for project scoping, quotes, and delivery timelines. We respond within a few hours.</p>
+  <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+    <a class="cta" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project." target="_blank" rel="noopener noreferrer" data-rv="fade" data-cursor>
+      <i></i><span>Enquire on WhatsApp (+91 9113445763)</span>
+      <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg>
+    </a>
+    <a class="arrowlink" href="tel:+919113445763" data-rv="fade" data-cursor>
+      <span>Call +91 9113445763</span>
+      <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+    </a>
+  </div>
 </section>
 
 <!-- ============================================================ footer -->
@@ -1136,31 +1169,32 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="foot-grid">
     <div class="foot-brand">
       <img src="/brand/logo.png" alt="AC Custom Labs" class="foot-brand-logo" />
-      <p>Independent digital product studio engineering high-performance web applications, interactive 3D systems, and category-defining brand platforms.</p>
+      <p>Independent digital product agency developing custom software, high-performance web platforms, and mobile apps for ambitious businesses worldwide.</p>
     </div>
-    <div><h4>Directory</h4><ul>
-      <li><a href="#gate" data-cursor>Selected Work</a></li>
-      <li><a href="#pathways" data-cursor>Capabilities</a></li>
-      <li><a href="#lessons" data-cursor>Disciplines</a></li>
-      <li><a href="#eternity" data-cursor>Initiate Project</a></li>
+    <div><h4>Services</h4><ul>
+      <li><a href="#pathways" data-cursor>Custom Software</a></li>
+      <li><a href="#pathways" data-cursor>Web Development</a></li>
+      <li><a href="#pathways" data-cursor>Mobile Apps</a></li>
+      <li><a href="/work" target="_top" data-cursor>Case Studies (/work)</a></li>
     </ul></div>
-    <div><h4>Clients</h4><ul>
-      <li><a href="#gate" data-cursor>Vikings Gym</a></li>
-      <li><a href="#gate" data-cursor>BBC Pro Gym</a></li>
-      <li><a href="#gate" data-cursor>Real Looks Salon</a></li>
-      <li><a href="#gate" data-cursor>Mars Remedies</a></li>
-      <li><a href="#gate" data-cursor>BB Real Estate</a></li>
+    <div><h4>Verified Work</h4><ul>
+      <li><a href="/work#vikings-gym" target="_top" data-cursor>Vikings Gym</a></li>
+      <li><a href="/work#bbc-pro-gym" target="_top" data-cursor>BBC Pro Gym</a></li>
+      <li><a href="/work#real-looks-salon" target="_top" data-cursor>Real Looks Salon</a></li>
+      <li><a href="/work#mars-remedies" target="_top" data-cursor>Mars Remedies</a></li>
+      <li><a href="/work#bb-real-estate" target="_top" data-cursor>BB Real Estate</a></li>
     </ul></div>
-    <div><h4>Contact</h4><ul>
+    <div><h4>Enquire Direct</h4><ul>
+      <li><a href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor style="color:var(--ember);font-weight:500;">WhatsApp: +91 9113445763</a></li>
+      <li><a href="tel:+919113445763" data-cursor>Phone: +91 9113445763</a></li>
       <li><a href="mailto:contact@accustomlabs.com" data-cursor>contact@accustomlabs.com</a></li>
       <li><a href="https://github.com/ritwikamit" target="_blank" rel="noopener noreferrer" data-cursor>GitHub</a></li>
-      <li><a href="#top" data-cursor>Bengaluru // Global</a></li>
     </ul></div>
   </div>
   <div class="foot-base">
     <span>© 2026 AC Custom Labs. All rights reserved.</span>
-    <span>Engineered with Next.js, Three.js & TypeScript</span>
-    <span>Bengaluru · Global</span>
+    <span>Full-Stack Software, Web & Mobile Engineering Agency</span>
+    <span>Available for Client Engagements</span>
   </div>
 </footer>
 
@@ -4788,5 +4822,46 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 else addEventListener('DOMContentLoaded', boot);
 })();
 </script>
+
+<script>
+/* ======================== Butter-Smooth Wheel Momentum Scrolling */
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let targetY = window.scrollY;
+  let currentY = window.scrollY;
+  let ticking = false;
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      targetY = window.scrollY;
+      currentY = window.scrollY;
+    }
+  }, { passive: true });
+
+  window.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) return;
+    e.preventDefault();
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    targetY = Math.max(0, Math.min(max, targetY + e.deltaY * 0.9));
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: false });
+
+  function update() {
+    currentY += (targetY - currentY) * 0.14;
+    window.scrollTo(0, Math.round(currentY));
+    if (Math.abs(targetY - currentY) > 0.8) {
+      requestAnimationFrame(update);
+    } else {
+      window.scrollTo(0, Math.round(targetY));
+      currentY = targetY;
+      ticking = false;
+    }
+  }
+})();
+</script>
+
 </body>
 </html>

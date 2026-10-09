@@ -112,18 +112,19 @@ export default function Navbar() {
         {/* 4. Divider */}
         <div className="w-px h-5 bg-stroke mx-1.5" />
 
-        {/* 5. "Say hi" / Contact Button */}
-        <Link
-          href="/#contact"
-          onClick={(e) => handleNavClick(e, "contact")}
-          className="group relative inline-flex items-center rounded-full text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 text-text-primary transition-all duration-300 hover:scale-105"
+        {/* 5. Direct WhatsApp Enquire Tab */}
+        <a
+          href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative inline-flex items-center rounded-full text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 text-white transition-all duration-300 hover:scale-105"
         >
-          <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[0.5px]" />
-          <span className="relative z-10 inline-flex items-center gap-1 rounded-full bg-surface px-2.5 py-1 backdrop-blur-md">
-            <span>Say hi</span>
-            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <span className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-[#FF1738] to-[#ff5a3c] opacity-90 group-hover:opacity-100 transition-opacity duration-300 blur-[0.5px]" />
+          <span className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-[#0C0C0E] px-2.5 py-1 backdrop-blur-md">
+            <span>Enquire</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#FF1738] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </span>
-        </Link>
+        </a>
 
         {/* Mobile menu trigger */}
         <button
