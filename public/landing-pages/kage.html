@@ -927,12 +927,298 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   animation: orb-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 @keyframes orb-pulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 0; }
+/* ==================================== Live Real-Time Website Showcase */
+.live-showcase {
+  margin-top: clamp(40px, 6vh, 64px);
+  background: rgba(10, 14, 18, 0.85);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(223, 231, 224, 0.12);
+  transition: border-color 0.4s var(--ease);
 }
-.nav-enquire svg { display: inline-block; width: 11px; height: 11px; transition: transform 0.25s var(--ease); }
-.nav-enquire:hover svg { transform: translate3d(2px, -2px, 0); }
+.live-showcase:hover {
+  border-color: rgba(223, 231, 224, 0.28);
+}
+.showcase-header {
+  border-bottom: 1px solid var(--line-soft);
+  background: rgba(5, 7, 10, 0.7);
+}
+.showcase-tabs {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 8px 12px 0;
+  gap: 6px;
+}
+.showcase-tabs::-webkit-scrollbar { display: none; }
+.showcase-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 8px 8px 0 0;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+  white-space: nowrap;
+}
+.showcase-tab .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: all 0.25s;
+}
+.showcase-tab:hover {
+  color: var(--bone);
+  background: rgba(223, 231, 224, 0.04);
+}
+.showcase-tab.on {
+  color: #fff;
+  background: rgba(10, 14, 18, 0.95);
+  border-color: var(--line-soft);
+}
+.showcase-tab.on .dot {
+  background: var(--vermilion);
+  box-shadow: 0 0 8px var(--vermilion);
+}
+.showcase-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  gap: 16px;
+}
+.traffic-lights {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.tl-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.tl-r { background: #ff5f56; }
+.tl-y { background: #ffbd2e; }
+.tl-g { background: #27c93f; }
+.url-bar {
+  flex: 1 1 auto;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(5, 7, 10, 0.85);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--bone-dim);
+}
+.url-bar .lock-icon {
+  width: 11px;
+  height: 11px;
+  color: #27c93f;
+  flex: 0 0 auto;
+}
+.open-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  background: rgba(223, 231, 224, 0.06);
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.25s;
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+.open-external:hover {
+  color: #fff;
+  border-color: var(--vermilion);
+  background: rgba(224, 35, 28, 0.15);
+}
+.showcase-viewport {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 52vh, 600px);
+  background: #020406;
+}
+.showcase-viewport iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.showcase-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(5, 7, 10, 0.7);
+  border-top: 1px solid var(--line-soft);
+  gap: 12px;
+}
+.showcase-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.showcase-meta b {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+.showcase-meta span {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.showcase-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.showcase-stats .stack {
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  color: var(--bone-dim);
+  background: rgba(223, 231, 224, 0.04);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--line-soft);
+}
+.showcase-stats .badge {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #27c93f;
+  background: rgba(39, 201, 63, 0.12);
+  border: 1px solid rgba(39, 201, 63, 0.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* Works Grid */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 48px;
+}
+.work-card {
+  background: rgba(10, 14, 18, 0.65);
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all 0.35s var(--ease);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.work-card:hover {
+  border-color: rgba(223, 231, 224, 0.24);
+  transform: translateY(-2px);
+  background: rgba(10, 14, 18, 0.85);
+}
+.work-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.work-card-head .idx {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.work-card-head .status {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #27c93f;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.work-card-head .status i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #27c93f;
+}
+.work-card h3 {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  color: var(--bone);
+}
+.work-card .cat {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermilion);
+  margin-bottom: 12px;
+  display: block;
+}
+.work-card p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--bone-dim);
+  margin: 0 0 20px;
+}
+.work-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 14px;
+}
+.work-card-foot .tech {
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  color: var(--muted);
+}
+.work-card-foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bone);
+  transition: color 0.2s;
+}
+.work-card-foot a:hover {
+  color: var(--ember);
+}
 
 </style>
 </head>
@@ -1035,7 +1321,143 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         </a>
       </div>
+  </div>
+
+  <!-- Interactive Real-Time Website Showcase Box -->
+  <div class="live-showcase" id="live-showcase" data-rv="up">
+    <div class="showcase-header">
+      <div class="showcase-tabs">
+        <button class="showcase-tab on" type="button" data-url="https://vikingsgym.in" data-title="Vikings Gym &amp; Spa" data-stack="Next.js · Tailwind · Schema.org Local SEO" data-industry="Luxury Fitness &amp; Moroccan Spa // Aurangabad, Bihar" data-metrics="+140% Conversions · &lt;1.1s Load">
+          <span class="dot"></span> Vikings Gym &amp; Spa
+        </button>
+        <button class="showcase-tab" type="button" data-url="https://bbcpro.vercel.app" data-title="BBC Pro Gym" data-stack="Next.js · TypeScript · Athletic Conditioning UI" data-industry="Strength &amp; Athletic Performance Facility" data-metrics="99/100 Lighthouse · Instant Schedule">
+          <span class="dot"></span> BBC Pro Gym
+        </button>
+        <button class="showcase-tab" type="button" data-url="https://reallookssalon.in" data-title="Real Looks Salon &amp; Spa" data-stack="React · Tailwind · Direct Booking Pathway" data-industry="Unisex Grooming &amp; Luxury Aesthetics" data-metrics="Local Geo-Targeted · Mobile-First">
+          <span class="dot"></span> Real Looks Salon
+        </button>
+        <button class="showcase-tab" type="button" data-url="https://marsremedies.in" data-title="Mars Remedies" data-stack="Full-Stack Web · Pharmaceutical Compliance" data-industry="Pharmaceutical Formulation &amp; Distribution" data-metrics="B2B Ordering · GMP Certified Catalog">
+          <span class="dot"></span> Mars Remedies
+        </button>
+        <button class="showcase-tab" type="button" data-url="https://bbrealestate.in" data-title="BB Real Estate" data-stack="Modern Web Architecture · High-Intent Tours" data-industry="Commercial &amp; Residential Development" data-metrics="Interactive Floorplans · Verified Leads">
+          <span class="dot"></span> BB Real Estate
+        </button>
+      </div>
+
+      <div class="showcase-bar">
+        <div class="traffic-lights">
+          <span class="tl-dot tl-r"></span>
+          <span class="tl-dot tl-y"></span>
+          <span class="tl-dot tl-g"></span>
+        </div>
+        <div class="url-bar">
+          <svg viewBox="0 0 16 16" fill="currentColor" class="lock-icon"><path d="M8 1a3.5 3.5 0 0 0-3.5 3.5V7H4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-.5V4.5A3.5 3.5 0 0 0 8 1zm2 6H6V4.5a2 2 0 1 1 4 0V7z"/></svg>
+          <span id="showcase-url-text">https://vikingsgym.in</span>
+        </div>
+        <a id="showcase-live-link" href="https://vikingsgym.in" target="_blank" rel="noopener noreferrer" class="open-external" title="Open live production platform">
+          <span>Open Live Site</span>
+          <svg viewBox="0 0 14 14" fill="none" width="11" height="11"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.3"/></svg>
+        </a>
+      </div>
     </div>
+
+    <div class="showcase-viewport">
+      <iframe id="showcase-iframe" src="https://vikingsgym.in" title="Live Client Platform Preview" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+    </div>
+
+    <div class="showcase-footer">
+      <div class="showcase-meta">
+        <b id="showcase-title">Vikings Gym &amp; Spa</b>
+        <span id="showcase-industry">Luxury Fitness &amp; Moroccan Spa // Aurangabad, Bihar</span>
+      </div>
+      <div class="showcase-stats">
+        <span class="stack" id="showcase-stack">Next.js · Tailwind · Schema.org Local SEO</span>
+        <span class="badge" id="showcase-metrics">+140% Conversions · &lt;1.1s Load</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Verified Client Deployments Showcase Grid -->
+  <div class="works-grid" data-rv="up">
+    <article class="work-card">
+      <div>
+        <div class="work-card-head">
+          <span class="idx">01</span>
+          <span class="status"><i></i> Live Deployment</span>
+        </div>
+        <span class="cat">Fitness &amp; Luxury Wellness</span>
+        <h3>Vikings Gym &amp; Spa</h3>
+        <p>High-contrast digital portal highlighting Moroccan steam spa, imported biometric machines, trainer credibility, and integrated WhatsApp lead engine.</p>
+      </div>
+      <div class="work-card-foot">
+        <span class="tech">Next.js · Tailwind · SEO</span>
+        <a href="https://vikingsgym.in" target="_blank" rel="noopener noreferrer">Visit vikingsgym.in ↗</a>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div>
+        <div class="work-card-head">
+          <span class="idx">02</span>
+          <span class="status"><i></i> Live Deployment</span>
+        </div>
+        <span class="cat">Athletic Conditioning</span>
+        <h3>BBC Pro Gym</h3>
+        <p>Purpose-built strength training platform with real-time class schedules, trainer rosters, and high-performance mobile UI built for gym members.</p>
+      </div>
+      <div class="work-card-foot">
+        <span class="tech">TypeScript · Next.js · CSS</span>
+        <a href="https://bbcpro.vercel.app" target="_blank" rel="noopener noreferrer">Visit bbcpro.vercel.app ↗</a>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div>
+        <div class="work-card-head">
+          <span class="idx">03</span>
+          <span class="status"><i></i> Live Deployment</span>
+        </div>
+        <span class="cat">Beauty &amp; Aesthetics</span>
+        <h3>Real Looks Salon &amp; Spa</h3>
+        <p>Unisex salon experience platform featuring transparent service menus, bridal packages, portfolio galleries, and localized search optimization.</p>
+      </div>
+      <div class="work-card-foot">
+        <span class="tech">React · Tailwind · Booking</span>
+        <a href="https://reallookssalon.in" target="_blank" rel="noopener noreferrer">Visit reallookssalon.in ↗</a>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div>
+        <div class="work-card-head">
+          <span class="idx">04</span>
+          <span class="status"><i></i> Live Deployment</span>
+        </div>
+        <span class="cat">Pharmaceutical Manufacturing</span>
+        <h3>Mars Remedies</h3>
+        <p>GMP-certified pharmaceutical manufacturing and distribution portal with full formulation catalog, quality documentation, and B2B inquiry routing.</p>
+      </div>
+      <div class="work-card-foot">
+        <span class="tech">Full-Stack · Schema · API</span>
+        <a href="https://marsremedies.in" target="_blank" rel="noopener noreferrer">Visit marsremedies.in ↗</a>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div>
+        <div class="work-card-head">
+          <span class="idx">05</span>
+          <span class="status"><i></i> Live Deployment</span>
+        </div>
+        <span class="cat">Commercial Real Estate</span>
+        <h3>BB Real Estate</h3>
+        <p>High-converting real estate platform featuring property showcases, neighborhood spotlights, floor plan downloads, and direct developer inquiries.</p>
+      </div>
+      <div class="work-card-foot">
+        <span class="tech">Next.js · Lead Engine · CDN</span>
+        <a href="https://bbrealestate.in" target="_blank" rel="noopener noreferrer">Visit bbrealestate.in ↗</a>
+      </div>
+    </article>
   </div>
   <div class="gate-stats" data-rv="up">
     <div><b>05+</b><span>Live Deployments</span></div>
@@ -4923,6 +5345,33 @@ function start() {
 if (document.readyState === 'complete' || document.readyState === 'interactive') setTimeout(boot, 0);
 else addEventListener('DOMContentLoaded', boot);
 })();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.showcase-tab');
+  var iframe = document.getElementById('showcase-iframe');
+  var urlText = document.getElementById('showcase-url-text');
+  var liveLink = document.getElementById('showcase-live-link');
+  var title = document.getElementById('showcase-title');
+  var industry = document.getElementById('showcase-industry');
+  var stack = document.getElementById('showcase-stack');
+  var metrics = document.getElementById('showcase-metrics');
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('on'); });
+      tab.classList.add('on');
+      var url = tab.getAttribute('data-url');
+      if (iframe && url) iframe.src = url;
+      if (urlText) urlText.textContent = url;
+      if (liveLink) liveLink.href = url;
+      if (title) title.textContent = tab.getAttribute('data-title') || '';
+      if (industry) industry.textContent = tab.getAttribute('data-industry') || '';
+      if (stack) stack.textContent = tab.getAttribute('data-stack') || '';
+      if (metrics) metrics.textContent = tab.getAttribute('data-metrics') || '';
+    });
+  });
+});
 </script>
 
 </body>
