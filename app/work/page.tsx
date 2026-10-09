@@ -1,14 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { projectsData } from "@/data/projects";
 import { ExternalLink, Globe, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import Lenis from "lenis";
 
 const CATEGORIES = ["All", "Fitness", "Healthcare", "Beauty", "Real Estate"] as const;
 
 export default function WorkPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.25,
+    });
+
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
 
   const filteredProjects =
     activeCategory === "All"
