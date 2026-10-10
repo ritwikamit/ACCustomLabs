@@ -18,8 +18,8 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 bg-[#05070a]/75 backdrop-blur-md border-b border-white/[0.07] transition-all">
       {/* Brand */}
-      <Link href="/" className="flex items-center gap-4 group">
-        <div className="relative h-10 w-28 sm:w-36 flex-shrink-0">
+      <Link href="/" className="flex items-center gap-3.5 group">
+        <div className="relative h-9 w-28 sm:w-36">
           <Image
             src="/brand/logo.png"
             alt="AC Custom Labs"
@@ -29,11 +29,11 @@ export default function Navbar() {
             priority
           />
         </div>
-        <div className="flex flex-col pl-3.5 border-l border-white/[0.18] leading-tight">
-          <b className="text-sm sm:text-lg font-bold tracking-[0.14em] text-white uppercase group-hover:text-[#38bdf8] transition-colors">
+        <div className="hidden sm:flex flex-col pl-3 border-l border-white/[0.12] leading-tight">
+          <b className="text-[11px] font-medium tracking-[0.2em] text-[#dfe7e0] uppercase">
             AC Custom Labs
           </b>
-          <span className="text-[8px] sm:text-[9.5px] font-normal tracking-[0.24em] text-[#38bdf8] uppercase">
+          <span className="text-[8px] font-light tracking-[0.26em] text-[#78837c] uppercase">
             Digital Product Studio
           </span>
         </div>

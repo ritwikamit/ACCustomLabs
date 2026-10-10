@@ -152,6 +152,7 @@ export default function WorkPage() {
         <div className="space-y-6 border-b border-white/[0.08] pb-12">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="inline-flex items-center gap-2 text-[10.5px] font-mono tracking-[0.24em] uppercase text-[#38bdf8]">
+              <span className="w-1.5 h-1.5 bg-[#38bdf8]"></span>
               <span>PORTFOLIO ARCHIVE // 01</span>
             </div>
             <Link
@@ -334,10 +335,9 @@ export default function WorkPage() {
               href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-[#25D366] text-[#05070a] font-mono text-xs uppercase tracking-[0.16em] font-semibold text-center hover:bg-white transition-colors inline-flex items-center justify-center gap-2"
+              className="px-6 py-3.5 bg-[#38bdf8] text-[#05070a] font-mono text-xs uppercase tracking-[0.16em] font-semibold text-center hover:bg-white transition-colors"
             >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.22-1.28A9.95 9.95 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.82 14.15c-.24.68-1.21 1.24-1.95 1.34-.51.07-1.18.1-3.41-.83-2.86-1.19-4.7-4.12-4.84-4.31-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.36c.26-.28.58-.35.78-.35.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2.01.89 2.16.07.15.12.33.02.53-.1.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.3.31-.13.61.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.44.29.15.46.13.63-.07.17-.19.73-.85.93-1.14.2-.29.39-.24.66-.14.26.1 1.68.79 1.97.94.29.15.48.22.56.34.07.12.07.7-.17 1.38z"/></svg>
-              <span>Direct WhatsApp Briefing</span>
+              Direct WhatsApp Briefing
             </a>
             <Link
               href="/#eternity"
