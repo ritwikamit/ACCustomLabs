@@ -94,21 +94,13 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   font-weight:400; text-shadow:0 2px 34px rgba(3,6,8,.72);
 .h-hero{
   font-size:clamp(32px,4.1vw,58px); line-height:1.08; letter-spacing:-.016em;
-  color:#ff3344 !important;
+  color:#FF1738;
+  text-shadow:0 0 35px rgba(255,23,56,.42), 0 2px 24px rgba(0,0,0,.9);
 }
-.h-hero,
-.h-hero .mask-line,
-.h-hero .mask-line > span,
-.h-hero .word-mask,
-.h-hero .word,
-.h-hero span{
-  color:#ff3344 !important;
-  background:linear-gradient(135deg, #ff5a50 0%, #e0231c 65%, #c4140f 100%) !important;
-  -webkit-background-clip:text !important;
-  background-clip:text !important;
-  -webkit-text-fill-color:transparent !important;
-  filter:drop-shadow(0 0 32px rgba(224, 35, 28, 0.45));
+.h-hero .word, .h-hero .mask-line, .h-hero span{
+  color:#FF1738 !important;
 }
+.h-sec{ font-size:clamp(30px,4.0vw,60px); }
 .body-lg{ font-size:clamp(14px,1.02vw,17px); line-height:1.72; color:#b4bfb7; font-weight:300; text-shadow:0 1px 20px rgba(3,6,8,.88); }
 .body{ font-size:14px; line-height:1.68; color:#9aa5a0; font-weight:300; text-shadow:0 1px 18px rgba(3,6,8,.85); }
 .num{ font-size:clamp(26px,2.5vw,36px); font-weight:300; letter-spacing:-.02em; color:var(--bone); font-variant-numeric:tabular-nums; }
@@ -135,71 +127,44 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 #pre{
   position:fixed; inset:0; z-index:9999; background:#05070a;
   display:flex; align-items:center; justify-content:center;
-  transition:opacity .7s cubic-bezier(.16,1,.3,1), visibility .7s;
+  transition:opacity .5s cubic-bezier(.16,1,.3,1), visibility .5s;
 }
-#pre.done{ opacity:0; visibility:hidden; pointer-events:none; }
+#pre.done{ opacity:0 !important; visibility:hidden !important; pointer-events:none !important; display:none !important; }
 .pre-simple{
-  display:flex; flex-direction:column; align-items:center; text-align:center;
-  padding:24px;
+  display:flex; flex-direction:column; align-items:center; text-align:center; padding:24px;
 }
 .pre-title{
-  font-size:clamp(14px, 1.4vw, 18px);
-  font-weight:600;
-  letter-spacing:0.32em;
-  text-transform:uppercase;
-  color:#ffffff;
-  margin-bottom:8px;
+  font-size:clamp(15px, 1.4vw, 18px); font-weight:600; letter-spacing:0.32em;
+  text-transform:uppercase; color:#dfe7e0; margin-bottom:8px;
 }
 .pre-sub{
-  font-size:9px;
-  letter-spacing:0.24em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:28px;
+  font-size:9.5px; letter-spacing:0.26em; text-transform:uppercase;
+  color:#78837c; margin-bottom:26px;
 }
 .pre-track{
-  width:min(240px, 58vw);
-  height:2px;
-  background:rgba(223, 231, 224, 0.12);
-  position:relative;
-  overflow:hidden;
+  width:min(200px, 55vw); height:2px; background:rgba(223,231,224,0.1);
+  position:relative; overflow:hidden;
 }
 .pre-track i{
-  position:absolute; inset:0 100% 0 0;
-  background:#e0231c;
-  box-shadow:0 0 10px rgba(224, 35, 28, 0.7);
-  transition:right 0.25s linear;
+  position:absolute; inset:0 100% 0 0; background:#FF1738;
+  box-shadow:0 0 12px rgba(255,23,56,0.75); transition:right .15s ease-out;
 }
-.pre-pct-wrap{
-  margin-top:16px;
-  font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size:11px;
-  font-weight:400;
-  letter-spacing:0.2em;
-  color:var(--bone-dim);
+.pre-meta{
+  margin-top:14px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size:10.5px; font-weight:400; letter-spacing:0.2em; color:#78837c;
   font-variant-numeric:tabular-nums;
 }
 
 /* ============================================================= nav */
 .nav{
-  /* Width comes from --vw, not from right:0. A fixed element resolves its
-     inset against the initial containing block, and the page's own horizontal
-     overflow makes that block wider than the screen — 437 against a 390 phone,
-     860 against a 768 tablet — which carried the burger off the right edge.
-     --vw is the layout viewport, written on every resize. */
   position:fixed; top:0; left:0; width:var(--vw, 100%); height:var(--nav-h); z-index:50;
   display:flex; align-items:center; gap:24px; padding:0 var(--pad);
   transition:transform .55s var(--ease);
 }
-/* The sticky wash sits on its own layer rather than on the bar. A
-   backdrop-filter promotes its element to the containing block for any
-   position:fixed descendant, and the bar holds the mobile menu sheet — put the
-   blur here and the sheet was measured against an 84px bar instead of the
-   frame, for as long as the blur took to fade. */
 .nav::before{
   content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
-  background:rgba(5,7,10,.62);
-  backdrop-filter:blur(14px) saturate(1.1); -webkit-backdrop-filter:blur(14px) saturate(1.1);
+  background:rgba(5,7,10,.75);
+  backdrop-filter:blur(18px) saturate(1.2); -webkit-backdrop-filter:blur(18px) saturate(1.2);
   opacity:0; transition:opacity .5s linear;
 }
 .nav.stuck::before{ opacity:1; }
@@ -209,30 +174,30 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 .nav.stuck::after{ opacity:1; }
 .nav.hide{ transform:translate3d(0,-101%,0); }
-/* Text-Only Brand in Header (No Logo) */
 .brand{ display:flex; align-items:center; flex:0 0 auto; text-decoration:none; }
-.brand-tx{ display:flex; flex-direction:column; line-height:1.15; gap:2px; }
+.brand-tx{ display:flex; flex-direction:column; line-height:1.15; gap:3px; }
 .brand-name{
-  font-size:clamp(17px, 1.5vw, 22px) !important;
+  font-size:clamp(18px, 1.6vw, 24px) !important;
   font-weight:700 !important;
-  letter-spacing:0.16em !important;
+  letter-spacing:0.14em !important;
   color:#ffffff !important;
+  text-shadow:0 0 16px rgba(255,255,255,0.22);
   text-transform:uppercase;
   display:block;
-  transition:color .3s;
+  transition:color .3s, text-shadow .3s;
 }
-.brand:hover .brand-name{ color:#38bdf8 !important; }
-.brand-tx i{ font-style:normal; font-size:8.5px; letter-spacing:.26em; color:var(--muted); text-transform:uppercase; display:block; }
-
-/* Themed Red Hero Sentence */
-.h-hero .hero-red-txt{
-  color:#ff2a3b !important;
-  background:linear-gradient(135deg, #ff6554 0%, #e0231c 65%, #ba1510 100%) !important;
-  -webkit-background-clip:text !important;
-  background-clip:text !important;
-  -webkit-text-fill-color:transparent !important;
-  filter:drop-shadow(0 0 35px rgba(224, 35, 28, 0.48));
-  display:inline-block;
+.brand:hover .brand-name{
+  color:#38bdf8 !important;
+  text-shadow:0 0 20px rgba(56,189,248,0.4);
+}
+.brand-tx i{
+  font-style:normal;
+  font-size:9px;
+  letter-spacing:.26em;
+  color:var(--bone-dim);
+  text-transform:uppercase;
+  font-weight:500;
+  display:block;
 }
 .nav-links{ display:flex; gap:clamp(18px,2.6vw,46px); margin-left:auto; }
 .nav-link{
@@ -364,14 +329,31 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .gate-copy{ padding-top:6px; }
 .gate-copy .lead{ font-size:clamp(15px,1.16vw,19px); line-height:1.66; color:#c2cdc5; text-shadow:0 1px 20px rgba(3,6,8,.9); }
 .gate-copy .lead + p{ margin-top:20px; }
-.arrowlink{ display:inline-flex; align-items:center; gap:12px; margin-top:34px;
-  font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--bone); }
-.arrowlink .ar{ width:34px; height:34px; border:1px solid var(--line); border-radius:50%;
-  display:grid; place-items:center; transition:background .45s var(--ease), border-color .45s, transform .5s var(--ease-out); }
-.arrowlink .ar svg{ width:13px; height:13px; transition:transform .5s var(--ease-out); }
-.arrowlink:hover .ar{ background:var(--bone); border-color:var(--bone); }
+.arrowlink{
+  position:relative; display:inline-flex; align-items:center; gap:12px; margin-top:34px;
+  padding:15px 26px; border:1px solid var(--line); border-radius:0; overflow:hidden;
+  font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--bone);
+  cursor:pointer; background:transparent;
+  transition:color .45s var(--ease), border-color .45s, transform .2s ease;
+}
+.arrowlink::before{
+  content:''; position:absolute; inset:0; background:var(--bone); transform:translate3d(0,101%,0);
+  transition:transform .62s var(--ease-out); z-index:0;
+}
+.arrowlink span, .arrowlink svg, .arrowlink .ar{
+  position:relative; z-index:1; transition:color .4s, stroke .4s;
+}
+.arrowlink .ar{
+  width:24px; height:24px; border:1px solid rgba(223,231,224,.25); border-radius:0;
+  display:grid; place-items:center; transition:background .45s var(--ease), border-color .45s, transform .5s var(--ease-out);
+}
+.arrowlink .ar svg{ width:12px; height:12px; transition:transform .5s var(--ease-out); }
+.arrowlink:hover{ color:#05070a !important; border-color:var(--bone); }
+.arrowlink:hover::before{ transform:none; }
+.arrowlink:hover .ar{ border-color:#05070a; background:rgba(5,7,10,0.12); }
 .arrowlink:hover .ar svg{ transform:translate3d(2px,-2px,0); }
-.arrowlink:hover .ar svg path{ stroke:#05070a; }
+.arrowlink:hover svg path{ stroke:#05070a; }
+.arrowlink:active{ transform:scale(0.98); }
 .gate-stats{ display:flex; gap:clamp(24px,4vw,62px); margin-top:clamp(46px,8vh,96px); border-top:1px solid var(--line-soft); padding-top:24px; }
 .gate-stats div b{ display:block; font-size:clamp(22px,2.1vw,32px); font-weight:300; letter-spacing:-.02em; }
 .gate-stats div span{ font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
@@ -805,20 +787,47 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   border-top: 1px solid var(--line-soft);
 }
 .intake-submit-btn {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
   margin-top: 0 !important;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22) 0%, rgba(14, 165, 233, 0.1) 100%);
-  border-color: rgba(56, 189, 248, 0.6);
-  color: #ffffff;
-  padding: 13px 26px;
-  font-size: 10.5px;
-  border-radius: 0;
-  transition: all 0.3s ease;
+  background: transparent !important;
+  border: 1px solid rgba(56, 189, 248, 0.45) !important;
+  color: var(--bone) !important;
+  padding: 15px 30px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  transition: color .45s var(--ease), border-color .45s, transform .2s ease !important;
+}
+.intake-submit-btn i {
+  position: absolute !important;
+  inset: 0 !important;
+  background: #38bdf8 !important;
+  transform: translate3d(0, 101%, 0) !important;
+  transition: transform .62s var(--ease-out) !important;
+  z-index: 0 !important;
+}
+.intake-submit-btn span {
+  position: relative !important;
+  z-index: 1 !important;
+  transition: color .4s !important;
 }
 .intake-submit-btn:hover {
-  background: #38bdf8;
-  border-color: #38bdf8;
-  color: #05070a;
-  box-shadow: 0 0 24px rgba(56, 189, 248, 0.45);
+  color: #05070a !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.45) !important;
+}
+.intake-submit-btn:hover i {
+  transform: none !important;
+}
+.intake-submit-btn:active {
+  transform: scale(0.98) !important;
 }
 
 /* Direct Channels Sidebar Card */
@@ -1973,14 +1982,17 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     <div class="pre-title">AC CUSTOM LABS</div>
     <div class="pre-sub">DIGITAL PRODUCT STUDIO</div>
     <div class="pre-track"><i id="pre-fill"></i></div>
-    <div class="pre-pct-wrap"><span id="pre-pct">0</span>%</div>
+    <div class="pre-meta"><span id="pre-pct">0</span>%</div>
   </div>
 </div>
 
 <!-- ============================================================ nav -->
 <header class="nav" id="nav">
   <a class="brand" href="#top" data-cursor>
-    <span class="brand-tx"><b class="brand-name">AC CUSTOM LABS</b><i>DIGITAL PRODUCT STUDIO</i></span>
+    <span class="brand-tx">
+      <b class="brand-name">AC CUSTOM LABS</b>
+      <i>DIGITAL PRODUCT STUDIO</i>
+    </span>
   </a>
   <nav class="nav-links" id="navlinks">
     <a class="nav-link" href="#gate" data-cursor><span>Work</span><span class="alt">01</span></a>
@@ -1998,9 +2010,9 @@ body[data-layout-footer="b"] .foot-base span:last-child {
   <div class="hero-top">
     <div class="eyebrow" data-rv="fade">AC CUSTOM LABS · DIGITAL PRODUCT &amp; ENGINEERING STUDIO</div>
     <h1 class="display h-hero">
-      <span class="mask-line"><span class="hero-red-txt">Custom software,</span></span>
-      <span class="mask-line"><span class="hero-red-txt">web platforms, &amp; apps</span></span>
-      <span class="mask-line"><span class="hero-red-txt">built for performance.</span></span>
+      <span class="mask-line"><span>Custom software,</span></span>
+      <span class="mask-line"><span>web platforms, &amp; apps</span></span>
+      <span class="mask-line"><span>built for performance.</span></span>
     </h1>
     <p class="hero-sub body" data-rv="up">Independent product engineering studio. We build custom software systems, high-speed web platforms, and mobile applications with end-to-end architectural rigor—taking technical products from initial blueprint directly to production launch.</p>
   </div>
@@ -2050,7 +2062,8 @@ body[data-layout-footer="b"] .foot-base span:last-child {
           <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#05070a" stroke-width="1.3"/></svg>
         </a>
         <a class="arrowlink" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" data-rv="fade" data-cursor>
-          <span>Chat on WhatsApp</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#25D366" style="flex-shrink:0;"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.22-1.28A9.95 9.95 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.82 14.15c-.24.68-1.21 1.24-1.95 1.34-.51.07-1.18.1-3.41-.83-2.86-1.19-4.7-4.12-4.84-4.31-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.36c.26-.28.58-.35.78-.35.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2.01.89 2.16.07.15.12.33.02.53-.1.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.3.31-.13.61.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.44.29.15.46.13.63-.07.17-.19.73-.85.93-1.14.2-.29.39-.24.66-.14.26.1 1.68.79 1.97.94.29.15.48.22.56.34.07.12.07.7-.17 1.38z"/></svg>
+          <span>WhatsApp Inquiry</span>
           <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
         </a>
       </div>
@@ -2062,16 +2075,12 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     <!-- Box 1: CL8 — Terminal AI Platform -->
     <a class="preview-box" href="https://cl8.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>
       <div class="box-chrome">
-        <div class="box-dots">
-          <span class="box-dot box-dot-r"></span>
-          <span class="box-dot box-dot-y"></span>
-          <span class="box-dot box-dot-g"></span>
-        </div>
+        <span class="box-tag" style="font-family:ui-monospace,monospace; font-size:9.5px; letter-spacing:0.18em; color:#38bdf8; text-transform:uppercase;">PREVIEW // 01</span>
         <div class="box-url">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2.5-3 4.5-3 6.5s1 4 3 6.5c2-2.5 3-4.5 3-6.5s-1-4-3-6.5z"/></svg>
           <span>https://cl8.vercel.app</span>
         </div>
-        <span class="box-status"><i></i> Live</span>
+        <span class="box-status">PRODUCTION LIVE</span>
       </div>
       <div class="box-screen">
         <span class="screen-tag">AI Tooling // Terminal Assistant</span>
@@ -2095,16 +2104,12 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     <!-- Box 2: Vikings Gym & Spa -->
     <a class="preview-box" href="https://vikingsgym.in" target="_blank" rel="noopener noreferrer" data-cursor>
       <div class="box-chrome">
-        <div class="box-dots">
-          <span class="box-dot box-dot-r"></span>
-          <span class="box-dot box-dot-y"></span>
-          <span class="box-dot box-dot-g"></span>
-        </div>
+        <span class="box-tag" style="font-family:ui-monospace,monospace; font-size:9.5px; letter-spacing:0.18em; color:#38bdf8; text-transform:uppercase;">PREVIEW // 02</span>
         <div class="box-url">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2.5-3 4.5-3 6.5s1 4 3 6.5c2-2.5 3-4.5 3-6.5s-1-4-3-6.5z"/></svg>
           <span>https://vikingsgym.in</span>
         </div>
-        <span class="box-status"><i></i> Live</span>
+        <span class="box-status">PRODUCTION LIVE</span>
       </div>
       <div class="box-screen">
         <span class="screen-tag">Luxury Fitness // Moroccan Spa</span>
@@ -2128,16 +2133,12 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     <!-- Box 3: Mars Remedies -->
     <a class="preview-box" href="https://marsremedies.co.in" target="_blank" rel="noopener noreferrer" data-cursor>
       <div class="box-chrome">
-        <div class="box-dots">
-          <span class="box-dot box-dot-r"></span>
-          <span class="box-dot box-dot-y"></span>
-          <span class="box-dot box-dot-g"></span>
-        </div>
+        <span class="box-tag" style="font-family:ui-monospace,monospace; font-size:9.5px; letter-spacing:0.18em; color:#38bdf8; text-transform:uppercase;">PREVIEW // 03</span>
         <div class="box-url">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2.5-3 4.5-3 6.5s1 4 3 6.5c2-2.5 3-4.5 3-6.5s-1-4-3-6.5z"/></svg>
           <span>https://marsremedies.co.in</span>
         </div>
-        <span class="box-status"><i></i> Live</span>
+        <span class="box-status">PRODUCTION LIVE</span>
       </div>
       <div class="box-screen">
         <span class="screen-tag">WHO-GMP Certified Pharmaceuticals</span>
@@ -2351,7 +2352,6 @@ body[data-layout-footer="b"] .foot-base span:last-child {
 
   <div class="init-intro" style="margin-bottom: clamp(32px, 5vh, 48px);">
     <div class="init-status-beacon" data-rv="fade">
-      <span class="init-radar-dot"></span>
       <span>Studio Status: Accepting Select Q2/Q3 Engagements · Response Time &lt; 2 Hours</span>
     </div>
     <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;">
@@ -2371,13 +2371,9 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     <!-- Left: The Interactive Contact & Scoping Form -->
     <div class="intake-card" id="contact-console-box">
       <div class="intake-chrome">
-        <div class="intake-dots">
-          <span class="box-dot box-dot-r"></span>
-          <span class="box-dot box-dot-y"></span>
-          <span class="box-dot box-dot-g"></span>
-        </div>
+        <span class="intake-sys" style="font-family:ui-monospace,monospace; font-size:9.5px; letter-spacing:0.18em; color:#38bdf8; text-transform:uppercase;">CONSOLE // DIRECT</span>
         <span class="intake-title">ac-custom-labs // direct-enquiry-intake.ts</span>
-        <span class="intake-badge"><i></i> LIVE GATEWAY</span>
+        <span class="intake-badge">LIVE GATEWAY</span>
       </div>
 
       <div id="intake-status" style="display:none;"></div>
@@ -2454,6 +2450,7 @@ body[data-layout-footer="b"] .foot-base span:last-child {
             <i></i><span>Transmit Project Brief ↗</span>
           </button>
           <a class="arrowlink" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="#25D366" style="flex-shrink:0;"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.22-1.28A9.95 9.95 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.82 14.15c-.24.68-1.21 1.24-1.95 1.34-.51.07-1.18.1-3.41-.83-2.86-1.19-4.7-4.12-4.84-4.31-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.36c.26-.28.58-.35.78-.35.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2.01.89 2.16.07.15.12.33.02.53-.1.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.3.31-.13.61.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.44.29.15.46.13.63-.07.17-.19.73-.85.93-1.14.2-.29.39-.24.66-.14.26.1 1.68.79 1.97.94.29.15.48.22.56.34.07.12.07.7-.17 1.38z"/></svg>
             <span>Direct WhatsApp</span>
             <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
           </a>
@@ -2471,8 +2468,8 @@ body[data-layout-footer="b"] .foot-base span:last-child {
         <h3>Direct Channels <span style="font-size:10px; font-weight:400; color:#38bdf8; letter-spacing:0.1em;">ACTIVE LINE</span></h3>
         
         <a class="channel-item" href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor>
-          <div class="channel-icon" style="color:#10b981;">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <div class="channel-icon" style="color:#25D366; background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.25);">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#25D366"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.22-1.28A9.95 9.95 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.82 14.15c-.24.68-1.21 1.24-1.95 1.34-.51.07-1.18.1-3.41-.83-2.86-1.19-4.7-4.12-4.84-4.31-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.36c.26-.28.58-.35.78-.35.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2.01.89 2.16.07.15.12.33.02.53-.1.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.3.31-.13.61.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.44.29.15.46.13.63-.07.17-.19.73-.85.93-1.14.2-.29.39-.24.66-.14.26.1 1.68.79 1.97.94.29.15.48.22.56.34.07.12.07.7-.17 1.38z"/></svg>
           </div>
           <div class="channel-meta">
             <b>+91 9113445763</b>
@@ -2480,12 +2477,12 @@ body[data-layout-footer="b"] .foot-base span:last-child {
           </div>
         </a>
 
-        <a class="channel-item" href="mailto:contact@accustomlabs.com" data-cursor>
+        <a class="channel-item" href="mailto:accustomlabs@gmail.com" data-cursor>
           <div class="channel-icon" style="color:#38bdf8;">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div class="channel-meta">
-            <b>contact@accustomlabs.com</b>
+            <b>accustomlabs@gmail.com</b>
             <span>Email · SLA &lt; 2 hours guaranteed</span>
           </div>
         </a>
@@ -2571,7 +2568,7 @@ body[data-layout-footer="b"] .foot-base span:last-child {
         </div>
       </div>
       <div class="dossier-foot">
-        <span class="dossier-badge"><i></i> SPRINT READY</span>
+        <span class="dossier-badge">SPRINT READY</span>
         <span class="dossier-num">01 / 03</span>
       </div>
     </div>
@@ -2598,7 +2595,7 @@ body[data-layout-footer="b"] .foot-base span:last-child {
         </div>
       </div>
       <div class="dossier-foot">
-        <span class="dossier-badge"><i></i> SPRINT READY</span>
+        <span class="dossier-badge">SPRINT READY</span>
         <span class="dossier-num">02 / 03</span>
       </div>
     </div>
@@ -2625,7 +2622,7 @@ body[data-layout-footer="b"] .foot-base span:last-child {
         </div>
       </div>
       <div class="dossier-foot">
-        <span class="dossier-badge"><i></i> SPRINT READY</span>
+        <span class="dossier-badge">SPRINT READY</span>
         <span class="dossier-num">03 / 03</span>
       </div>
     </div>
@@ -2651,7 +2648,7 @@ body[data-layout-footer="b"] .foot-base span:last-child {
       <img src="/brand/logo.png" alt="AC Custom Labs" class="foot-brand-logo" />
       <p>Independent digital product engineering studio crafting custom cloud software, high-performance web platforms, and mobile apps for ambitious brands worldwide.</p>
       <div class="foot-status">
-        <i></i><span>Accepting Q2/Q3 Engagements</span>
+        <span>Accepting Q2/Q3 Engagements</span>
       </div>
     </div>
     <div>
@@ -2675,9 +2672,9 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     <div>
       <h4>Direct Channels</h4>
       <ul>
-        <li><a href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor style="color:#38bdf8;font-weight:500;">WhatsApp · +91 9113445763</a></li>
+        <li><a href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project." target="_blank" rel="noopener noreferrer" data-cursor style="color:#25D366;font-weight:500;">WhatsApp · +91 9113445763</a></li>
         <li><a href="tel:+919113445763" data-cursor>Direct Call · +91 9113445763</a></li>
-        <li><a href="mailto:contact@accustomlabs.com" data-cursor>contact@accustomlabs.com</a></li>
+        <li><a href="mailto:accustomlabs@gmail.com" data-cursor>accustomlabs@gmail.com</a></li>
         <li><a href="https://github.com/ritwikamit" target="_blank" rel="noopener noreferrer" data-cursor>GitHub ↗</a></li>
       </ul>
     </div>
@@ -5679,9 +5676,6 @@ function splitHeadingWords() {
         const inner = document.createElement('span');
         mask.className = 'word-mask'; mask.setAttribute('aria-hidden', 'true');
         inner.className = 'word'; inner.textContent = word;
-        if (heading.classList.contains('h-hero') || heading.closest('#hero')) {
-          inner.style.color = '#ff3344';
-        }
         inner.style.setProperty('--word-delay', (i * 72) + 'ms');
         mask.appendChild(inner); target.appendChild(mask);
       });
@@ -6310,15 +6304,36 @@ const JOBS = [
 ];
 
 function boot() {
+  const preSeen = (function() {
+    try {
+      return sessionStorage.getItem('acc_preloader_done') === '1';
+    } catch (e) {
+      return false;
+    }
+  })();
+
+  if (preSeen) {
+    const pre = document.getElementById('pre');
+    if (pre) {
+      pre.classList.add('done');
+      pre.style.display = 'none';
+      pre.style.visibility = 'hidden';
+      pre.style.opacity = '0';
+    }
+    document.body.classList.remove('is-locked');
+  }
+
   const watchdog = setTimeout(() => {
     const pre = document.getElementById('pre');
     if (pre && !pre.classList.contains('done')) {
       console.warn('[kage] preloader watchdog triggered');
       pre.classList.add('done');
+      pre.style.display = 'none';
       document.body.classList.remove('is-locked');
       document.querySelectorAll('[data-rv], .mask-line').forEach(e => e.classList.add('rv-in'));
+      try { sessionStorage.setItem('acc_preloader_done', '1'); } catch (e) {}
     }
-  }, 2400);
+  }, preSeen ? 150 : 2400);
 
   try { makeGrain(); } catch (e) { console.warn('makeGrain', e); }
   try { wireReveals(); } catch (e) { console.warn('wireReveals', e); }
@@ -6327,7 +6342,12 @@ function boot() {
   try { wireHeroExit(); } catch (e) { console.warn('wireHeroExit', e); }
   try { wireFocus(); } catch (e) { console.warn('wireFocus', e); }
   try { wireCursor(); } catch (e) { console.warn('wireCursor', e); }
-  document.body.classList.add('is-locked');
+
+  if (!preSeen) {
+    document.body.classList.add('is-locked');
+  } else {
+    document.body.classList.remove('is-locked');
+  }
 
   let i = 0;
   const step = () => {
@@ -6337,17 +6357,13 @@ function boot() {
       const p = i / JOBS.length;
       if (preFill) preFill.style.right = ((1 - p) * 100).toFixed(1) + '%';
       if (prePct) prePct.textContent = Math.round(p * 100);
-      const preStatus = document.getElementById('pre-status');
-      if (preStatus && i < JOBS.length) {
-        preStatus.textContent = ('INITIALIZING: ' + JOBS[i][0]).toUpperCase();
-      } else if (preStatus) {
-        preStatus.textContent = 'SYSTEMS ONLINE · ENGAGING VIEW';
-      }
       if (i < JOBS.length) {
-        setTimeout(step, 16);
+        if (preSeen) step();
+        else setTimeout(step, 16);
       } else {
         clearTimeout(watchdog);
-        setTimeout(start, 200);
+        try { sessionStorage.setItem('acc_preloader_done', '1'); } catch (e) {}
+        setTimeout(start, preSeen ? 0 : 200);
       }
     };
     let r;
@@ -6359,7 +6375,7 @@ function boot() {
     }
     (r && r.then) ? r.then(done, done) : done();
   };
-  setTimeout(step, 40);
+  setTimeout(step, preSeen ? 0 : 40);
 }
 
 function fallback(err) {
@@ -6367,6 +6383,8 @@ function fallback(err) {
   document.body.classList.add('no-webgl');
   document.body.classList.remove('is-locked');
   preEl.classList.add('done');
+  preEl.style.display = 'none';
+  try { sessionStorage.setItem('acc_preloader_done', '1'); } catch (e) {}
   $$('[data-rv], .mask-line').forEach(e => e.classList.add('rv-in'));
   window.__kage = window.__secret = { fallback: true, error: String(err && err.message || err) };
 }
@@ -6380,6 +6398,10 @@ function start() {
   });
   resize();
 
+  const preSeen = (function() {
+    try { return sessionStorage.getItem('acc_preloader_done') === '1'; } catch(e){ return false; }
+  })();
+
   const shot = Q.get('shot');
   if (shot !== null) {                       /* deterministic states for review */
     RIG.intro = 1; WORD.reveal = 1.2; fadeIn = 1; INTRO.t0 = 0;
@@ -6389,14 +6411,22 @@ function start() {
     $$('[data-rv], .mask-line').forEach(e => e.classList.add('rv-in'));
     document.body.classList.remove('is-locked');
     preEl.classList.add('done');
+    preEl.style.display = 'none';
+  } else if (preSeen) {
+    preEl.classList.add('done');
+    preEl.style.display = 'none';
+    document.body.classList.remove('is-locked');
+    $('#hero').querySelectorAll('[data-rv], .mask-line').forEach(e => e.classList.add('rv-in'));
   } else {
     preEl.classList.add('done');
     setTimeout(() => {
+      preEl.style.display = 'none';
       document.body.classList.remove('is-locked');
       $('#hero').querySelectorAll('[data-rv], .mask-line').forEach((e, i) =>
         setTimeout(() => e.classList.add('rv-in'), REDUCE ? 0 : 120 + i * 95));
     }, REDUCE ? 0 : 340);
   }
+  try { sessionStorage.setItem('acc_preloader_done', '1'); } catch (e) {}
   running = true; tPrev = performance.now();
   INTRO.t0 = shot !== null ? 0 : (REDUCE ? performance.now() - 4000 : performance.now());
 
@@ -6561,7 +6591,7 @@ else addEventListener('DOMContentLoaded', boot);
         }
       } catch (err) {
         if (errorBox) {
-          errorBox.textContent = (err && err.message) || 'Submission error. Please connect directly via WhatsApp at +91 9113445763 or email contact@accustomlabs.com.';
+          errorBox.textContent = (err && err.message) || 'Submission error. Please connect directly via WhatsApp at +91 9113445763 or email accustomlabs@gmail.com.';
           errorBox.style.display = 'block';
         }
         if (submitBtn) {
