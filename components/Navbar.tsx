@@ -29,11 +29,11 @@ export default function Navbar() {
             priority
           />
         </div>
-        <div className="hidden sm:flex flex-col pl-3 border-l border-white/[0.12] leading-tight">
-          <b className="text-[11px] font-medium tracking-[0.2em] text-[#dfe7e0] uppercase">
+        <div className="hidden sm:flex flex-col pl-3.5 border-l border-white/[0.18] leading-tight">
+          <b className="text-sm sm:text-base font-bold tracking-[0.16em] text-white uppercase drop-shadow-sm">
             AC Custom Labs
           </b>
-          <span className="text-[8px] font-light tracking-[0.26em] text-[#78837c] uppercase">
+          <span className="text-[9px] font-medium tracking-[0.24em] text-[#aab4ad] uppercase">
             Digital Product Studio
           </span>
         </div>

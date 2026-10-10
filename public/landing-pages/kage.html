@@ -117,22 +117,107 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 .word-reveal.rv-in .word{ opacity:1; transform:none; }
 
-/* ============================================================= preloader */
+/* ============================================================= preloader (Redesigned) */
 #pre{
-  position:fixed; inset:0; z-index:100; background:#05070a;
+  position:fixed; inset:0; z-index:9999; background:#030508;
+  background-image:
+    radial-gradient(circle at 50% 48%, rgba(224, 35, 28, 0.18) 0%, rgba(56, 189, 248, 0.06) 45%, transparent 72%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size:100% 100%, 36px 36px, 36px 36px;
   display:flex; align-items:center; justify-content:center;
-  transition:opacity .8s var(--ease), visibility .8s;
+  transition:opacity .85s cubic-bezier(.16,1,.3,1), visibility .85s;
 }
 #pre.done{ opacity:0; visibility:hidden; pointer-events:none; }
-.pre-in{ width:min(420px,74vw); text-align:center; }
-.pre-mark{ margin:0 auto 24px; width:auto; max-width:260px; height:52px; display:flex; align-items:center; justify-content:center; }
-.pre-mark svg{ width:100%; height:100%; display:block; }
-.pre-jp{ font-size:12px; letter-spacing:.5em; color:var(--bone-dim); margin-bottom:20px; }
-.pre-bar{ position:relative; height:1px; background:rgba(223,231,224,.14); overflow:hidden; }
-.pre-bar i{ position:absolute; inset:0 100% 0 0; background:var(--bone); transition:right .35s linear; }
-.pre-meta{ display:flex; justify-content:space-between; margin-top:12px;
-  font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
-.pre-meta b{ font-weight:500; color:var(--bone-dim); font-variant-numeric:tabular-nums; }
+.pre-box{
+  width:min(520px, 86vw);
+  background:rgba(7, 10, 14, 0.88);
+  border:1px solid rgba(255, 255, 255, 0.12);
+  border-radius:0;
+  padding:clamp(28px, 4.5vw, 42px) clamp(24px, 4vw, 38px);
+  position:relative;
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
+  box-shadow:0 40px 100px -20px rgba(0, 0, 0, 0.95), 0 0 50px rgba(224, 35, 28, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.pre-box::before, .pre-box::after{
+  content:''; position:absolute; width:10px; height:10px; pointer-events:none;
+}
+.pre-box::before{
+  top:-1px; left:-1px;
+  border-top:2px solid #e0231c; border-left:2px solid #e0231c;
+}
+.pre-box::after{
+  bottom:-1px; right:-1px;
+  border-bottom:2px solid #38bdf8; border-right:2px solid #38bdf8;
+}
+.pre-corner-tr{
+  position:absolute; top:-1px; right:-1px; width:10px; height:10px;
+  border-top:2px solid #38bdf8; border-right:2px solid #38bdf8; pointer-events:none;
+}
+.pre-corner-bl{
+  position:absolute; bottom:-1px; left:-1px; width:10px; height:10px;
+  border-bottom:2px solid #e0231c; border-left:2px solid #e0231c; pointer-events:none;
+}
+.pre-mark{
+  margin:0 auto 20px;
+  display:flex; align-items:center; justify-content:center;
+}
+.pre-mark img{
+  height:54px; width:auto; max-width:240px; object-fit:contain;
+  filter:drop-shadow(0 0 24px rgba(224, 35, 28, 0.55));
+  animation:preLogoPulse 2.4s ease-in-out infinite alternate;
+}
+@keyframes preLogoPulse{
+  0%{ transform:scale(0.98); filter:drop-shadow(0 0 16px rgba(224, 35, 28, 0.4)); }
+  100%{ transform:scale(1.02); filter:drop-shadow(0 0 32px rgba(224, 35, 28, 0.8)); }
+}
+.pre-subhead{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:18px; border-bottom:1px solid rgba(255, 255, 255, 0.08); padding-bottom:12px;
+}
+.pre-title-text{
+  font-size:11px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
+  color:#ffffff;
+}
+.pre-signal-pill{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:9px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing:0.16em; text-transform:uppercase;
+  color:#ff3b30; background:rgba(224, 35, 28, 0.1); border:1px solid rgba(224, 35, 28, 0.3);
+  padding:3px 8px; border-radius:0;
+}
+.pre-signal-pill i{
+  width:5px; height:5px; border-radius:50%; background:#ff3b30;
+  box-shadow:0 0 8px #ff3b30; animation:preDotGlow 1.2s infinite;
+}
+@keyframes preDotGlow{
+  0%, 100%{ opacity:0.4; } 50%{ opacity:1; }
+}
+.pre-bar{
+  position:relative; height:3px; background:rgba(255, 255, 255, 0.08); overflow:hidden;
+  border-radius:0;
+}
+.pre-bar i{
+  position:absolute; inset:0 100% 0 0;
+  background:linear-gradient(90deg, #ff5a50 0%, #e0231c 70%, #38bdf8 100%);
+  box-shadow:0 0 14px rgba(224, 35, 28, 0.85);
+  transition:right 0.25s linear;
+}
+.pre-meta{
+  display:flex; justify-content:space-between; align-items:center; margin-top:14px;
+  font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted);
+  font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.pre-meta b{
+  font-weight:600; color:#ff3b30; font-size:13px; font-variant-numeric:tabular-nums;
+  text-shadow:0 0 12px rgba(224, 35, 28, 0.6);
+}
+.pre-telemetry{
+  margin-top:18px; padding-top:12px; border-top:1px solid rgba(255, 255, 255, 0.06);
+  display:flex; justify-content:space-between; font-size:8.5px;
+  letter-spacing:0.16em; text-transform:uppercase; color:rgba(223, 231, 224, 0.45);
+  font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
 /* ============================================================= nav */
 .nav{
@@ -163,11 +248,30 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 .nav.stuck::after{ opacity:1; }
 .nav.hide{ transform:translate3d(0,-101%,0); }
-.brand{ display:flex; align-items:center; gap:14px; flex:0 0 auto; }
+.brand{ display:flex; align-items:center; gap:14px; flex:0 0 auto; text-decoration:none; }
 .brand-logo{ height:38px; width:auto; max-width:180px; object-fit:contain; display:block; }
-.brand-tx{ display:flex; flex-direction:column; line-height:1.2; gap:3px; border-left:1px solid var(--line); padding-left:12px; }
-.brand-tx b{ font-size:11px; font-weight:500; letter-spacing:.2em; color:var(--bone); }
-.brand-tx i{ font-style:normal; font-size:8px; letter-spacing:.28em; color:var(--muted); text-transform:uppercase; }
+.brand-tx{ display:flex; flex-direction:column; line-height:1.15; gap:3px; border-left:1px solid var(--line); padding-left:14px; }
+.brand-name{
+  font-size:clamp(16px, 1.45vw, 21px) !important;
+  font-weight:700 !important;
+  letter-spacing:0.16em !important;
+  color:#ffffff !important;
+  text-shadow:0 0 20px rgba(255,255,255,0.25);
+  text-transform:uppercase;
+  display:block;
+}
+.brand-tx i{ font-style:normal; font-size:8.5px; letter-spacing:.26em; color:var(--bone-dim); text-transform:uppercase; display:block; }
+
+/* Themed Red Hero Sentence */
+.h-hero .hero-red-txt{
+  color:#ff2a3b !important;
+  background:linear-gradient(135deg, #ff6554 0%, #e0231c 65%, #ba1510 100%) !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  filter:drop-shadow(0 0 35px rgba(224, 35, 28, 0.48));
+  display:inline-block;
+}
 .nav-links{ display:flex; gap:clamp(18px,2.6vw,46px); margin-left:auto; }
 .nav-link{
   position:relative; font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
@@ -1901,16 +2005,26 @@ body[data-layout-footer="b"] .foot-base span:last-child {
 <div id="grain"></div>
 <div class="cur-dot" id="cursor"></div>
 
-<!-- ============================================================ preloader -->
+<!-- ============================================================ preloader (Redesigned) -->
 <div id="pre">
-  <div class="pre-in">
+  <div class="pre-box">
+    <span class="pre-corner-tr" aria-hidden="true"></span>
+    <span class="pre-corner-bl" aria-hidden="true"></span>
     <div class="pre-mark">
-      <img src="/brand/logo.png" alt="AC Custom Labs" style="height:48px; width:auto; max-width:240px; object-fit:contain; display:block; filter:drop-shadow(0 0 24px rgba(56,189,248,0.45));" />
+      <img src="/brand/logo.png" alt="AC Custom Labs" />
     </div>
-    <div class="pre-jp" style="font-family:'Onest',sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--bone-dim);text-transform:uppercase;margin-bottom:20px;">AC CUSTOM LABS // DIGITAL PRODUCT STUDIO</div>
+    <div class="pre-subhead">
+      <span class="pre-title-text">AC Custom Labs · Studio Runtime</span>
+      <span class="pre-signal-pill"><i></i> System Online</span>
+    </div>
     <div class="pre-bar"><i id="pre-fill"></i></div>
     <div class="pre-meta">
-      <span>INITIALIZING STUDIO SYSTEMS</span><b><span id="pre-pct">0</span>%</b>
+      <span id="pre-status">INITIALIZING 3D TEMPLE SHADERS</span>
+      <b><span id="pre-pct">0</span>%</b>
+    </div>
+    <div class="pre-telemetry">
+      <span>LAT 35.0116° N · LON 135.7681° E</span>
+      <span>KYOTO NIGHT ARCHITECTURE</span>
     </div>
   </div>
 </div>
@@ -1918,7 +2032,8 @@ body[data-layout-footer="b"] .foot-base span:last-child {
 <!-- ============================================================ nav -->
 <header class="nav" id="nav">
   <a class="brand" href="#top" data-cursor>
-    <span class="brand-tx"><b>AC CUSTOM LABS</b><i>SOFTWARE · WEB · APPS</i></span>
+    <img src="/brand/logo.png" alt="AC Custom Labs" class="brand-logo" />
+    <span class="brand-tx"><b class="brand-name">AC CUSTOM LABS</b><i>DIGITAL PRODUCT STUDIO</i></span>
   </a>
   <nav class="nav-links" id="navlinks">
     <a class="nav-link" href="#gate" data-cursor><span>Work</span><span class="alt">01</span></a>
@@ -1936,9 +2051,9 @@ body[data-layout-footer="b"] .foot-base span:last-child {
   <div class="hero-top">
     <div class="eyebrow" data-rv="fade">AC CUSTOM LABS · DIGITAL PRODUCT &amp; ENGINEERING STUDIO</div>
     <h1 class="display h-hero">
-      <span class="mask-line"><span>Custom software,</span></span>
-      <span class="mask-line"><span>web platforms, &amp; apps</span></span>
-      <span class="mask-line"><span>built for performance.</span></span>
+      <span class="mask-line"><span class="hero-red-txt">Custom software,</span></span>
+      <span class="mask-line"><span class="hero-red-txt">web platforms, &amp; apps</span></span>
+      <span class="mask-line"><span class="hero-red-txt">built for performance.</span></span>
     </h1>
     <p class="hero-sub body" data-rv="up">Independent product engineering studio. We build custom software systems, high-speed web platforms, and mobile applications with end-to-end architectural rigor—taking technical products from initial blueprint directly to production launch.</p>
   </div>
@@ -6272,6 +6387,12 @@ function boot() {
       const p = i / JOBS.length;
       if (preFill) preFill.style.right = ((1 - p) * 100).toFixed(1) + '%';
       if (prePct) prePct.textContent = Math.round(p * 100);
+      const preStatus = document.getElementById('pre-status');
+      if (preStatus && i < JOBS.length) {
+        preStatus.textContent = ('INITIALIZING: ' + JOBS[i][0]).toUpperCase();
+      } else if (preStatus) {
+        preStatus.textContent = 'SYSTEMS ONLINE · ENGAGING VIEW';
+      }
       if (i < JOBS.length) {
         setTimeout(step, 16);
       } else {
