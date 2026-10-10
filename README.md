@@ -1,95 +1,178 @@
 # AC Custom Labs
 
-Official website and digital flagship for **AC Custom Labs** — an independent, freelancer-led digital product studio with a working team.
+<p align="center">
+  <img src="public/brand/logo.png" alt="AC Custom Labs Logo" width="220" />
+</p>
 
-Built with **Next.js 16+ (App Router)**, **React 19**, **TypeScript**, and **Tailwind CSS**. Deployed on **Vercel**.
+<p align="center">
+  <b>Independent Digital Product Studio & Engineering Agency</b><br />
+  High-Performance Web Platforms · Autonomous AI Systems · Custom Java & Cloud Backends · Mobile Applications
+</p>
 
----
-
-## Brand Rule
-
-> **Red is the signal. Black is the environment. White is the information.**
-
-- Background: Obsidian `#050505`, `#0B0B0D`, `#111114`
-- Accent: Signal Red `#FF1738` (matching the official AC Custom Labs logo arc)
-- Typography: Space Grotesk (Headings) & Inter (Body)
-
----
-
-## Verified Portfolio Deployments
-
-All projects featured on this platform are live client deliverables:
-
-1. **[Vikings Gym & Spa](https://vikingsgym.in)** — Fitness & Moroccan steam spa flagship with local SEO & WhatsApp inquiry flows.
-2. **[BBC Pro Gym](https://bbcpro.vercel.app)** — High-intensity strength training & athletic conditioning presence.
-3. **[Real Looks Unisex Salon](https://reallooks.vercel.app)** — Editorial unisex grooming & beauty salon with service menus & booking triggers.
-4. **[Mars Remedies](https://marsremedies.co.in)** — WHO-GMP & ISO 9001:2015 certified pharmaceutical company (110+ formulations & franchise intake).
-5. **[BB Real Estate](https://bbrealestate.vercel.app)** — Verified residential plotting and strategic land development opportunities in South Bihar.
+<p align="center">
+  <a href="https://cl8.vercel.app"><img src="https://img.shields.io/badge/Featured_Ship-CL8_Terminal_AI-38bdf8?style=flat-square" alt="CL8" /></a>
+  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-16+-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
+  <a href="https://threejs.org"><img src="https://img.shields.io/badge/WebGL-Three.js-orange?style=flat-square&logo=three.js" alt="Three.js" /></a>
+  <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-Strict-blue?style=flat-square&logo=typescript" alt="TypeScript" /></a>
+  <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-CSS_v4-38bdf8?style=flat-square&logo=tailwindcss" alt="Tailwind" /></a>
+</p>
 
 ---
 
-## Core Services
+## 🏛 Overview
 
-- **01. Websites & Web Apps** — High-performance bespoke flagships engineered for conversions.
-- **02. Apps & Custom Software** — Mobile apps, internal tools, CRM dashboards, and operational utilities.
-- **03. UI/UX Design** — High-contrast design systems, tokens, and accessible responsive interfaces.
-- **04. Backend & Databases** — Relational schemas (PostgreSQL), REST/GraphQL APIs, and serverless handlers.
-- **05. SEO, AEO & GEO** — Traditional search rankings, AI answer engine citations, and local map discovery.
-- **06. AI & Automation** — Custom RAG chatbots, automated document processing, and LLM integrations.
-- **07. Deployment & Infrastructure** — Production Vercel edge hosting, GitHub Actions CI/CD, and Cloudflare DNS.
-- **08. Maintenance & Security** — Scheduled dependency updates, OWASP hardening, and rapid bug triage.
-- **09. Domains & Business Infrastructure** — Domain setup, SSL provisioning, and Google Workspace / Zoho email authentication (SPF, DKIM, DMARC).
+**AC Custom Labs** is an independent, engineer-led digital product studio. We eliminate layers of agency bloat and middle management, giving founders and enterprise clients direct access to senior practitioners. 
+
+Our digital flagship combines an interactive **Kyoto Night Temple (Kage)** WebGL experience with a full-stack Next.js web application, featuring live portfolio deployments, comprehensive technical capabilities, and direct project initiation protocols.
 
 ---
 
-## Local Development
+## 🚀 Live Portfolio Deployments
+
+All projects featured on our platform are live, verified client and internal product deployments:
+
+| Project | Domain | Architecture & Highlights | Live Demo |
+| :--- | :--- | :--- | :--- |
+| **CL8 — Terminal AI Assistant** | AI & Developer Tooling | Autonomous command-line companion built by Amit Chauhan. Multi-provider LLMs (Local Ollama, Google Gemini, OpenAI), zero context switching, codebase intelligence, git automation, desktop task execution. | [cl8.vercel.app ↗](https://cl8.vercel.app) |
+| **Vikings Gym & Spa** | Luxury Fitness & Wellness | Sub-100ms edge transitions, dynamic membership tier selectors, trainer rosters, integrated WhatsApp booking, 100/100 Core Web Vitals. | [vikingsgym.in ↗](https://vikingsgym.in) |
+| **Mars Remedies** | Enterprise Pharma & Health | WHO-GMP & ISO 9001:2015 certified pharmaceutical company showcase. 110+ formulations, regulatory documentation, international B2B buyer pipeline. | [marsremedies.co.in ↗](https://marsremedies.co.in) |
+| **BBC Pro Gym** | Athletic Conditioning Club | High-octane contrast aesthetics, workout program breakdowns, membership conversion channels, local SEO & Google Search Console indexing. | [bbcpro.vercel.app ↗](https://bbcpro.vercel.app) |
+| **Real Looks Unisex Salon** | Grooming & Salon Booking | Contemporary unisex styling menu, bridal portfolios, verified testimonials, mobile-first WhatsApp booking flow with prefilled service inquiries. | [reallooks.vercel.app ↗](https://reallooks.vercel.app) |
+| **BB Real Estate** | Luxury & Commercial Property | High-resolution architectural layout viewers, residential and commercial parcel filtering, panoramic tours, direct broker telemetry. | [bbrealestate.vercel.app ↗](https://bbrealestate.vercel.app) |
+
+> 📁 **Full Portfolio Archive**: Visit [`/work`](/work) to view all production deployments with technical specifications, architecture diagrams, and stack breakdowns.
+
+---
+
+## ⚡ Studio Capabilities & Technology Matrix
+
+We provide end-to-end digital engineering across six core architectural pillars:
+
+### 1. Java Systems & Custom Software
+- **Core Technologies**: Java, Spring Boot, Microservices, Python, Node.js, PostgreSQL, Redis.
+- **Scope**: Enterprise backends, custom CRM architectures, zero-trust API gateways, distributed systems, and scalable operational tooling.
+
+### 2. Next.js Platforms & Modern E-Commerce
+- **Core Technologies**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, WebGL (Three.js), Headless Shopify/WooCommerce, WordPress Hosting.
+- **Scope**: Sub-second edge web applications, high-converting E-Commerce platforms, responsive UI engineering, and bespoke CMS workflows.
+
+### 3. Mobile App Engineering
+- **Core Technologies**: React Native, Expo, Swift, Kotlin, Biometric Auth, Offline SQLite.
+- **Scope**: Production iOS and Android mobile applications engineered for fluid 120Hz gesture physics, biometric security, and offline data synchronization.
+
+### 4. Next-Gen Search, SEO, SXO, AEO & GEO
+- **Core Technologies**: Technical SEO, SXO (Search Experience Optimization), AEO (Answer Engine Optimization for ChatGPT & Perplexity), GEO (Generative Engine Optimization), Google Search Console, Rapid Indexing APIs, Local Search Analysis.
+- **Scope**: Dominating traditional search engines and AI generative discovery networks, schema graph markup, and localized business presence.
+
+### 5. UI/UX Design & Brand Identity
+- **Core Technologies**: Figma, Adobe Creative Cloud, Design Tokens, Vector Systems, Typography Scales.
+- **Scope**: High-contrast design systems, sharp architectural UI components, bespoke logo creation, comprehensive branding guidelines, and marketing collateral.
+
+### 6. Cloud Infrastructure & Dedicated Servers
+- **Core Technologies**: Dedicated Linux Servers, Cloudflare Edge DNS, Vercel, AWS/GCP, Docker, SSL/TLS, DMARC/SPF/DKIM.
+- **Scope**: Managed cloud deployments, dedicated server provisioning, DDoS hardening, 99.99% uptime monitoring, ongoing site maintenance, and 24/7 technical support.
+
+---
+
+## 🎨 Design Philosophy & Architecture
+
+```
+Obsidian Night (#05070a)  ─── Environment & Depth
+Celestial Cyan (#38bdf8)  ─── High-Value Signal & Telemetry
+Pale Sage Bone (#dfe7e0)  ─── Crisp Readable Information
+Sharp 90° Geometry        ─── Edgy, Zero-Curve Architecture
+```
+
+- **Interactive Canvas**: Custom Three.js WebGL rendering pipeline with smooth inertial scrolling (`Lenis`), GLSL fabric shaders, and dynamic lighting effects.
+- **Zero-Bloat Engineering**: Native platform APIs, minimal overhead dependencies, clean Git version control, and 100% client code ownership.
+
+---
+
+## 🛠 Local Development & Setup
 
 ### Prerequisites
+- **Node.js**: v18.18+ or v20+ (tested on Node v24)
+- **Package Manager**: npm 10+
 
-- Node.js 18+ (tested on Node v24)
-- npm 10+
-
-### Setup
+### Installation
 
 ```bash
-# Clone the repository
+# 1. Clone repository
 git clone https://github.com/ritwikamit/ACCustomLabs.git
 cd ACCustomLabs
 
-# Install dependencies
+# 2. Install dependencies
 npm install
 
-# Start development server
+# 3. Environment configuration
+cp .env.example .env.local
+
+# 4. Start local development server
 npm run dev
 ```
 
-Visit `http://localhost:3000`.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Verification
+### Quality Assurance & Build Commands
 
 ```bash
-# Typecheck
+# Typecheck TypeScript definitions
 npm run typecheck
 
-# Lint
+# Lint codebase
 npm run lint
 
-# Production Build
+# Compile production bundle
 npm run build
 ```
 
 ---
 
-## Security & Architecture Highlights
+## 📂 Project Structure
 
-- **Content-Security-Policy (CSP)**: Hardened headers configured in `next.config.ts`.
-- **Honeypot Anti-Spam**: Invisible form trap protecting `/api/enquiry` without degrading UX.
-- **Zero Secret Commits**: Environment template in `.env.example`, credentials strictly git-ignored.
-- **Semantic SEO**: Organization and ProfessionalService JSON-LD schemas embedded in `app/layout.tsx`.
-- **Accessibility**: Mobile-first responsive layouts, focus visible indicators, and `prefers-reduced-motion` compliance.
+```text
+AC_CustomLabs/
+├── app/
+│   ├── layout.tsx         # Root layout with Organization & ProfessionalService JSON-LD schemas
+│   ├── page.tsx           # Interactive 3D Kage Temple flagship landing experience
+│   ├── work/page.tsx      # Comprehensive portfolio archive (CL8, Vikings, Mars Remedies, etc.)
+│   ├── services/page.tsx  # Detailed capabilities & architecture services breakdown
+│   ├── about/page.tsx     # Studio manifesto and engineering philosophy
+│   ├── contact/page.tsx   # Direct inquiry protocol & booking channels
+│   ├── sitemap.ts         # Dynamic sitemap indexer
+│   └── robots.ts          # Search engine crawler instructions
+├── components/            # Reusable UI components (Navbar, Footer, etc.)
+├── public/
+│   ├── brand/             # Official AC Custom Labs high-res logos
+│   ├── capabilities/      # Bespoke 3D graphics for capabilities (Java, Web, Mobile, Search, etc.)
+│   ├── projects/          # High-resolution client & product showcase assets (CL8, Vikings, etc.)
+│   └── landing-pages/     # Standalone authored WebGL experiences (kage.html)
+└── data/                  # Static type-safe datasets for site content and services
+```
 
 ---
 
-## License
+## 🔒 Security & Performance Features
 
+- **Strict Content Security Policy (CSP)**: Hardened headers configured in `next.config.ts`.
+- **Honeypot Anti-Spam Protection**: Invisible security traps on enquiry endpoints to deter automated scrapers.
+- **Zero Credential Commits**: Strict `.gitignore` policy and `.env.example` guidance.
+- **Edge Deployment**: Global multi-region edge caching with sub-100ms time to first byte.
+
+---
+
+## 🤝 Project Inquiries & Contact
+
+Have an ambitious digital product to build or legacy architecture to modernize?
+
+- **WhatsApp**: [+91 9113445763](https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project.)
+- **Phone**: [+91 9113445763](tel:+919113445763)
+- **Email**: [contact@accustomlabs.com](mailto:contact@accustomlabs.com)
+- **GitHub**: [github.com/ritwikamit](https://github.com/ritwikamit)
+
+---
+
+## 📜 Credits & License
+
+**Designed and Developed by Team · AC Custom Labs**  
 © 2026 AC Custom Labs. All rights reserved.

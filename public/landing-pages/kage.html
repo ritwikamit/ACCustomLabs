@@ -310,12 +310,37 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .gate-stats div b{ display:block; font-size:clamp(22px,2.1vw,32px); font-weight:300; letter-spacing:-.02em; }
 .gate-stats div span{ font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
 
-/* — chapter II: pathways cards */
-.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(10px,1.4vw,22px); align-items:start; }
-.card{ position:relative; cursor:pointer; }
-.card:nth-child(1){ transform:translateY(0); }
-.card:nth-child(2){ transform:translateY(clamp(26px,5vw,74px)); }
-.card:nth-child(3){ transform:translateY(clamp(52px,10vw,148px)); }
+/* — chapter II: pathways cards (Studio Capabilities) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.4vw, 32px);
+  align-items: stretch;
+  width: 100%;
+}
+@media (max-width: 980px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+.card {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transform: none !important;
+  transition: transform 0.4s var(--ease);
+}
+.card:hover {
+  transform: translateY(-5px) !important;
+}
 /* the frame is a hole punched in the page — the scene is rendered straight
    into this rectangle with a scissored viewport, so each card is a live
    window onto a different corner of the sanctuary */
@@ -1590,36 +1615,19 @@ body[data-layout-footer="b"] .foot-base span:last-child {
 /* ==================================== Box-Wise Website Previews */
 .preview-boxes {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 26px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.5vw, 32px);
   margin-top: clamp(40px, 6vh, 64px);
   width: 100%;
 }
-/* Row 1: 2 flagship builds across 50% / 50% */
-.preview-boxes .preview-box:nth-child(1),
-.preview-boxes .preview-box:nth-child(2) {
-  grid-column: span 3;
-}
-/* Row 2: 3 category builds across 33.3% / 33.3% / 33.3% */
-.preview-boxes .preview-box:nth-child(3),
-.preview-boxes .preview-box:nth-child(4),
-.preview-boxes .preview-box:nth-child(5) {
-  grid-column: span 2;
+.preview-boxes .preview-box {
+  grid-column: span 1 !important;
 }
 
 @media (max-width: 1024px) {
   .preview-boxes {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  .preview-boxes .preview-box:nth-child(1),
-  .preview-boxes .preview-box:nth-child(2),
-  .preview-boxes .preview-box:nth-child(3),
-  .preview-boxes .preview-box:nth-child(4) {
-    grid-column: span 1;
-  }
-  .preview-boxes .preview-box:nth-child(5) {
-    grid-column: span 2;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 
@@ -1987,9 +1995,42 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     </div>
   </div>
 
-  <!-- Box-Wise Website Previews for All 5 Live Platforms -->
+  <!-- Box-Wise Website Previews: Top Featured Deployments -->
   <div class="preview-boxes" data-rv="up">
-    <!-- Box 1: Vikings Gym & Spa -->
+    <!-- Box 1: CL8 — Terminal AI Platform -->
+    <a class="preview-box" href="https://cl8.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>
+      <div class="box-chrome">
+        <div class="box-dots">
+          <span class="box-dot box-dot-r"></span>
+          <span class="box-dot box-dot-y"></span>
+          <span class="box-dot box-dot-g"></span>
+        </div>
+        <div class="box-url">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2.5-3 4.5-3 6.5s1 4 3 6.5c2-2.5 3-4.5 3-6.5s-1-4-3-6.5z"/></svg>
+          <span>https://cl8.vercel.app</span>
+        </div>
+        <span class="box-status"><i></i> Live</span>
+      </div>
+      <div class="box-screen">
+        <span class="screen-tag">AI Tooling // Terminal Assistant</span>
+        <img class="box-screen-img" src="/projects/cl8.jpg" alt="CL8 AI Platform Live Website" loading="lazy" />
+        <div class="screen-hover-cta">
+          <span class="launch-pill">
+            <span>Explore Live Platform</span>
+            <svg viewBox="0 0 14 14" fill="none" width="11" height="11"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.3"/></svg>
+          </span>
+        </div>
+      </div>
+      <div class="box-colophon">
+        <div class="box-meta">
+          <b>CL8 — Terminal AI Assistant</b>
+          <span>Multi-Provider AI · Local Ollama · Gemini · CLI Automation</span>
+        </div>
+        <span class="box-link">Open ↗</span>
+      </div>
+    </a>
+
+    <!-- Box 2: Vikings Gym & Spa -->
     <a class="preview-box" href="https://vikingsgym.in" target="_blank" rel="noopener noreferrer" data-cursor>
       <div class="box-chrome">
         <div class="box-dots">
@@ -2016,79 +2057,13 @@ body[data-layout-footer="b"] .foot-base span:last-child {
       <div class="box-colophon">
         <div class="box-meta">
           <b>Vikings Gym &amp; Spa</b>
-          <span>Next.js · Tailwind CSS · Local SEO</span>
+          <span>Next.js · Tailwind CSS · Local SEO &amp; Class Booking</span>
         </div>
         <span class="box-link">Open ↗</span>
       </div>
     </a>
 
-    <!-- Box 2: BBC Pro Gym -->
-    <a class="preview-box" href="https://bbcpro.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>
-      <div class="box-chrome">
-        <div class="box-dots">
-          <span class="box-dot box-dot-r"></span>
-          <span class="box-dot box-dot-y"></span>
-          <span class="box-dot box-dot-g"></span>
-        </div>
-        <div class="box-url">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2.5-3 4.5-3 6.5s1 4 3 6.5c2-2.5 3-4.5 3-6.5s-1-4-3-6.5z"/></svg>
-          <span>https://bbcpro.vercel.app</span>
-        </div>
-        <span class="box-status"><i></i> Live</span>
-      </div>
-      <div class="box-screen">
-        <span class="screen-tag">Athletic Conditioning // Strength</span>
-        <img class="box-screen-img" src="/projects/bbc-pro.webp" alt="BBC Pro Athletics Live Website" loading="lazy" />
-        <div class="screen-hover-cta">
-          <span class="launch-pill">
-            <span>Explore Live Platform</span>
-            <svg viewBox="0 0 14 14" fill="none" width="11" height="11"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.3"/></svg>
-          </span>
-        </div>
-      </div>
-      <div class="box-colophon">
-        <div class="box-meta">
-          <b>BBC Pro Gym</b>
-          <span>Next.js · High-Performance Web · Vercel Edge</span>
-        </div>
-        <span class="box-link">Open ↗</span>
-      </div>
-    </a>
-
-    <!-- Box 3: Real Looks Salon & Spa -->
-    <a class="preview-box" href="https://reallooks.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>
-      <div class="box-chrome">
-        <div class="box-dots">
-          <span class="box-dot box-dot-r"></span>
-          <span class="box-dot box-dot-y"></span>
-          <span class="box-dot box-dot-g"></span>
-        </div>
-        <div class="box-url">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2.5-3 4.5-3 6.5s1 4 3 6.5c2-2.5 3-4.5 3-6.5s-1-4-3-6.5z"/></svg>
-          <span>https://reallooks.vercel.app</span>
-        </div>
-        <span class="box-status"><i></i> Live</span>
-      </div>
-      <div class="box-screen">
-        <span class="screen-tag">Boutique Grooming // Bridal Care</span>
-        <img class="box-screen-img" src="/projects/real-looks.webp" alt="Real Looks Salon Live Website" loading="lazy" />
-        <div class="screen-hover-cta">
-          <span class="launch-pill">
-            <span>Explore Live Platform</span>
-            <svg viewBox="0 0 14 14" fill="none" width="11" height="11"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.3"/></svg>
-          </span>
-        </div>
-      </div>
-      <div class="box-colophon">
-        <div class="box-meta">
-          <b>Real Looks Unisex Salon</b>
-          <span>React · Editorial UI · Booking Pathways</span>
-        </div>
-        <span class="box-link">Open ↗</span>
-      </div>
-    </a>
-
-    <!-- Box 4: Mars Remedies -->
+    <!-- Box 3: Mars Remedies -->
     <a class="preview-box" href="https://marsremedies.co.in" target="_blank" rel="noopener noreferrer" data-cursor>
       <div class="box-chrome">
         <div class="box-dots">
@@ -2114,48 +2089,27 @@ body[data-layout-footer="b"] .foot-base span:last-child {
       </div>
       <div class="box-colophon">
         <div class="box-meta">
-          <b>Mars Remedies</b>
-          <span>110+ Formulations · B2B Corporate Portal</span>
-        </div>
-        <span class="box-link">Open ↗</span>
-      </div>
-    </a>
-
-    <!-- Box 5: BB Real Estate -->
-    <a class="preview-box" href="https://bbrealestate.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>
-      <div class="box-chrome">
-        <div class="box-dots">
-          <span class="box-dot box-dot-r"></span>
-          <span class="box-dot box-dot-y"></span>
-          <span class="box-dot box-dot-g"></span>
-        </div>
-        <div class="box-url">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2.5-3 4.5-3 6.5s1 4 3 6.5c2-2.5 3-4.5 3-6.5s-1-4-3-6.5z"/></svg>
-          <span>https://bbrealestate.vercel.app</span>
-        </div>
-        <span class="box-status"><i></i> Live</span>
-      </div>
-      <div class="box-screen">
-        <span class="screen-tag">Commercial &amp; Residential Land</span>
-        <img class="box-screen-img" src="/projects/bb-real-estate.webp" alt="BB Real Estate Live Website" loading="lazy" />
-        <div class="screen-hover-cta">
-          <span class="launch-pill">
-            <span>Explore Live Platform</span>
-            <svg viewBox="0 0 14 14" fill="none" width="11" height="11"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.3"/></svg>
-          </span>
-        </div>
-      </div>
-      <div class="box-colophon">
-        <div class="box-meta">
-          <b>BB Real Estate</b>
-          <span>Next.js · Verified Plotting · Direct Routing</span>
+          <b>Mars Remedies Pharmaceuticals</b>
+          <span>110+ Formulations · Global B2B Corporate Gateway</span>
         </div>
         <span class="box-link">Open ↗</span>
       </div>
     </a>
   </div>
+
+  <!-- Portfolio Archive Banner Linking to /work -->
+  <div class="portfolio-archive-banner" data-rv="up" style="margin-top: 36px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; padding: 24px 30px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(10, 14, 20, 0.85) 100%); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 0;">
+    <div>
+      <div style="font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:#38bdf8; font-weight:500; margin-bottom:4px;">VERIFIED CLIENT ARCHIVES · 過去の実績</div>
+      <div style="font-size:14.5px; color:#ffffff; font-weight:400;">Explore BBC Pro Gym, Real Looks Salon, BB Real Estate, and our complete deployment history.</div>
+    </div>
+    <a href="/work" class="cta" data-cursor style="margin-top:0; padding:13px 26px; font-size:10.5px; background:#38bdf8; color:#05070a; border-color:#38bdf8; font-weight:500;">
+      <span>Explore All 6+ Projects in Full Archive ↗</span>
+    </a>
+  </div>
+
   <div class="gate-stats" data-rv="up">
-    <div><b>05+</b><span>Live Deployments</span></div>
+    <div><b>06+</b><span>Live Deployments</span></div>
     <div><b>3</b><span>Core Stacks: Web, App, Software</span></div>
     <div><b>&lt;1s</b><span>Load Performance</span></div>
     <div><b>0</b><span>Junior Hand-offs</span></div>
@@ -2183,32 +2137,76 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     <span class="k"><b>02</b> — Studio Capabilities</span><span class="rule"></span><span class="k">STACK</span>
   </div>
   <div class="cards" id="cards">
+    <!-- 01: Java & Custom Software Systems -->
     <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
       <div class="card-fr">
-        <img class="card-bg-img" src="/capabilities/custom-software.webp" alt="Custom Software Systems" loading="lazy" />
+        <img class="card-bg-img" src="/capabilities/software-java.jpg" alt="Java & Custom Software Systems" loading="lazy" />
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-        <i class="glow" style="--gx:80.2%; --gy:23.9%; --gr:22%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(255,142,108,.50); --gc2:rgba(212,56,38,.24)"></i>
-        <div class="card-lab"><b>Custom Software</b><span>SYSTEMS</span></div>
+        <i class="glow" style="--gx:78.2%; --gy:24.9%; --gr:24%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(56,189,248,.45); --gc2:rgba(30,58,138,.25)"></i>
+        <div class="card-lab"><b>Java Systems &amp; Software</b><span>BACKEND</span></div>
       </div>
-      <div class="card-meta"><span>Cloud Architecture & APIs</span><span>01 / 03</span></div>
+      <div class="card-meta"><span>Java · CRM · Software Dev · Security</span><span>01 / 06</span></div>
+      <p style="margin:6px 0 0;font-size:11px;line-height:1.45;color:#7d8781;">Enterprise Java microservices, custom CRM systems, high-throughput APIs, and zero-trust backend security.</p>
     </article>
+
+    <!-- 02: Modern Web & E-Commerce -->
     <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
       <div class="card-fr">
-        <img class="card-bg-img" src="/capabilities/web-development.webp" alt="High-Performance Web Development" loading="lazy" />
+        <img class="card-bg-img" src="/capabilities/web-ecommerce.jpg" alt="Modern Web & E-Commerce Platforms" loading="lazy" />
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-        <i class="glow glow--flame" style="--gx:70.5%; --gy:47.2%; --gr:14%; --gt:3.7s; --gt2:5.3s; --gc1:rgba(255,198,124,.62); --gc2:rgba(226,118,40,.30)"></i>
-        <div class="card-lab"><b>Web Development</b><span>FRONTEND</span></div>
+        <i class="glow glow--flame" style="--gx:65.5%; --gy:42.2%; --gr:18%; --gt:4.2s; --gt2:6.1s; --gc1:rgba(56,189,248,.50); --gc2:rgba(14,165,233,.22)"></i>
+        <div class="card-lab"><b>Web &amp; E-Commerce</b><span>PLATFORMS</span></div>
       </div>
-      <div class="card-meta"><span>Next.js, 3D WebGL & Performance</span><span>02 / 03</span></div>
+      <div class="card-meta"><span>Next.js · E-Commerce · Responsive · CMS</span><span>02 / 06</span></div>
+      <p style="margin:6px 0 0;font-size:11px;line-height:1.45;color:#7d8781;">Next.js edge applications, high-converting E-Commerce architectures, headless CMS, and WordPress hosting.</p>
     </article>
+
+    <!-- 03: Mobile App Engineering -->
     <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
       <div class="card-fr">
-        <img class="card-bg-img" src="/capabilities/mobile-apps.webp" alt="iOS & Android Mobile Applications" loading="lazy" />
+        <img class="card-bg-img" src="/capabilities/mobile-apps.jpg" alt="Mobile App Engineering" loading="lazy" />
         <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-        <i class="glow" style="--gx:48.0%; --gy:16.8%; --gr:20%; --gt:7.3s; --gt2:11.2s; --gc1:rgba(255,138,104,.52); --gc2:rgba(208,54,36,.24)"></i>
-        <div class="card-lab"><b>Mobile Apps</b><span>iOS & ANDROID</span></div>
+        <i class="glow" style="--gx:50.0%; --gy:20.8%; --gr:22%; --gt:6.8s; --gt2:10.5s; --gc1:rgba(56,189,248,.42); --gc2:rgba(30,58,138,.20)"></i>
+        <div class="card-lab"><b>Mobile App Engineering</b><span>iOS &amp; ANDROID</span></div>
       </div>
-      <div class="card-meta"><span>React Native & Native Modules</span><span>03 / 03</span></div>
+      <div class="card-meta"><span>React Native · App Dev · Offline Sync</span><span>03 / 06</span></div>
+      <p style="margin:6px 0 0;font-size:11px;line-height:1.45;color:#7d8781;">Native &amp; cross-platform iOS/Android apps built with fluid 120Hz gesture physics and biometric encryption.</p>
+    </article>
+
+    <!-- 04: Next-Gen Search, SEO, SXO, AEO & GEO -->
+    <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
+      <div class="card-fr">
+        <img class="card-bg-img" src="/capabilities/search-aeo.jpg" alt="Next-Gen Search, SEO, SXO, AEO & GEO" loading="lazy" />
+        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <i class="glow" style="--gx:72.0%; --gy:30.0%; --gr:20%; --gt:5.5s; --gt2:8.9s; --gc1:rgba(56,189,248,.48); --gc2:rgba(14,165,233,.24)"></i>
+        <div class="card-lab"><b>SEO, SXO, AEO &amp; GEO</b><span>SEARCH &amp; AI</span></div>
+      </div>
+      <div class="card-meta"><span>AEO · GEO · Search Console · Indexing</span><span>04 / 06</span></div>
+      <p style="margin:6px 0 0;font-size:11px;line-height:1.45;color:#7d8781;">Answer Engine Optimization (ChatGPT/Perplexity), Generative Engine rank, Google Search Console indexing &amp; local search analysis.</p>
+    </article>
+
+    <!-- 05: UI/UX & Brand Identity -->
+    <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
+      <div class="card-fr">
+        <img class="card-bg-img" src="/capabilities/uiux-branding.jpg" alt="UI/UX & Brand Identity" loading="lazy" />
+        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <i class="glow" style="--gx:45.0%; --gy:35.0%; --gr:22%; --gt:6.4s; --gt2:9.3s; --gc1:rgba(56,189,248,.44); --gc2:rgba(30,58,138,.20)"></i>
+        <div class="card-lab"><b>UI/UX &amp; Brand Identity</b><span>DESIGN</span></div>
+      </div>
+      <div class="card-meta"><span>UI/UX · Logo &amp; Branding · Graphic Design</span><span>05 / 06</span></div>
+      <p style="margin:6px 0 0;font-size:11px;line-height:1.45;color:#7d8781;">High-fidelity design systems, distinctive logo &amp; brand identities, conversion wireframes, and graphic design.</p>
+    </article>
+
+    <!-- 06: Cloud Hosting & Dedicated Servers -->
+    <article class="card" data-rv="up" data-cursor onclick="if(window.__lenis){window.__lenis.scrollTo('#eternity',{duration:1.2})}else{document.querySelector('#eternity').scrollIntoView({behavior:'smooth'})}">
+      <div class="card-fr">
+        <img class="card-bg-img" src="/capabilities/cloud-servers.jpg" alt="Cloud Hosting & Dedicated Servers" loading="lazy" />
+        <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <i class="glow" style="--gx:60.0%; --gy:28.0%; --gr:25%; --gt:5.8s; --gt2:8.5s; --gc1:rgba(56,189,248,.46); --gc2:rgba(14,165,233,.22)"></i>
+        <div class="card-lab"><b>Cloud &amp; Dedicated Servers</b><span>INFRASTRUCTURE</span></div>
+      </div>
+      <div class="card-meta"><span>Dedicated Server · Hosting · Web Security</span><span>06 / 06</span></div>
+      <p style="margin:6px 0 0;font-size:11px;line-height:1.45;color:#7d8781;">Managed cloud &amp; dedicated server deployments, site maintenance, DDoS web security, and 24/7 technical support.</p>
     </article>
   </div>
 </section>
@@ -2606,11 +2604,10 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     <div>
       <h4>Selected Works</h4>
       <ul>
+        <li><a href="https://cl8.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>CL8 Terminal AI ↗</a></li>
         <li><a href="https://vikingsgym.in" target="_blank" rel="noopener noreferrer" data-cursor>Vikings Gym ↗</a></li>
-        <li><a href="https://bbcpro.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>BBC Pro Gym ↗</a></li>
-        <li><a href="https://reallooks.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>Real Looks Salon ↗</a></li>
         <li><a href="https://marsremedies.co.in" target="_blank" rel="noopener noreferrer" data-cursor>Mars Remedies ↗</a></li>
-        <li><a href="https://bbrealestate.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor>BB Real Estate ↗</a></li>
+        <li><a href="/work" data-cursor style="color:#38bdf8;font-weight:500;">All Works Archive (/work) →</a></li>
       </ul>
     </div>
     <div>
@@ -2624,7 +2621,7 @@ body[data-layout-footer="b"] .foot-base span:last-child {
     </div>
   </div>
   <div class="foot-base">
-    <span>© 2026 AC Custom Labs. All rights reserved.</span>
+    <span>Designed and Developed by Team · AC Custom Labs</span>
     <span>Kyoto Night Architecture · Zero-Bloat Engineering</span>
     <span>Response SLA &lt; 2 Hours Guaranteed</span>
   </div>

@@ -50,7 +50,7 @@ export default function Navbar() {
         </Link>
 
         <Link
-          href="/#gate"
+          href="/work"
           className="group relative text-[11px] font-medium tracking-[0.2em] uppercase text-[#aab4ad] hover:text-[#dfe7e0] transition-colors"
         >
           <span>Work</span>
@@ -104,7 +104,7 @@ export default function Navbar() {
             Index // 00
           </Link>
           <Link
-            href="/#gate"
+            href="/work"
             onClick={() => setMobileOpen(false)}
             className="text-xs font-mono uppercase tracking-[0.2em] text-[#dfe7e0] py-2 border-b border-white/[0.05]"
           >

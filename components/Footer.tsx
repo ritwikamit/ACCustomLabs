@@ -72,29 +72,24 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-xs font-light text-[#aab4ad]">
               <li>
+                <a href="https://cl8.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#38bdf8] hover:underline font-medium">
+                  CL8 Terminal AI ↗
+                </a>
+              </li>
+              <li>
                 <a href="https://vikingsgym.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
-                  Vikings Gym
-                </a>
-              </li>
-              <li>
-                <a href="https://bbcpro.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
-                  BBC Pro Gym
-                </a>
-              </li>
-              <li>
-                <a href="https://reallooks.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
-                  Real Looks Salon
+                  Vikings Gym ↗
                 </a>
               </li>
               <li>
                 <a href="https://marsremedies.co.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
-                  Mars Remedies
+                  Mars Remedies ↗
                 </a>
               </li>
               <li>
-                <a href="https://bbrealestate.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-[#dfe7e0] transition-colors">
-                  BB Real Estate
-                </a>
+                <Link href="/work" className="hover:text-[#dfe7e0] transition-colors">
+                  All Works Archive (/work) →
+                </Link>
               </li>
             </ul>
           </div>
@@ -147,8 +142,8 @@ export default function Footer() {
 
         {/* Colophon Base Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[10px] tracking-[0.16em] uppercase text-[#78837c]">
-          <span>© 2026 AC Custom Labs. All rights reserved.</span>
-          <span>Full-Stack Software, Web & Mobile Engineering Agency</span>
+          <span>Designed and Developed by Team · AC Custom Labs</span>
+          <span>Full-Stack Software, Web &amp; Mobile Engineering Agency</span>
           <span>Available for Client Engagements</span>
         </div>
       </div>
