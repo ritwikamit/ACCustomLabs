@@ -105,9 +105,10 @@ export default function Footer() {
                   href="https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#ff5a3c] hover:underline font-medium"
+                  className="text-[#25D366] hover:underline font-medium inline-flex items-center gap-1.5"
                 >
-                  WhatsApp: +91 9113445763
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="#25D366"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.22-1.28A9.95 9.95 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.82 14.15c-.24.68-1.21 1.24-1.95 1.34-.51.07-1.18.1-3.41-.83-2.86-1.19-4.7-4.12-4.84-4.31-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.36c.26-.28.58-.35.78-.35.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2.01.89 2.16.07.15.12.33.02.53-.1.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.3.31-.13.61.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.44.29.15.46.13.63-.07.17-.19.73-.85.93-1.14.2-.29.39-.24.66-.14.26.1 1.68.79 1.97.94.29.15.48.22.56.34.07.12.07.7-.17 1.38z"/></svg>
+                  <span>WhatsApp: +91 9113445763</span>
                 </a>
               </li>
               <li>
@@ -120,10 +121,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contact@accustomlabs.com"
+                  href="mailto:accustomlabs@gmail.com"
                   className="text-[#aab4ad] hover:text-[#dfe7e0] transition-colors"
                 >
-                  contact@accustomlabs.com
+                  accustomlabs@gmail.com
                 </a>
               </li>
               <li>
