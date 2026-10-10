@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { X, Menu } from "lucide-react";
 
@@ -16,14 +17,26 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 bg-[#05070a]/75 backdrop-blur-md border-b border-white/[0.07] transition-all">
-      {/* Brand (Text-Only) */}
-      <Link href="/" className="flex flex-col leading-tight group">
-        <b className="text-base sm:text-lg font-bold tracking-[0.14em] text-white uppercase drop-shadow-sm transition-colors group-hover:text-[#38bdf8]">
-          AC CUSTOM LABS
-        </b>
-        <span className="text-[8.5px] sm:text-[9.5px] font-normal tracking-[0.26em] text-[#aab4ad] uppercase">
-          DIGITAL PRODUCT STUDIO
-        </span>
+      {/* Brand */}
+      <Link href="/" className="flex items-center gap-3.5 group">
+        <div className="relative h-9 w-28 sm:w-36">
+          <Image
+            src="/brand/logo.png"
+            alt="AC Custom Labs"
+            fill
+            sizes="150px"
+            className="object-contain object-left transition-opacity group-hover:opacity-90"
+            priority
+          />
+        </div>
+        <div className="hidden sm:flex flex-col pl-3.5 border-l border-white/[0.18] leading-tight">
+          <b className="text-sm sm:text-base font-bold tracking-[0.16em] text-white uppercase drop-shadow-sm">
+            AC Custom Labs
+          </b>
+          <span className="text-[9px] font-medium tracking-[0.24em] text-[#aab4ad] uppercase">
+            Digital Product Studio
+          </span>
+        </div>
       </Link>
 
       {/* Desktop Nav Links */}

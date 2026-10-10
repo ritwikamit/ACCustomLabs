@@ -57,7 +57,7 @@ export default function TermsPage() {
             5. Inquiries
           </h2>
           <p>
-            For any contractual or engagement inquiries, please reach out directly to <span className="text-[#FF1738]">accustomlabs@gmail.com</span>.
+            For any contractual or engagement inquiries, please reach out directly to <span className="text-[#FF1738]">contact@accustomlabs.com</span>.
           </p>
         </section>
       </div>

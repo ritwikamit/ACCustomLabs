@@ -116,7 +116,7 @@ export default function ProjectEnquiryForm() {
       setErrorMessage(
         err instanceof Error
           ? err.message
-          : "Something went wrong while submitting. Please try again or reach out to accustomlabs@gmail.com directly."
+          : "Something went wrong while submitting. Please try again or reach out to contact@accustomlabs.com directly."
       );
     }
   };
