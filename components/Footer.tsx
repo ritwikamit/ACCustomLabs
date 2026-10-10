@@ -120,10 +120,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contact@accustomlabs.com"
+                  href="mailto:accustomlabs@gmail.com"
                   className="text-[#aab4ad] hover:text-[#dfe7e0] transition-colors"
                 >
-                  contact@accustomlabs.com
+                  accustomlabs@gmail.com
                 </a>
               </li>
               <li>

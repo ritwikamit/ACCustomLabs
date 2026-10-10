@@ -167,7 +167,7 @@ Have an ambitious digital product to build or legacy architecture to modernize?
 
 - **WhatsApp**: [+91 9113445763](https://wa.me/919113445763?text=Hi%20AC%20Custom%20Labs%2C%20I%20would%20like%20to%20enquire%20about%20a%20project.)
 - **Phone**: [+91 9113445763](tel:+919113445763)
-- **Email**: [contact@accustomlabs.com](mailto:contact@accustomlabs.com)
+- **Email**: [accustomlabs@gmail.com](mailto:accustomlabs@gmail.com)
 - **GitHub**: [github.com/ritwikamit](https://github.com/ritwikamit)
 
 ---

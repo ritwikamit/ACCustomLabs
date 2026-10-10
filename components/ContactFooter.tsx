@@ -68,13 +68,13 @@ export default function ContactFooter() {
         {/* CTA Email Button with gradient hover border ring */}
         <div className="inline-flex flex-wrap items-center justify-center gap-4 mb-16">
           <a
-            href="mailto:ritwikamit700@gmail.com"
+            href="mailto:accustomlabs@gmail.com"
             className="group relative inline-flex items-center rounded-full text-sm font-medium px-8 py-4 text-text-primary transition-all duration-300 hover:scale-105"
           >
             <span className="absolute -inset-[2px] rounded-full accent-gradient opacity-80 group-hover:opacity-100 transition-opacity duration-300 blur-[1px]" />
             <span className="relative z-10 inline-flex items-center gap-2.5 rounded-full bg-surface px-6 py-2.5 border border-stroke">
               <Mail className="w-4 h-4 text-[#89AACC]" />
-              <span className="font-mono text-xs sm:text-sm">ritwikamit700@gmail.com</span>
+              <span className="font-mono text-xs sm:text-sm">accustomlabs@gmail.com</span>
               <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </a>

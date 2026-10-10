@@ -57,7 +57,7 @@ export default function PrivacyPage() {
             5. Contact Us
           </h2>
           <p>
-            If you have questions regarding our privacy practices or wish to request the deletion of your enquiry data, please contact us directly at <span className="text-[#FF1738]">contact@accustomlabs.com</span>.
+            If you have questions regarding our privacy practices or wish to request the deletion of your enquiry data, please contact us directly at <span className="text-[#FF1738]">accustomlabs@gmail.com</span>.
           </p>
         </section>
       </div>
