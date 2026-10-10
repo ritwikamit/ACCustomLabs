@@ -117,106 +117,29 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 .word-reveal.rv-in .word{ opacity:1; transform:none; }
 
-/* ============================================================= preloader (Redesigned) */
+/* ============================================================= preloader (Simple) */
 #pre{
-  position:fixed; inset:0; z-index:9999; background:#030508;
-  background-image:
-    radial-gradient(circle at 50% 48%, rgba(224, 35, 28, 0.18) 0%, rgba(56, 189, 248, 0.06) 45%, transparent 72%),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size:100% 100%, 36px 36px, 36px 36px;
+  position:fixed; inset:0; z-index:9999; background:#05070a;
   display:flex; align-items:center; justify-content:center;
-  transition:opacity .85s cubic-bezier(.16,1,.3,1), visibility .85s;
+  transition:opacity .6s var(--ease), visibility .6s;
 }
 #pre.done{ opacity:0; visibility:hidden; pointer-events:none; }
-.pre-box{
-  width:min(520px, 86vw);
-  background:rgba(7, 10, 14, 0.88);
-  border:1px solid rgba(255, 255, 255, 0.12);
-  border-radius:0;
-  padding:clamp(28px, 4.5vw, 42px) clamp(24px, 4vw, 38px);
-  position:relative;
-  backdrop-filter:blur(28px) saturate(180%);
-  -webkit-backdrop-filter:blur(28px) saturate(180%);
-  box-shadow:0 40px 100px -20px rgba(0, 0, 0, 0.95), 0 0 50px rgba(224, 35, 28, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+.pre-simple{
+  width:min(260px, 70vw); text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:20px;
 }
-.pre-box::before, .pre-box::after{
-  content:''; position:absolute; width:10px; height:10px; pointer-events:none;
-}
-.pre-box::before{
-  top:-1px; left:-1px;
-  border-top:2px solid #e0231c; border-left:2px solid #e0231c;
-}
-.pre-box::after{
-  bottom:-1px; right:-1px;
-  border-bottom:2px solid #38bdf8; border-right:2px solid #38bdf8;
-}
-.pre-corner-tr{
-  position:absolute; top:-1px; right:-1px; width:10px; height:10px;
-  border-top:2px solid #38bdf8; border-right:2px solid #38bdf8; pointer-events:none;
-}
-.pre-corner-bl{
-  position:absolute; bottom:-1px; left:-1px; width:10px; height:10px;
-  border-bottom:2px solid #e0231c; border-left:2px solid #e0231c; pointer-events:none;
-}
-.pre-mark{
-  margin:0 auto 20px;
-  display:flex; align-items:center; justify-content:center;
-}
-.pre-mark img{
-  height:54px; width:auto; max-width:240px; object-fit:contain;
-  filter:drop-shadow(0 0 24px rgba(224, 35, 28, 0.55));
-  animation:preLogoPulse 2.4s ease-in-out infinite alternate;
-}
-@keyframes preLogoPulse{
-  0%{ transform:scale(0.98); filter:drop-shadow(0 0 16px rgba(224, 35, 28, 0.4)); }
-  100%{ transform:scale(1.02); filter:drop-shadow(0 0 32px rgba(224, 35, 28, 0.8)); }
-}
-.pre-subhead{
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:18px; border-bottom:1px solid rgba(255, 255, 255, 0.08); padding-bottom:12px;
-}
-.pre-title-text{
-  font-size:11px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
-  color:#ffffff;
-}
-.pre-signal-pill{
-  display:inline-flex; align-items:center; gap:6px;
-  font-size:9px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing:0.16em; text-transform:uppercase;
-  color:#ff3b30; background:rgba(224, 35, 28, 0.1); border:1px solid rgba(224, 35, 28, 0.3);
-  padding:3px 8px; border-radius:0;
-}
-.pre-signal-pill i{
-  width:5px; height:5px; border-radius:50%; background:#ff3b30;
-  box-shadow:0 0 8px #ff3b30; animation:preDotGlow 1.2s infinite;
-}
-@keyframes preDotGlow{
-  0%, 100%{ opacity:0.4; } 50%{ opacity:1; }
+.pre-logo{
+  height:42px; width:auto; max-width:200px; object-fit:contain; display:block;
 }
 .pre-bar{
-  position:relative; height:3px; background:rgba(255, 255, 255, 0.08); overflow:hidden;
-  border-radius:0;
+  width:100%; height:2px; background:rgba(223,231,224,.12); overflow:hidden; position:relative;
 }
 .pre-bar i{
-  position:absolute; inset:0 100% 0 0;
-  background:linear-gradient(90deg, #ff5a50 0%, #e0231c 70%, #38bdf8 100%);
-  box-shadow:0 0 14px rgba(224, 35, 28, 0.85);
-  transition:right 0.25s linear;
+  position:absolute; inset:0 100% 0 0; background:#e0231c; transition:right .2s linear;
 }
-.pre-meta{
-  display:flex; justify-content:space-between; align-items:center; margin-top:14px;
-  font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted);
+.pre-num{
   font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-.pre-meta b{
-  font-weight:600; color:#ff3b30; font-size:13px; font-variant-numeric:tabular-nums;
-  text-shadow:0 0 12px rgba(224, 35, 28, 0.6);
-}
-.pre-telemetry{
-  margin-top:18px; padding-top:12px; border-top:1px solid rgba(255, 255, 255, 0.06);
-  display:flex; justify-content:space-between; font-size:8.5px;
-  letter-spacing:0.16em; text-transform:uppercase; color:rgba(223, 231, 224, 0.45);
-  font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size:11px; letter-spacing:.18em; color:var(--muted); font-variant-numeric:tabular-nums;
 }
 
 /* ============================================================= nav */
@@ -2005,27 +1928,12 @@ body[data-layout-footer="b"] .foot-base span:last-child {
 <div id="grain"></div>
 <div class="cur-dot" id="cursor"></div>
 
-<!-- ============================================================ preloader (Redesigned) -->
+<!-- ============================================================ preloader (Simple) -->
 <div id="pre">
-  <div class="pre-box">
-    <span class="pre-corner-tr" aria-hidden="true"></span>
-    <span class="pre-corner-bl" aria-hidden="true"></span>
-    <div class="pre-mark">
-      <img src="/brand/logo.png" alt="AC Custom Labs" />
-    </div>
-    <div class="pre-subhead">
-      <span class="pre-title-text">AC Custom Labs · Studio Runtime</span>
-      <span class="pre-signal-pill"><i></i> System Online</span>
-    </div>
+  <div class="pre-simple">
+    <img src="/brand/logo.png" alt="AC Custom Labs" class="pre-logo" />
     <div class="pre-bar"><i id="pre-fill"></i></div>
-    <div class="pre-meta">
-      <span id="pre-status">INITIALIZING 3D TEMPLE SHADERS</span>
-      <b><span id="pre-pct">0</span>%</b>
-    </div>
-    <div class="pre-telemetry">
-      <span>LAT 35.0116° N · LON 135.7681° E</span>
-      <span>KYOTO NIGHT ARCHITECTURE</span>
-    </div>
+    <div class="pre-num"><span id="pre-pct">0</span>%</div>
   </div>
 </div>
 
@@ -6387,12 +6295,6 @@ function boot() {
       const p = i / JOBS.length;
       if (preFill) preFill.style.right = ((1 - p) * 100).toFixed(1) + '%';
       if (prePct) prePct.textContent = Math.round(p * 100);
-      const preStatus = document.getElementById('pre-status');
-      if (preStatus && i < JOBS.length) {
-        preStatus.textContent = ('INITIALIZING: ' + JOBS[i][0]).toUpperCase();
-      } else if (preStatus) {
-        preStatus.textContent = 'SYSTEMS ONLINE · ENGAGING VIEW';
-      }
       if (i < JOBS.length) {
         setTimeout(step, 16);
       } else {
