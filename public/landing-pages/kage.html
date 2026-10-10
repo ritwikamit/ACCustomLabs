@@ -2758,10 +2758,9 @@ body[data-layout-footer="b"] .foot-base span:last-child {
       </ul>
     </div>
   </div>
-  <div class="foot-base">
-    <span>Designed and Developed by Team · AC Custom Labs</span>
-    <span>Kyoto Night Architecture · Zero-Bloat Engineering</span>
-    <span>Response SLA &lt; 2 Hours Guaranteed</span>
+  <div class="foot-base" style="justify-content:center; text-align:center; flex-direction:column; gap:8px;">
+    <span>© 2026 AC Custom Labs. All rights reserved.</span>
+    <span>Designed and developed by team</span>
   </div>
 </footer>
 
@@ -6304,7 +6303,7 @@ function frame(now) {
   }
   const curScroll = (window.__lenis && typeof window.__lenis.scroll === 'number') ? window.__lenis.scroll : scrollY;
   RIG.prog = progressFor(curScroll);
-  RIG.smooth = REDUCE ? RIG.prog : damp(RIG.smooth, RIG.prog, 9.5, dt);
+  RIG.smooth = REDUCE ? RIG.prog : damp(RIG.smooth, RIG.prog, 18.0, dt);
   RIG.mx = damp(RIG.mx, RIG.tmx, 2.6, dt);
   RIG.my = damp(RIG.my, RIG.tmy, 2.6, dt);
   if (INTRO.t0) {
@@ -6470,14 +6469,14 @@ function start() {
   if (typeof Lenis !== 'undefined' && !REDUCE) {
     try {
       window.__lenis = new Lenis({
-        lerp: 0.08,
-        duration: 1.25,
+        duration: 1.15,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 0.95,
-        touchMultiplier: 1.15,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.6,
+        syncTouch: true,
         infinite: false,
       });
     } catch (e) {

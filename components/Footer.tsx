@@ -141,10 +141,9 @@ export default function Footer() {
         </div>
 
         {/* Colophon Base Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[10px] tracking-[0.16em] uppercase text-[#78837c]">
-          <span>Designed and Developed by Team · AC Custom Labs</span>
-          <span>Full-Stack Software, Web &amp; Mobile Engineering Agency</span>
-          <span>Available for Client Engagements</span>
+        <div className="pt-8 flex flex-col items-center justify-center text-center gap-2 text-[10px] tracking-[0.16em] uppercase text-[#78837c]">
+          <span>© 2026 AC Custom Labs. All rights reserved.</span>
+          <span>Designed and developed by team</span>
         </div>
       </div>
     </footer>
